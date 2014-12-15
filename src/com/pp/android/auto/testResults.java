@@ -2,7 +2,7 @@ package com.pp.android.auto;
 
 import org.testng.annotations.Test;
 
-public class testResults {
+public class TestResults {
 	
 	@Test (enabled = true, testName ="testResults", groups = {"temp"})
 	public void runSuccessFaillure (){

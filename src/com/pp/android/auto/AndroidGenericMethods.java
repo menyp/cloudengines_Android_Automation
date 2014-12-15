@@ -40,39 +40,16 @@ import com.google.common.base.Function;
  * 
  */
 
-public class GenericMethodsAndroid {
+public class AndroidGenericMethods {
 
 	AndroidDriver driver;
 
-	public AndroidDriver loginNativeAndroid(GenericMethodsAndroid genMeth) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
-		
-		androidElementData elData = new androidElementData();
-		// Login with an existing account
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setCapability("appium-version", "1.2");
-		capabilities.setCapability("platformName", "Android");
-		capabilities.setCapability("platformVersion", "4.4");
-		capabilities.setCapability("deviceName", "Nexus 5");
-		capabilities.setCapability("app","/Users/qa/Desktop/Pogoplug-5.9.0.9-20140722_093521.apk");
-		capabilities.setCapability("appPackage", "com.pogoplug.android");
-		capabilities.setCapability("appWaitActivity","com.pogoplug.android.login.ui.IntroPage");
-		capabilities.setCapability("appActivity","com.pogoplug.android.login.Splash");
-
-		try {
-
-//			driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
-			driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+	public void cleanLoginAndroid(AndroidGenericMethods genMeth, AndroidWebElements androidData , String user) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
 			
-		}
-
-		catch (Exception e) {
-			driver.quit();
-		}
-
-		genMeth.clickId(driver,  genMeth, elData.BTNalreadyHaveAnAccount_id);
-		genMeth.sendId(driver, genMeth, elData.TEXTFIELDemail_id,"meny@cloudengines.com");
-		genMeth.sendId(driver, genMeth, elData.TEXTFIELDpassword_id, "1");
-		genMeth.clickId(driver, genMeth, elData.BTNlogin_id);
+		genMeth.clickId(driver,  genMeth, androidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userUnlimited_name);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.);
+		genMeth.clickId(driver, genMeth, androidData.BTNlogin_id);
 
 		// Make sure that the intro display (that way the swipe will be done at the right time)
 		By by = By.id("com.pogoplug.android:id/protect_computer");
@@ -81,14 +58,13 @@ public class GenericMethodsAndroid {
 
 		// Navigate through the intro
 		driver.swipe(1031, 1150, 53, 1150, 500);
-		genMeth.clickId(driver, genMeth, elData.BTNfinishTour_id);
-		genMeth.clickId(driver, genMeth, elData.BTNcontinue_id);
+		genMeth.clickId(driver, genMeth, androidData.BTNfinishTour_id);
+		genMeth.clickId(driver, genMeth, androidData.BTNcontinue_id);
 
 		// Make sure that the Login was successful By verifying that the "CATEGORIES" display in the *LSM (Left Side Menu)
 		By byCat = By.xpath("//android.widget.ListView[1]/android.widget.TextView[1]");
 		String cat = "CATEGORIES";
 		genMeth.isTextPresentNative(driver, cat, byCat);
-		return driver;
 
 	}
 
@@ -180,17 +156,19 @@ public class GenericMethodsAndroid {
 }
     
  */
-	public AndroidDriver setCapabilitiesIos(GenericMethodsAndroid genMeth)
+	public AndroidDriver setCapabilitiesAndroid(AndroidGenericMethods genMeth)
 			throws IOException {
-
+		
+		// Login with an existing account
 		DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setCapability("deviceName",genMeth.getValueFromPropFile("deviceName"));
-		capabilities.setCapability("device",genMeth.getValueFromPropFile("device"));
-		capabilities.setCapability("udid", genMeth.getValueFromPropFile("udid"));
-		capabilities.setCapability(CapabilityType.VERSION,genMeth.getValueFromPropFile("CapabilityType.VERSION"));
-		//capabilities.setCapability(CapabilityType.PLATFORM,genMeth.getValueFromPropFile("CapabilityType.PLATFORM"));
-		capabilities.setCapability("platformName",genMeth.getValueFromPropFile("platformName"));
-		capabilities.setCapability("app",genMeth.getValueFromPropFile("pogoplugPath"));
+		capabilities.setCapability("appium-version", genMeth.getValueFromPropFile("appiumVersion"));
+		capabilities.setCapability("platformName", genMeth.getValueFromPropFile("platformName"));
+		capabilities.setCapability("platformVersion", genMeth.getValueFromPropFile("platformVersion"));
+		capabilities.setCapability("deviceName", genMeth.getValueFromPropFile("deviceName"));
+		capabilities.setCapability("app",genMeth.getValueFromPropFile("app"));
+		capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
+		capabilities.setCapability("appWaitActivity", genMeth.getValueFromPropFile("appWaitActivity"));
+		capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appActivity"));
 
 		try {
 
@@ -206,7 +184,7 @@ public class GenericMethodsAndroid {
 	}
 	
 
-	public AndroidDriver cleanLoginIos(AndroidDriver driver, GenericMethodsAndroid genMeth, WebElementsAndroid iosData, String user) throws InterruptedException, IOException,ParserConfigurationException, SAXException {
+	public AndroidDriver cleanLoginIos(AndroidDriver driver, AndroidGenericMethods genMeth, AndroidWebElements iosData, String user) throws InterruptedException, IOException,ParserConfigurationException, SAXException {
 
 		// Login with an existing account
 	//	genMeth.handleAccessPhotosContactsLocationNotifications(genMeth, iosData);
@@ -258,7 +236,7 @@ public class GenericMethodsAndroid {
 		
 	}
 
-	public void signUp(GenericMethodsAndroid genMeth, WebElementsAndroid iosData) throws InterruptedException, IOException, ParserConfigurationException, SAXException{
+	public void signUp(AndroidGenericMethods genMeth, AndroidWebElements iosData) throws InterruptedException, IOException, ParserConfigurationException, SAXException{
 		
 		String randomName =  genMeth.randomString();
 		String currentDateFolder = genMeth.currentTime();
@@ -319,7 +297,7 @@ public class GenericMethodsAndroid {
 		}
 	*/
 
-	public void takeScreenShotNative(AndroidDriver driver, GenericMethodsAndroid genMeth, String imageName) throws IOException {
+	public void takeScreenShotNative(AndroidDriver driver, AndroidGenericMethods genMeth, String imageName) throws IOException {
 
 		File scrFile = (driver.getScreenshotAs(OutputType.FILE));
 		String currentTime = genMeth.currentTime();
@@ -337,8 +315,8 @@ public class GenericMethodsAndroid {
 	}
 
 
-	public WebElementsAndroid androidElementInit() throws ParserConfigurationException, SAXException, IOException {
-		WebElementsAndroid element = new WebElementsAndroid();
+	public AndroidWebElements androidElementInit() throws ParserConfigurationException, SAXException, IOException {
+		AndroidWebElements element = new AndroidWebElements();
 		return element;
 	}
 
@@ -358,7 +336,7 @@ public class GenericMethodsAndroid {
 		public WebElement returnCss(AndroidDriver driver, String cssSelector)
 			throws InterruptedException {
 
-		GenericMethodsAndroid genMeth = new GenericMethodsAndroid();
+		AndroidGenericMethods genMeth = new AndroidGenericMethods();
 		try {
 
 			genMeth.fluentwait(driver, By.cssSelector(cssSelector));
@@ -376,7 +354,7 @@ public class GenericMethodsAndroid {
 		return myElement;
 	}
 
-	public WebElement returnId(AndroidDriver driver,GenericMethodsAndroid genMeth, String id)
+	public WebElement returnId(AndroidDriver driver,AndroidGenericMethods genMeth, String id)
 			throws InterruptedException {
 
 
@@ -397,7 +375,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public WebElement returnClassName(AndroidDriver driver, GenericMethodsAndroid genMeth,  String className)
+	public WebElement returnClassName(AndroidDriver driver, AndroidGenericMethods genMeth,  String className)
 			throws InterruptedException {
 
 
@@ -417,7 +395,7 @@ public class GenericMethodsAndroid {
 		return myElement;
 	}
 
-	public WebElement returnXpth(AndroidDriver driver, GenericMethodsAndroid genMeth, String xpth)
+	public WebElement returnXpth(AndroidDriver driver, AndroidGenericMethods genMeth, String xpth)
 			throws InterruptedException {
 
 		try {
@@ -436,7 +414,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public WebElement returnName(AndroidDriver driver, GenericMethodsAndroid genMeth, String name)
+	public WebElement returnName(AndroidDriver driver, AndroidGenericMethods genMeth, String name)
 			throws InterruptedException {
 
 		try {
@@ -459,7 +437,7 @@ public class GenericMethodsAndroid {
 	// ========= CLICK an ELEMENT
 	// =========================================================================
 
-	public void clickBy(AndroidDriver driver, GenericMethodsAndroid genMeth, By by) throws InterruptedException {
+	public void clickBy(AndroidDriver driver, AndroidGenericMethods genMeth, By by) throws InterruptedException {
 
 
 		try {
@@ -476,7 +454,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void clickCss(AndroidDriver driver, GenericMethodsAndroid genMeth, String cssSelector)
+	public void clickCss(AndroidDriver driver, AndroidGenericMethods genMeth, String cssSelector)
 			throws InterruptedException {
 
 		try {
@@ -495,7 +473,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void clickId(AndroidDriver driver, GenericMethodsAndroid genMeth, String id)
+	public void clickId(AndroidDriver driver, AndroidGenericMethods genMeth, String id)
 			throws InterruptedException {
 
 		try {
@@ -511,7 +489,7 @@ public class GenericMethodsAndroid {
 		}
 	}
 
-	public void clickClassName(AndroidDriver driver, GenericMethodsAndroid genMeth, String className)
+	public void clickClassName(AndroidDriver driver, AndroidGenericMethods genMeth, String className)
 			throws InterruptedException {
 
 		try {
@@ -528,7 +506,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void clickXpth(AndroidDriver driver, GenericMethodsAndroid genMeth, String xpth)
+	public void clickXpth(AndroidDriver driver, AndroidGenericMethods genMeth, String xpth)
 			throws InterruptedException, IOException {
 
 		By by = By.xpath(xpth);
@@ -553,7 +531,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void clickName(AndroidDriver driver,GenericMethodsAndroid genMeth, String name)
+	public void clickName(AndroidDriver driver,AndroidGenericMethods genMeth, String name)
 			throws InterruptedException, IOException {
 
 		try {
@@ -576,7 +554,7 @@ public class GenericMethodsAndroid {
 	// ======================== SEND ELEMENT
 	// =========================================================================
 
-	public void sendBy(AndroidDriver driver, GenericMethodsAndroid genMeth, By by, String send)
+	public void sendBy(AndroidDriver driver, AndroidGenericMethods genMeth, By by, String send)
 			throws InterruptedException, IOException {
 
 		try {
@@ -595,7 +573,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void sendCss(AndroidDriver driver, GenericMethodsAndroid genMeth, String cssSelector, String send)
+	public void sendCss(AndroidDriver driver, AndroidGenericMethods genMeth, String cssSelector, String send)
 			throws InterruptedException {
 
 		try {
@@ -614,7 +592,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void sendId(AndroidDriver driver, GenericMethodsAndroid genMeth, String id, String send)
+	public void sendId(AndroidDriver driver, AndroidGenericMethods genMeth, String id, String send)
 			throws InterruptedException, IOException {
 
 		try {
@@ -633,7 +611,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void sendClassName(AndroidDriver driver, GenericMethodsAndroid genMeth, String className, String send)
+	public void sendClassName(AndroidDriver driver, AndroidGenericMethods genMeth, String className, String send)
 			throws InterruptedException {
 
 		try {
@@ -650,7 +628,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void sendXpth(AndroidDriver driver, GenericMethodsAndroid genMeth, String xpth, String send)
+	public void sendXpth(AndroidDriver driver, AndroidGenericMethods genMeth, String xpth, String send)
 			throws IOException {
 
 		try {
@@ -669,7 +647,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void sendName(AndroidDriver driver, GenericMethodsAndroid genMeth, String name, String send)
+	public void sendName(AndroidDriver driver, AndroidGenericMethods genMeth, String name, String send)
 			throws IOException {
 
 
@@ -691,7 +669,7 @@ public class GenericMethodsAndroid {
 	// =========================Clear
 	// WebElements=====================================================================
 
-	public void clearXpth(AndroidDriver driver, GenericMethodsAndroid genMeth, String xpath)
+	public void clearXpth(AndroidDriver driver, AndroidGenericMethods genMeth, String xpath)
 			throws InterruptedException {
 
 		try {
@@ -709,7 +687,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void clearClassName(AndroidDriver driver, GenericMethodsAndroid genMeth, String className)
+	public void clearClassName(AndroidDriver driver, AndroidGenericMethods genMeth, String className)
 			throws InterruptedException {
 
 		try {
@@ -728,7 +706,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void clearId(AndroidDriver driver, GenericMethodsAndroid genMeth, String id)
+	public void clearId(AndroidDriver driver, AndroidGenericMethods genMeth, String id)
 			throws InterruptedException {
 
 		try {
@@ -746,7 +724,7 @@ public class GenericMethodsAndroid {
 
 	}
 
-	public void clearCss(AndroidDriver driver, GenericMethodsAndroid genMeth, String cssSelector)
+	public void clearCss(AndroidDriver driver, AndroidGenericMethods genMeth, String cssSelector)
 			throws InterruptedException {
 
 		try {
@@ -803,7 +781,7 @@ public class GenericMethodsAndroid {
 		}
 
 		if (isInvisible == false) {
-			GenericMethodsAndroid genMeth = new GenericMethodsAndroid();
+			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			// str = new genData();
 			String imageName = "Element isn't Invisible";
 			genMeth.takeScreenShotNative(driver, genMeth, imageName);
@@ -842,7 +820,7 @@ public class GenericMethodsAndroid {
 		}
 
 		if (elementToBeVisible == null) {
-			GenericMethodsAndroid genMeth = new GenericMethodsAndroid();
+			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			String imageName = "Element isn't Visible";
 			genMeth.takeScreenShotNative(driver, genMeth, imageName);
 			org.testng.Assert.fail("WebElement" + " is not Visible");
@@ -884,7 +862,7 @@ public class GenericMethodsAndroid {
 
 		catch (Exception e) {
 
-			GenericMethodsAndroid genMeth = new GenericMethodsAndroid();
+			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			// genData str = new genData();
 			String imageName = text + " is invisible";
 			genMeth.takeScreenShotNative(driver, genMeth, imageName);
@@ -931,7 +909,7 @@ public class GenericMethodsAndroid {
 
 		catch (Exception e) {
 
-			GenericMethodsAndroid genMeth = new GenericMethodsAndroid();
+			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			String imageName = " Element is visible";
 			genMeth.takeScreenShotNative(driver, genMeth, imageName);
 			org.testng.Assert.fail("WebElement" + " still visible");
@@ -956,7 +934,7 @@ public class GenericMethodsAndroid {
 		}
 
 		catch (Exception e) {
-			GenericMethodsAndroid genMeth = new GenericMethodsAndroid();
+			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			String imageName = "Element is invisible";
 			genMeth.takeScreenShotNative(driver, genMeth, imageName);
 			org.testng.Assert.fail("WebElement" + " is not visible");
@@ -1015,7 +993,7 @@ public class GenericMethodsAndroid {
 
 		catch (Exception e) {
 
-			GenericMethodsAndroid genMeth = new GenericMethodsAndroid();
+			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			genData str = new genData();
 			String imageName = str.screenShotPath + text + " still visible "
 					+ genMeth.currentTime() + ".png";
@@ -1134,7 +1112,7 @@ public class GenericMethodsAndroid {
 	}
 	
 	*/
-	public void deletList(GenericMethodsAndroid genMeth, WebElementsAndroid iosData) 
+	public void deletList(AndroidGenericMethods genMeth, AndroidWebElements iosData) 
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
 		boolean isListEmpty = genMeth.checkIsElementVisibleNative(driver, By.name(iosData.EmptyFolder_Name));

@@ -67,14 +67,13 @@
 	</WebElements>
 	
 	<GeneralInfo>
-		<userName>meny@cloudengines.com</userName>
+		<userUnlimited_name>automation1@test.com</userUnlimited_name>
 		<password>1</password>
 		<newPassword>2</newPassword>
 		<badPassword>incorrectPassword</badPassword>
 		<emptyPassword></emptyPassword>
 		<emptyUserName></emptyUserName>
 
-		<screenShotPath>/Users/qa/cloudengines-automation/test-output/reports/screenshots/</screenShotPath>
 		
 	</GeneralInfo>
 	

@@ -2,7 +2,7 @@ package com.pp.android.auto;
 
 import org.testng.annotations.Test;
 
-public class sendReport {
+public class SendReport {
 
 	@Test(alwaysRun = true, groups = "send mail")
 	public void sendMail() throws Exception {
