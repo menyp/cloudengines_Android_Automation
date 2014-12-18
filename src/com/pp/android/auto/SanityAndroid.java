@@ -123,10 +123,16 @@ public class SanityAndroid {
 	// long press the folder (choosing the folder for deletion by swipe long duration- need to figure out how to do it by proper long press code)
 		Thread.sleep(1000);
 		//add long press instead of the swip
-		TouchAction action = new TouchAction(driver); 
-	
-		WebElement el = genMeth.returnName(driver, genMeth, currentDate);
-		action.longPress(el).waitAction(2000).release().perform();
+		TouchAction action;
+		WebElement el;
+		try {
+			action = new TouchAction(driver); 
+			el = genMeth.returnName(driver, genMeth, currentDate);
+			action.longPress(el).waitAction(2000).release().perform();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//driver.swipe(280, 900, 320, 900, 2000);
 		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
 		
@@ -135,14 +141,20 @@ public class SanityAndroid {
 		genMeth.isElementVisibleNative(driver, By.name(currentDate));
 		
 	// now delete the folder & make sure it was deleted properly
-		action.longPress(el).waitAction(2000).release().perform();
-		//driver.swipe(280, 900, 320, 900, 2000);
+		try {
+			action = new TouchAction(driver); 
+			el = genMeth.returnName(driver, genMeth, currentDate);
+			action.longPress(el).waitAction(2000).release().perform();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		//driver.swipe(280, 900, 320, 900, 2000);
 		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);;
 		genMeth.clickId(driver, genMeth, androidData.BTNdeleteConfirm_id);
 		genMeth.isElementInvisibleNative(driver, By.name(currentDate));
 		
-	// go Start test start screen (LSM left side menu)
-		genMeth.clickXpth(driver, genMeth, androidData.BTNopenLSM_xpth);
+	// Go to strtup page (LSM left side menu)
+		genMeth.clickId(driver, genMeth, androidData.BTNlsm_ID);
 		
 		  }
 //

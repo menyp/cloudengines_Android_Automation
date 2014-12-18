@@ -1,6 +1,5 @@
 package com.pp.android.auto;
 import io.appium.java_client.TouchAction;
-
 import io.appium.java_client.android.AndroidDriver;
 
 import java.io.File;
@@ -43,9 +42,7 @@ public class AndroidGenericMethods {
 
 	public void cleanLoginAndroid(AndroidDriver driver, AndroidGenericMethods genMeth, AndroidWebElements androidData , String user) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
 			
-		TouchAction action = new TouchAction(driver); 
-		WebElement el = genMeth.returnId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
-		action.longPress(el).waitAction(2000).release().perform();
+
 		genMeth.clickId(driver,  genMeth, androidData.BTNalreadyHaveAnAccount_id);
 		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userUnlimited_name);
 		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);

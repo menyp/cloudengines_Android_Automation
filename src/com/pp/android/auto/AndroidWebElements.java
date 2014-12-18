@@ -87,6 +87,7 @@ public class AndroidWebElements {
 		this.BTNcreateNewFolder_id = XmlHandel.readAndroidXml("BTNcreateNewFolder_id", langXml, xmlPath);
 		this.BTNopenLSM_xpth = XmlHandel.readAndroidXml("BTNopenLSM_xpth", langXml, xmlPath);
 		this.TEXTFIELDgeneral_ID = XmlHandel.readAndroidXml("TEXTFIELDgeneral_ID", langXml, xmlPath);
+		this.BTNlsm_ID = XmlHandel.readAndroidXml("BTNlsm_ID", langXml, xmlPath);
 
 		
 		
