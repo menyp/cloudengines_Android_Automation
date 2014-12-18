@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" parallel="none">
+  <test name="Sanity Tests(failed)" parallel="none">
+    <groups>
+      <run>
+        <include name="Sanity Android"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.pp.android.auto.SanityAndroid">
+        <methods>
+          <include name="testCreatefolder"/>
+          <include name="setupBeforeSuite"/>
+        </methods>
+      </class> <!-- com.pp.android.auto.SanityAndroid -->
+    </classes>
+  </test> <!-- Sanity Tests(failed) -->
+</suite> <!-- Failed suite [Suite] -->

@@ -1,5 +1,4 @@
 <Data>
-	<WebElements>
 		<Buttons>
 			<BTNalreadyHaveAnAccount_id>com.pogoplug.android:id/intro_sign_in_btn</BTNalreadyHaveAnAccount_id>
 			<BTNlogin_id>com.pogoplug.android:id/loginBtn</BTNlogin_id>	
@@ -22,14 +21,14 @@
 			<BTNdismissNewFolder_id>android:id/button2</BTNdismissNewFolder_id>
 			<BTNcreateNewFolder_id>android:id/button1</BTNcreateNewFolder_id>
 			<BTNopenLSM_xpth>//android.view.View[1]/android.view.View[1]/android.widget.LinearLayout[1]</BTNopenLSM_xpth>
-			
-	
+			<BTNlsm_ID>android:id/home</BTNlsm_ID>
+			    
 		</Buttons>
 		
 		<TextFields>
 			<TEXTFIELDemail_id>com.pogoplug.android:id/email</TEXTFIELDemail_id>
 			<TEXTFIELDpassword_id>com.pogoplug.android:id/password</TEXTFIELDpassword_id>
-
+			<TEXTFIELDgeneral_ID>android:id/content</TEXTFIELDgeneral_ID>
 
 		</TextFields>
 		
@@ -44,14 +43,12 @@
 			<OPTIONlocalVideo>Local video</OPTIONlocalVideo>
 			<OPTIONmusicPlayer_name>Music Player</OPTIONmusicPlayer_name>
 			<OPTIONanyFile_name>Any file</OPTIONanyFile_name>
-			
 			<OPTIONsortAZ_name>A...Z</OPTIONsortAZ_name>
 			<OPTIONsortZA_name>Z...A</OPTIONsortZA_name>
 			<OPTIONsortNewestFirst_name>Newest First</OPTIONsortNewestFirst_name>
 			<OPTIONsortOldestFirst_name>Oldest First</OPTIONsortOldestFirst_name>
 			<OPTIONsortSmallestFirst_name>Smallest First</OPTIONsortSmallestFirst_name>
 			<OPTIONsortBiggestFirst_name>Biggest First</OPTIONsortBiggestFirst_name>
-			
 		</Options>
 		
 		<List>
@@ -63,8 +60,15 @@
 		    <LIST6_xpth>//android.view.View[1]/android.widget.ListView[1]/android.widget.LinearLayout[6]</LIST6_xpth>
 		    
 		</List>
+		<Strings>
+		    <NeverLoseAPhoto>Never Lose a Photo</NeverLoseAPhoto>
+		    <CATEGORIES>CATEGORIES</CATEGORIES>
+		    <FileExplorer_Name>File Explorer</FileExplorer_Name>
+		    
+		    
+		</Strings>
 		                
-	</WebElements>
+	
 	
 	<GeneralInfo>
 		<userUnlimited_name>automation1@test.com</userUnlimited_name>
@@ -74,7 +78,6 @@
 		<emptyPassword></emptyPassword>
 		<emptyUserName></emptyUserName>
 
-		
 	</GeneralInfo>
 	
 	

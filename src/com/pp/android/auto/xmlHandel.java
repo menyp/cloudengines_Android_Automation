@@ -2,6 +2,7 @@ package com.pp.android.auto;
 
 import java.io.File;
 import java.io.IOException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,9 +21,10 @@ public class XmlHandel {
 	}
 	
 	
-	public static String readAndroidXml (String nodeName, String langXml, String xmlPath) throws ParserConfigurationException, SAXException, IOException{
+	public static String readAndroidXml (String nodeName, String langXml, String xmlPath) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		//Declare file path
 		File xmlFile = new File (xmlPath + langXml);
+
 		//Create instance for document builder factory
 		DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

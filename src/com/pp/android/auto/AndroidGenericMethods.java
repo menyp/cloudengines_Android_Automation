@@ -1,4 +1,5 @@
 package com.pp.android.auto;
+import io.appium.java_client.TouchAction;
 
 import io.appium.java_client.android.AndroidDriver;
 
@@ -10,8 +11,6 @@ import java.net.URL;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -19,11 +18,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -35,8 +32,8 @@ import com.google.common.base.Function;
 
 /**
  * 
- * @author meny peled Native iOS Sanity related tests
- * @version 1.0.0 14-January-2014
+ * @author meny peled Native Android Sanity tests
+ * @version December-2014
  * 
  */
 
@@ -44,27 +41,27 @@ public class AndroidGenericMethods {
 
 	AndroidDriver driver;
 
-	public void cleanLoginAndroid(AndroidGenericMethods genMeth, AndroidWebElements androidData , String user) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
+	public void cleanLoginAndroid(AndroidDriver driver, AndroidGenericMethods genMeth, AndroidWebElements androidData , String user) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
 			
+		TouchAction action = new TouchAction(driver); 
+		WebElement el = genMeth.returnId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
+		action.longPress(el).waitAction(2000).release().perform();
 		genMeth.clickId(driver,  genMeth, androidData.BTNalreadyHaveAnAccount_id);
 		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userUnlimited_name);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
 		genMeth.clickId(driver, genMeth, androidData.BTNlogin_id);
 
 		// Make sure that the intro display (that way the swipe will be done at the right time)
-		By by = By.id("com.pogoplug.android:id/protect_computer");
-		String text = "Never Lose a Photo";
-		genMeth.isTextPresentNative(driver, text, by);
-
+		genMeth.isTextPresentAndroid(driver, androidData.NeverLoseAPhoto, By.name(androidData.NeverLoseAPhoto));
+		
 		// Navigate through the intro
-		driver.swipe(1031, 1150, 53, 1150, 500);
+		driver.swipe(600, 800, 50, 800, 600);
+
 		genMeth.clickId(driver, genMeth, androidData.BTNfinishTour_id);
 		genMeth.clickId(driver, genMeth, androidData.BTNcontinue_id);
 
 		// Make sure that the Login was successful By verifying that the "CATEGORIES" display in the *LSM (Left Side Menu)
-		By byCat = By.xpath("//android.widget.ListView[1]/android.widget.TextView[1]");
-		String cat = "CATEGORIES";
-		genMeth.isTextPresentNative(driver, cat, byCat);
+		genMeth.isTextPresentAndroid(driver, androidData.CATEGORIES, By.name(androidData.CATEGORIES));
 
 	}
 
@@ -79,7 +76,6 @@ public class AndroidGenericMethods {
 			// swallow exception
 		}
 		//driver = genMeth.setCapabilitiesIos();
-	
 	}
 	
 
@@ -177,13 +173,13 @@ public class AndroidGenericMethods {
 
 		catch (MalformedURLException e) {
 
-			genMeth.takeScreenShotNative(driver, genMeth,"Faliled to open Appium driver");
+			genMeth.takeScreenShot(driver, genMeth,"Faliled to open Appium driver");
 			org.testng.Assert.fail("WebElement"+ " Faliled to open Appium driver");
 		}
 		return driver;
 	}
 	
-
+/*
 	public AndroidDriver cleanLoginIos(AndroidDriver driver, AndroidGenericMethods genMeth, AndroidWebElements iosData, String user) throws InterruptedException, IOException,ParserConfigurationException, SAXException {
 
 		// Login with an existing account
@@ -235,7 +231,9 @@ public class AndroidGenericMethods {
 		return driver;
 		
 	}
+	
 
+	
 	public void signUp(AndroidGenericMethods genMeth, AndroidWebElements iosData) throws InterruptedException, IOException, ParserConfigurationException, SAXException{
 		
 		String randomName =  genMeth.randomString();
@@ -266,7 +264,7 @@ public class AndroidGenericMethods {
 
 	}
 	
-	
+	*/
 	public String getValueFromPropFile(String key) {
 		Properties properties = new Properties();
 		String value = "";
@@ -297,33 +295,19 @@ public class AndroidGenericMethods {
 		}
 	*/
 
-	public void takeScreenShotNative(AndroidDriver driver, AndroidGenericMethods genMeth, String imageName) throws IOException {
+	public void takeScreenShot(AndroidDriver driver, AndroidGenericMethods genMeth, String imageName) throws IOException {
 
 		File scrFile = (driver.getScreenshotAs(OutputType.FILE));
 		String currentTime = genMeth.currentTime();
 
 		// Now you can do whatever you need to do with it, for example copy somewhere
-		String imagePath = "/Users/qa/cloudengines-iosautomation/test-output/screenshots/" + currentTime + "_" + imageName + ".JPG";
+		String imagePath = genMeth.getValueFromPropFile("screenshotPath") + currentTime + "_" + imageName + ".JPG";
 		FileUtils.copyFile(scrFile, new File(imagePath));
 
 	}
 
 
-	public elementData elementInit() throws ParserConfigurationException,SAXException, IOException {
-		elementData element = new elementData();
-		return element;
-	}
 
-
-	public AndroidWebElements androidElementInit() throws ParserConfigurationException, SAXException, IOException {
-		AndroidWebElements element = new AndroidWebElements();
-		return element;
-	}
-
-	public genData genericDataInit() throws ParserConfigurationException,SAXException, IOException {
-		genData genD = new genData();
-		return genD;
-	}
 
 	/*
 	 * ***************************************************
@@ -524,7 +508,7 @@ public class AndroidGenericMethods {
 		}
 
 		catch (Exception e) {
-			genMeth.takeScreenShotNative(driver, genMeth, xpth);
+			genMeth.takeScreenShot(driver, genMeth, xpth);
 			org.testng.Assert.fail(xpth + " didn't display");
 
 		}
@@ -544,7 +528,7 @@ public class AndroidGenericMethods {
 		catch (Exception e) {
 			// String testName = new
 			// Object(){}.getClass().getEnclosingMethod().getName();
-			genMeth.takeScreenShotNative(driver, genMeth, name);
+			genMeth.takeScreenShot(driver, genMeth, name);
 			org.testng.Assert.fail(name + " didn't display");
 
 		}
@@ -566,7 +550,7 @@ public class AndroidGenericMethods {
 
 		catch (Exception e) {
 
-			genMeth.takeScreenShotNative(driver, genMeth, send);
+			genMeth.takeScreenShot(driver, genMeth, send);
 			org.testng.Assert.fail("WebElement'send by' can't be located");
 
 		}
@@ -604,7 +588,7 @@ public class AndroidGenericMethods {
 
 		catch (Exception e) {
 
-			genMeth.takeScreenShotNative(driver, genMeth, send);
+			genMeth.takeScreenShot(driver, genMeth, send);
 			org.testng.Assert.fail(id + "didn't displayed");
 
 		}
@@ -640,7 +624,7 @@ public class AndroidGenericMethods {
 
 		catch (Exception e) {
 
-			genMeth.takeScreenShotNative(driver, genMeth, xpth);
+			genMeth.takeScreenShot(driver, genMeth, xpth);
 			org.testng.Assert.fail(xpth + "didn't displayed");
 
 		}
@@ -659,7 +643,7 @@ public class AndroidGenericMethods {
 
 		catch (Exception e) {
 
-			genMeth.takeScreenShotNative(driver, genMeth, name);
+			genMeth.takeScreenShot(driver, genMeth, name);
 			org.testng.Assert.fail(name + "didn't displayed");
 
 		}
@@ -784,7 +768,7 @@ public class AndroidGenericMethods {
 			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			// str = new genData();
 			String imageName = "Element isn't Invisible";
-			genMeth.takeScreenShotNative(driver, genMeth, imageName);
+			genMeth.takeScreenShot(driver, genMeth, imageName);
 			org.testng.Assert.fail("WebElement" + " is not Invisible");
 		}
 
@@ -822,7 +806,7 @@ public class AndroidGenericMethods {
 		if (elementToBeVisible == null) {
 			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			String imageName = "Element isn't Visible";
-			genMeth.takeScreenShotNative(driver, genMeth, imageName);
+			genMeth.takeScreenShot(driver, genMeth, imageName);
 			org.testng.Assert.fail("WebElement" + " is not Visible");
 		}
 
@@ -845,7 +829,7 @@ public class AndroidGenericMethods {
 		return foo;
 	}
 
-	public void isTextPresentNative(AndroidDriver driver, String text, By by)
+	public void isTextPresentAndroid(AndroidDriver driver, String text, By by)
 			throws IOException, ParserConfigurationException, SAXException,
 			InterruptedException {
 
@@ -853,7 +837,7 @@ public class AndroidGenericMethods {
 
 		try {
 			new FluentWait<AndroidDriver>(driver)
-					.withTimeout(10, TimeUnit.SECONDS)
+					.withTimeout(20, TimeUnit.SECONDS)
 					.pollingEvery(5, TimeUnit.SECONDS)
 					.ignoring(NoSuchElementException.class)
 					.until(ExpectedConditions.textToBePresentInElementLocated(
@@ -865,7 +849,7 @@ public class AndroidGenericMethods {
 			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			// genData str = new genData();
 			String imageName = text + " is invisible";
-			genMeth.takeScreenShotNative(driver, genMeth, imageName);
+			genMeth.takeScreenShot(driver, genMeth, imageName);
 			org.testng.Assert.fail(text + " isn't visible");
 		}
 
@@ -911,7 +895,7 @@ public class AndroidGenericMethods {
 
 			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			String imageName = " Element is visible";
-			genMeth.takeScreenShotNative(driver, genMeth, imageName);
+			genMeth.takeScreenShot(driver, genMeth, imageName);
 			org.testng.Assert.fail("WebElement" + " still visible");
 
 		}
@@ -936,7 +920,7 @@ public class AndroidGenericMethods {
 		catch (Exception e) {
 			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			String imageName = "Element is invisible";
-			genMeth.takeScreenShotNative(driver, genMeth, imageName);
+			genMeth.takeScreenShot(driver, genMeth, imageName);
 			org.testng.Assert.fail("WebElement" + " is not visible");
 
 		}
@@ -994,10 +978,9 @@ public class AndroidGenericMethods {
 		catch (Exception e) {
 
 			AndroidGenericMethods genMeth = new AndroidGenericMethods();
-			genData str = new genData();
-			String imageName = str.screenShotPath + text + " still visible "
-					+ genMeth.currentTime() + ".png";
-			genMeth.takeScreenShotNative(driver, genMeth, imageName);
+			//String imageName = genMeth.getValueFromPropFile(key) + text + " still visible "
+				//	+ genMeth.currentTime() + ".png";
+			genMeth.takeScreenShot(driver, genMeth, text);
 			org.testng.Assert.fail(text + " still visible");
 
 		}
@@ -1060,58 +1043,7 @@ public class AndroidGenericMethods {
 		}
 
 	}
-
-	/*
-	public void handleAccessPhotosContactsLocationNotifications(GenericMethods genMeth, WebElementsAndroid iosData)
-			throws IOException, ParserConfigurationException, SAXException,InterruptedException {
-		
-		// check if the "“Pogoplug” Would Like to Access Your Contacts" popup is displayed
-		boolean isContactsAccessPopupDisplay = genMeth.checkIsTextPresentNative(driver,iosData.AccessContactsWarning_Name,
-						By.name(iosData.AccessContactsWarning_Name));
-
-		if (isContactsAccessPopupDisplay == true) {
-
-			genMeth.clickName(driver,genMeth, iosData.BTNok_Name);
-		}
-
-		// check if the "“Pogoplug” Would Like to Access Your Photos" popup is displayed
-		boolean isPhotosAccessPopupDisplay = genMeth.checkIsTextPresentNative(driver,iosData.AccessToPhotos,
-				By.name(iosData.AccessToPhotos));
-
-		if (isPhotosAccessPopupDisplay == true) {
-
-			genMeth.clickName(driver,genMeth, iosData.BTNok_Name);
-		}
-		
-		// check if the current location popup is displayed
-		boolean isLocationPopupDisplay = genMeth.checkIsTextPresentNative(
-				driver, iosData.AccessLocationServicesWarning_Name,
-				By.name(iosData.AccessLocationServicesWarning_Name));
-
-		if (isLocationPopupDisplay == true) {
-
-			genMeth.clickName(driver,genMeth, iosData.BTNok_Name);
-
-		}
-		
-		// check if the current Notification popup is displayed
-				boolean isNotificationPopupDisplay = genMeth.checkIsTextPresentNative(
-						driver, "“Pogoplug” Would Like to Send You Notifications",
-						By.name("“Pogoplug” Would Like to Send You Notifications"));
-
-				if (isNotificationPopupDisplay == true) {
-
-					genMeth.clickName(driver,genMeth, iosData.BTNok_Name);
-
-				}
-		
-		
-		
-
-
-	}
-	
-	*/
+/*
 	public void deletList(AndroidGenericMethods genMeth, AndroidWebElements iosData) 
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -1135,6 +1067,7 @@ public class AndroidGenericMethods {
 		}
 	}
 	
+	*/
 	
 }
 

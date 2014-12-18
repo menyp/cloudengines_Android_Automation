@@ -31,6 +31,8 @@ public class AndroidWebElements {
 	String BTNdismissNewFolder_id;
 	String BTNcreateNewFolder_id;
 	String BTNopenLSM_xpth;
+	String BTNlsm_ID;
+	String TEXTFIELDgeneral_ID;
 	
 	String TEXTFIELDemail_id;
 	String TEXTFIELDpassword_id;
@@ -56,9 +58,14 @@ public class AndroidWebElements {
 	String LIST5_xpth;
 	String LIST6_xpth;
 	
+	//STRINGS
 	String userUnlimited_name;
+	String password;
+	String NeverLoseAPhoto;
+	String CATEGORIES;
+	String FileExplorer_Name;
 	
-	public AndroidWebElements(String langXml, String xmlPath ) throws ParserConfigurationException, SAXException, IOException{
+	public AndroidWebElements(String langXml, String xmlPath ) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		this.BTNalreadyHaveAnAccount_id = XmlHandel.readAndroidXml("BTNalreadyHaveAnAccount_id", langXml, xmlPath);
 		this.BTNlogin_id = XmlHandel.readAndroidXml("BTNlogin_id", langXml, xmlPath);
 		this.BTNfinishTour_id = XmlHandel.readAndroidXml("BTNfinishTour_id", langXml, xmlPath);
@@ -79,7 +86,10 @@ public class AndroidWebElements {
 		this.BTNdismissNewFolder_id = XmlHandel.readAndroidXml("BTNdismissNewFolder_id", langXml, xmlPath);
 		this.BTNcreateNewFolder_id = XmlHandel.readAndroidXml("BTNcreateNewFolder_id", langXml, xmlPath);
 		this.BTNopenLSM_xpth = XmlHandel.readAndroidXml("BTNopenLSM_xpth", langXml, xmlPath);
+		this.TEXTFIELDgeneral_ID = XmlHandel.readAndroidXml("TEXTFIELDgeneral_ID", langXml, xmlPath);
 
+		
+		
 
 		
 		
@@ -107,8 +117,14 @@ public class AndroidWebElements {
 		this.LIST6_xpth = XmlHandel.readAndroidXml("LIST6_xpth", langXml, xmlPath);
 		
 		this.userUnlimited_name = XmlHandel.readAndroidXml("userUnlimited_name", langXml, xmlPath);
+		this.password = XmlHandel.readAndroidXml("password", langXml, xmlPath);
+		this.NeverLoseAPhoto = XmlHandel.readAndroidXml("NeverLoseAPhoto", langXml, xmlPath);
+		this.CATEGORIES = XmlHandel.readAndroidXml("CATEGORIES", langXml, xmlPath);
+		this.FileExplorer_Name = XmlHandel.readAndroidXml("FileExplorer_Name", langXml, xmlPath);
 
 		
+	
+
 	}
 
 }
