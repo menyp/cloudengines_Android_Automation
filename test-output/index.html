@@ -101,7 +101,7 @@
                     <div class="method-list-content passed suite-Suite">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.pp.android.auto.SanityAndroid" hash-for-method="testCreatefolder">testCreatefolder</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.pp.android.auto.SanityAndroid" hash-for-method="testUploadImage">testUploadImage</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -124,11 +124,11 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testCreatefolder">
-                  </a> <!-- testCreatefolder -->
-                  <span class="method-name">testCreatefolder</span>
+                  <a name="testUploadImage">
+                  </a> <!-- testUploadImage -->
+                  <span class="method-name">testUploadImage</span>
                   <em>
-(Test the Create folder with Android)                  </em>
+(Test the Upload utility with Android)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -178,7 +178,7 @@
               <span class="test-group-name">Sanity Android</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">testCreatefolder</span>
+                <span class="method-in-group-name">testUploadImage</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -200,14 +200,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testCreatefolder')
+data.setCell(0, 1, 'testUploadImage')
 data.setCell(0, 2, 'com.pp.android.auto.SanityAndroid')
-data.setCell(0, 3, 45580);
+data.setCell(0, 3, 72909);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 45 seconds</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -222,9 +222,42 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">14 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.pp.android.auto.SanityAndroid</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">testTour</span>
+                <br/>
+                <span class="ignored-method-name">settingsBackupEnableDisable</span>
+                <br/>
+                <span class="ignored-method-name">createNewUser</span>
+                <br/>
+                <span class="ignored-method-name">badCredentials</span>
+                <br/>
+                <span class="ignored-method-name">backupInBackground</span>
+                <br/>
+                <span class="ignored-method-name">foregroundBackgroundSwith</span>
+                <br/>
+                <span class="ignored-method-name">settingsPasscodeSanity</span>
+                <br/>
+                <span class="ignored-method-name">Favorites</span>
+                <br/>
+                <span class="ignored-method-name">testCreatefolder</span>
+                <br/>
+                <span class="ignored-method-name">addRemoveTeamFolders</span>
+                <br/>
+                <span class="ignored-method-name">settingsSaveLoginSanity</span>
+                <br/>
+                <span class="ignored-method-name">settingsBackupEnableDisableDuringUpload</span>
+                <br/>
+                <span class="ignored-method-name">connectionLost</span>
+                <br/>
+                <span class="ignored-method-name">search</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Suite" class="panel">
@@ -235,13 +268,21 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">com.pp.android.auto.SanityAndroid</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
-                <span class="method-name">setupBeforeSuite(org.testng.TestRunner@c7a975a)</span>
+                <span class="method-name">setupBeforeSuite(org.testng.TestRunner@6c345c5f)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
+              <div class="configuration-method before">
+                <span class="method-name">checkHomeScreen</span>
+                <span class="method-start">46663 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">testCreatefolder</span>
-                <span class="method-start">43694 ms</span>
+                <span class="method-name">testUploadImage</span>
+                <span class="method-start">46841 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-suite after">
+                <span class="method-name">sendMail</span>
+                <span class="method-start">119781 ms</span>
+              </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

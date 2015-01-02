@@ -14,6 +14,7 @@
 			<BTNdeleteConfirm_id>android:id/button1</BTNdeleteConfirm_id>	
 			<BTNcancelDelete_id>android:id/button2</BTNcancelDelete_id>
 			<BTNcapturePhoto_id>com.android.camera2:id/shutter_button</BTNcapturePhoto_id>
+			<BTNcapturePhoto_LG_id>com.lge.camera:id/main_button_view</BTNcapturePhoto_LG_id>
 			<BTNcaptureVideo_id></BTNcaptureVideo_id>
 			<BTNcaptureDone_id>com.android.camera2:id/done_button</BTNcaptureDone_id>
 			<BTNretakeCapture_id>com.android.camera2:id/retake_button</BTNretakeCapture_id>
@@ -22,6 +23,11 @@
 			<BTNcreateNewFolder_id>android:id/button1</BTNcreateNewFolder_id>
 			<BTNopenLSM_xpth>//android.view.View[1]/android.view.View[1]/android.widget.LinearLayout[1]</BTNopenLSM_xpth>
 			<BTNlsm_ID>android:id/home</BTNlsm_ID>
+			<BTNcontinue_Name>Continue</BTNcontinue_Name>
+			<BTNok_Name>OK</BTNok_Name>
+			<BTNmoreOptions_ClassName>android.widget.ImageButton</BTNmoreOptions_ClassName>
+			<BTNhome_ID>android:id/home</BTNhome_ID>
+			
 			    
 		</Buttons>
 		
@@ -58,12 +64,19 @@
 		    <LIST4_xpth>//android.view.View[1]/android.widget.ListView[1]/android.widget.LinearLayout[4]</LIST4_xpth>
 		    <LIST5_xpth>//android.view.View[1]/android.widget.ListView[1]/android.widget.LinearLayout[5]</LIST5_xpth>
 		    <LIST6_xpth>//android.view.View[1]/android.widget.ListView[1]/android.widget.LinearLayout[6]</LIST6_xpth>
+		    <ListSecondaryText_ID>com.pogoplug.android:id/text_secondary</ListSecondaryText_ID>
 		    
 		</List>
 		<Strings>
 		    <NeverLoseAPhoto>Never Lose a Photo</NeverLoseAPhoto>
 		    <CATEGORIES>CATEGORIES</CATEGORIES>
 		    <FileExplorer_Name>File Explorer</FileExplorer_Name>
+		    <Settings_Name>Settings</Settings_Name>
+		    <Backup_Name>Backup</Backup_Name>
+		    <ImageNotAvailable_ID>com.pogoplug.android:id/thumbnail_not_found_text_view</ImageNotAvailable_ID>
+		    <ImageNotAvailable_Name>Image not available</ImageNotAvailable_Name>
+		    <FullScreen_ID>com.pogoplug.android:id/full_list_item_image</FullScreen_ID>
+		    
 		    
 		    
 		</Strings>

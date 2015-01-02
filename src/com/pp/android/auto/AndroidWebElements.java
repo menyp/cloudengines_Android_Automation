@@ -22,6 +22,8 @@ public class AndroidWebElements {
 	String BTNsort_name;
 	String BTNdelete_name;
 	String BTNcapturePhoto_id;
+	String BTNcapturePhoto_LG_id;
+	
 	String BTNcaptureVideo_id;
 	String BTNcaptureDone_id;
 	String BTNretakeCapture_id;
@@ -32,8 +34,12 @@ public class AndroidWebElements {
 	String BTNcreateNewFolder_id;
 	String BTNopenLSM_xpth;
 	String BTNlsm_ID;
-	String TEXTFIELDgeneral_ID;
+	String BTNcontinue_Name;
+	String BTNok_Name;
+	String BTNmoreOptions_ClassName;
 	
+	
+	String TEXTFIELDgeneral_ID;
 	String TEXTFIELDemail_id;
 	String TEXTFIELDpassword_id;
 	
@@ -57,6 +63,7 @@ public class AndroidWebElements {
 	String LIST4_xpth;
 	String LIST5_xpth;
 	String LIST6_xpth;
+	String ListSecondaryText_ID;
 	
 	//STRINGS
 	String userUnlimited_name;
@@ -64,6 +71,14 @@ public class AndroidWebElements {
 	String NeverLoseAPhoto;
 	String CATEGORIES;
 	String FileExplorer_Name;
+	String Settings_Name;
+	String 	Backup_Name;
+	String ImageNotAvailable_ID;
+	String ImageNotAvailable_Name;
+	String FullScreen_ID;
+	String BTNhome_ID;
+
+	
 	
 	public AndroidWebElements(String langXml, String xmlPath ) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		this.BTNalreadyHaveAnAccount_id = XmlHandel.readAndroidXml("BTNalreadyHaveAnAccount_id", langXml, xmlPath);
@@ -88,11 +103,12 @@ public class AndroidWebElements {
 		this.BTNopenLSM_xpth = XmlHandel.readAndroidXml("BTNopenLSM_xpth", langXml, xmlPath);
 		this.TEXTFIELDgeneral_ID = XmlHandel.readAndroidXml("TEXTFIELDgeneral_ID", langXml, xmlPath);
 		this.BTNlsm_ID = XmlHandel.readAndroidXml("BTNlsm_ID", langXml, xmlPath);
+		this.BTNcontinue_Name = XmlHandel.readAndroidXml("BTNcontinue_Name", langXml, xmlPath);
+		this.BTNcapturePhoto_LG_id = XmlHandel.readAndroidXml("BTNcapturePhoto_LG_id", langXml, xmlPath);
+		this.BTNok_Name = XmlHandel.readAndroidXml("BTNok_Name", langXml, xmlPath);
+		this.BTNmoreOptions_ClassName = XmlHandel.readAndroidXml("BTNmoreOptions_ClassName", langXml, xmlPath);
+		this.BTNhome_ID = XmlHandel.readAndroidXml("BTNhome_ID", langXml, xmlPath);
 
-		
-		
-
-		
 		
 		this.TEXTFIELDemail_id = XmlHandel.readAndroidXml("TEXTFIELDemail_id", langXml, xmlPath);
 		this.TEXTFIELDpassword_id = XmlHandel.readAndroidXml("TEXTFIELDpassword_id", langXml, xmlPath);
@@ -116,15 +132,23 @@ public class AndroidWebElements {
 		this.LIST4_xpth = XmlHandel.readAndroidXml("LIST4_xpth", langXml, xmlPath);
 		this.LIST5_xpth = XmlHandel.readAndroidXml("LIST5_xpth", langXml, xmlPath);
 		this.LIST6_xpth = XmlHandel.readAndroidXml("LIST6_xpth", langXml, xmlPath);
+		this.ListSecondaryText_ID = XmlHandel.readAndroidXml("ListSecondaryText_ID", langXml, xmlPath);
+
+		
+		
 		
 		this.userUnlimited_name = XmlHandel.readAndroidXml("userUnlimited_name", langXml, xmlPath);
 		this.password = XmlHandel.readAndroidXml("password", langXml, xmlPath);
 		this.NeverLoseAPhoto = XmlHandel.readAndroidXml("NeverLoseAPhoto", langXml, xmlPath);
 		this.CATEGORIES = XmlHandel.readAndroidXml("CATEGORIES", langXml, xmlPath);
 		this.FileExplorer_Name = XmlHandel.readAndroidXml("FileExplorer_Name", langXml, xmlPath);
-
+		this.Settings_Name = XmlHandel.readAndroidXml("Settings_Name", langXml, xmlPath);
+		this.Backup_Name = XmlHandel.readAndroidXml("Backup_Name", langXml, xmlPath);
+		this.ImageNotAvailable_ID = XmlHandel.readAndroidXml("ImageNotAvailable_ID", langXml, xmlPath);
+		this.ImageNotAvailable_Name = XmlHandel.readAndroidXml("ImageNotAvailable_Name", langXml, xmlPath);
+		this.FullScreen_ID = XmlHandel.readAndroidXml("FullScreen_ID", langXml, xmlPath);
 		
-	
+		
 
 	}
 

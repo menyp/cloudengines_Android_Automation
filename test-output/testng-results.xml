@@ -2,29 +2,37 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="45601" started-at="2014-12-18T14:14:26Z" finished-at="2014-12-18T14:15:12Z">
+  <suite name="Suite" duration-ms="73133" started-at="2015-01-01T15:42:44Z" finished-at="2015-01-01T15:43:57Z">
     <groups>
       <group name="Sanity Android">
-        <method signature="SanityAndroid.testCreatefolder()[pri:0, instance:com.pp.android.auto.SanityAndroid@2cbb3d47]" name="testCreatefolder" class="com.pp.android.auto.SanityAndroid"/>
+        <method signature="SanityAndroid.testUploadImage()[pri:0, instance:com.pp.android.auto.SanityAndroid@7fc229ab]" name="testUploadImage" class="com.pp.android.auto.SanityAndroid"/>
       </group> <!-- Sanity Android -->
     </groups>
-    <test name="Sanity Tests" duration-ms="45601" started-at="2014-12-18T14:14:26Z" finished-at="2014-12-18T14:15:12Z">
+    <test name="Sanity Tests" duration-ms="73133" started-at="2015-01-01T15:42:44Z" finished-at="2015-01-01T15:43:57Z">
       <class name="com.pp.android.auto.SanityAndroid">
-        <test-method status="PASS" signature="setupBeforeSuite(org.testng.ITestContext)[pri:0, instance:com.pp.android.auto.SanityAndroid@2cbb3d47]" name="setupBeforeSuite" is-config="true" duration-ms="43678" started-at="2014-12-18T16:13:43Z" finished-at="2014-12-18T16:14:26Z">
+        <test-method status="PASS" signature="setupBeforeSuite(org.testng.ITestContext)[pri:0, instance:com.pp.android.auto.SanityAndroid@7fc229ab]" name="setupBeforeSuite" is-config="true" duration-ms="46622" started-at="2015-01-01T17:41:57Z" finished-at="2015-01-01T17:42:44Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@c7a975a]]>
+                <![CDATA[org.testng.TestRunner@6c345c5f]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupBeforeSuite -->
-        <test-method status="PASS" signature="testCreatefolder()[pri:0, instance:com.pp.android.auto.SanityAndroid@2cbb3d47]" name="testCreatefolder" duration-ms="45580" started-at="2014-12-18T16:14:26Z" description="Test the Create folder with Android" finished-at="2014-12-18T16:15:12Z">
+        <test-method status="PASS" signature="checkHomeScreen()[pri:0, instance:com.pp.android.auto.SanityAndroid@7fc229ab]" name="checkHomeScreen" is-config="true" duration-ms="178" started-at="2015-01-01T17:42:44Z" finished-at="2015-01-01T17:42:44Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCreatefolder -->
+        </test-method> <!-- checkHomeScreen -->
+        <test-method status="PASS" signature="testUploadImage()[pri:0, instance:com.pp.android.auto.SanityAndroid@7fc229ab]" name="testUploadImage" duration-ms="72909" started-at="2015-01-01T17:42:44Z" description="Test the Upload utility with Android" finished-at="2015-01-01T17:43:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUploadImage -->
+        <test-method status="PASS" signature="sendMail()[pri:0, instance:com.pp.android.auto.SanityAndroid@7fc229ab]" name="sendMail" is-config="true" duration-ms="990" started-at="2015-01-01T17:43:57Z" finished-at="2015-01-01T17:43:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sendMail -->
       </class> <!-- com.pp.android.auto.SanityAndroid -->
     </test> <!-- Sanity Tests -->
   </suite> <!-- Suite -->

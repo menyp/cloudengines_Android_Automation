@@ -20,6 +20,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.mobile.NetworkConnection;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -44,27 +45,37 @@ public class AndroidGenericMethods {
 			
 
 		genMeth.clickId(driver,  genMeth, androidData.BTNalreadyHaveAnAccount_id);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userUnlimited_name);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, user);
 		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
 		genMeth.clickId(driver, genMeth, androidData.BTNlogin_id);
 
-		// Make sure that the intro display (that way the swipe will be done at the right time)
-		genMeth.isTextPresentAndroid(driver, androidData.NeverLoseAPhoto, By.name(androidData.NeverLoseAPhoto));
 		
-		// Navigate through the intro
-		driver.swipe(600, 800, 50, 800, 600);
+		// check if this is a Limited or Unlimited account
+		boolean isUnlimitedAccount = genMeth.checkIsElementVisibleNative(driver, By.name(androidData.NeverLoseAPhoto));
+		if (isUnlimitedAccount == true) {
+			// Navigate through the intro
+			driver.swipe(600, 800, 50, 800, 600);
 
-		genMeth.clickId(driver, genMeth, androidData.BTNfinishTour_id);
-		genMeth.clickId(driver, genMeth, androidData.BTNcontinue_id);
+			genMeth.clickId(driver, genMeth, androidData.BTNfinishTour_id);
+			genMeth.clickId(driver, genMeth, androidData.BTNcontinue_id);
 
+			// Make sure that the Login was successful By verifying that the "CATEGORIES" display in the *LSM (Left Side Menu)
+			genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
+		}
+
+		else {
+			genMeth.isElementVisible(driver,By.name(androidData.Backup_Name));
+			genMeth.clickId(driver,genMeth, androidData.BTNcontinue_id);
+		}
+				
 		// Make sure that the Login was successful By verifying that the "CATEGORIES" display in the *LSM (Left Side Menu)
-		genMeth.isTextPresentAndroid(driver, androidData.CATEGORIES, By.name(androidData.CATEGORIES));
+		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
 
 	}
 
-	/*
-	public void killAppIos(AndroidDriver driver)throws InterruptedException, IOException {
-		//GenericMethods genMeth = new GenericMethods();
+	
+	public void killAppAndroid(AndroidDriver driver)throws InterruptedException, IOException {
+
 		driver.removeApp("com.cloudengines.pogoplug");
 		
 		try {
@@ -75,7 +86,7 @@ public class AndroidGenericMethods {
 		//driver = genMeth.setCapabilitiesIos();
 	}
 	
-
+/*
 	public void signOutFromStartupAndroid(AndroidDriver driver, WebElementsAndroid iosData) throws InterruptedException, IOException {
 		GenericMethods genMeth = new GenericMethods();
 		genMeth.clickName(driver,genMeth, iosData.Settings_Name);
@@ -153,7 +164,8 @@ public class AndroidGenericMethods {
 			throws IOException {
 		
 		// Login with an existing account
-		DesiredCapabilities capabilities = new DesiredCapabilities();
+		
+		DesiredCapabilities capabilities =  DesiredCapabilities.android();
 		capabilities.setCapability("appium-version", genMeth.getValueFromPropFile("appiumVersion"));
 		capabilities.setCapability("platformName", genMeth.getValueFromPropFile("platformName"));
 		capabilities.setCapability("platformVersion", genMeth.getValueFromPropFile("platformVersion"));
@@ -163,6 +175,14 @@ public class AndroidGenericMethods {
 		capabilities.setCapability("appWaitActivity", genMeth.getValueFromPropFile("appWaitActivity"));
 		capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appActivity"));
 
+//		DesiredCapabilities caps = DesiredCapabilities.android();
+//		caps.setCapability("app",genMeth.getValueFromPropFile("app"));
+//		caps.setCapability("appiumVersion", "1.3.3");
+//		caps.setCapability("deviceName","Android Emulator");
+//		caps.setCapability("device-orientation", "portrait");
+//		caps.setCapability("browserName", "");
+//		caps.setCapability("platformVersion","5.0");
+//		caps.setCapability("platformName","Android");
 		try {
 
 			driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
@@ -411,6 +431,26 @@ public class AndroidGenericMethods {
 		}
 
 		WebElement myElement = genMeth.fluentwait(driver, By.name(name));
+		return myElement;
+
+	}
+	
+	public WebElement returnBy(AndroidDriver driver, AndroidGenericMethods genMeth, By by)
+			throws InterruptedException {
+
+		try {
+
+			genMeth.fluentwait(driver, by);
+
+		}
+
+		catch (Exception e) {
+
+			org.testng.Assert.fail(by + " didn't display");
+
+		}
+
+		WebElement myElement = genMeth.fluentwait(driver, by);
 		return myElement;
 
 	}
@@ -826,7 +866,7 @@ public class AndroidGenericMethods {
 		return foo;
 	}
 
-	public void isTextPresentAndroid(AndroidDriver driver, String text, By by)
+	public void isTextPresentAndroid(AndroidDriver driver, By By, String text)
 			throws IOException, ParserConfigurationException, SAXException,
 			InterruptedException {
 
@@ -838,7 +878,7 @@ public class AndroidGenericMethods {
 					.pollingEvery(5, TimeUnit.SECONDS)
 					.ignoring(NoSuchElementException.class)
 					.until(ExpectedConditions.textToBePresentInElementLocated(
-							by, text));
+							By, text));
 		}
 
 		catch (Exception e) {
@@ -878,13 +918,13 @@ public class AndroidGenericMethods {
 
 	// This method checks if a given element is invisible on the screen
 
-	public void isElementInvisibleNative(AndroidDriver driver, By by)
+	public void isElementInvisibleNative(AndroidDriver driver, By By)
 			throws ParserConfigurationException, SAXException, IOException {
 
 		try {
 
 			(new WebDriverWait(driver, 45)).until(ExpectedConditions
-					.invisibilityOfElementLocated(by));
+					.invisibilityOfElementLocated(By));
 
 		}
 
@@ -899,7 +939,7 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void isElementVisibleNative(AndroidDriver driver, By by)
+	public void isElementVisible(AndroidDriver driver, By By)
 			throws ParserConfigurationException, SAXException, IOException {
 
 		try {
@@ -910,7 +950,7 @@ public class AndroidGenericMethods {
 					.withTimeout(30, TimeUnit.SECONDS)
 					.pollingEvery(5, TimeUnit.SECONDS)
 					.ignoring(NoSuchElementException.class)
-					.until(ExpectedConditions.visibilityOfElementLocated(by));
+					.until(ExpectedConditions.visibilityOfElementLocated(By));
 
 		}
 
@@ -962,13 +1002,13 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void isElementInvisibleTextNative(AndroidDriver driver, By by, String text) throws ParserConfigurationException,
+	public void isElementInvisibleText(AndroidDriver driver, By By, String Text) throws ParserConfigurationException,
 			SAXException, IOException {
 
 		try {
 
 			(new WebDriverWait(driver, 45)).until(ExpectedConditions
-					.invisibilityOfElementWithText(by, text));
+					.invisibilityOfElementWithText(By, Text));
 
 		}
 
@@ -977,8 +1017,8 @@ public class AndroidGenericMethods {
 			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			//String imageName = genMeth.getValueFromPropFile(key) + text + " still visible "
 				//	+ genMeth.currentTime() + ".png";
-			genMeth.takeScreenShot(driver, genMeth, text);
-			org.testng.Assert.fail(text + " still visible");
+			genMeth.takeScreenShot(driver, genMeth, Text);
+			org.testng.Assert.fail(Text + " still visible");
 
 		}
 
@@ -1039,6 +1079,50 @@ public class AndroidGenericMethods {
 
 		}
 
+	}
+	
+	public void longPressElement(AndroidDriver driver, AndroidGenericMethods genMeth, By By){
+				TouchAction action;
+				WebElement el;
+				try {
+					action = new TouchAction(driver); 
+					el = genMeth.returnBy(driver, genMeth, By);
+					action.longPress(el).waitAction(2000).release().perform();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+		
+		
+	}
+	
+	public void goToAirPlaneMode(String mode) {
+
+		NetworkConnection mobileDriver = (NetworkConnection) driver;
+		if (mode == "AIRPLANE_MODE") {
+
+			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.AIRPLANE_MODE);
+		}
+
+		else if (mode == "WIFI") {
+
+			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.WIFI);
+
+		}
+
+		else if (mode == "DATA") {
+
+			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.DATA);
+
+		}
+
+		else if (mode == "ALL") {
+
+			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.ALL);
+
+		}
+		
 	}
 /*
 	public void deletList(AndroidGenericMethods genMeth, AndroidWebElements iosData) 

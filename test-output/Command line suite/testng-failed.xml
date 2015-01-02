@@ -5,8 +5,10 @@
     <classes>
       <class name="com.pp.android.auto.SanityAndroid">
         <methods>
-          <include name="testCreatefolder"/>
+          <include name="testUploadImage"/>
+          <include name="sendMail"/>
           <include name="setupBeforeSuite"/>
+          <include name="checkHomeScreen"/>
         </methods>
       </class> <!-- com.pp.android.auto.SanityAndroid -->
     </classes>
