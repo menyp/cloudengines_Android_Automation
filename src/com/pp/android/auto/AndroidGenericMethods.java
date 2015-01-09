@@ -76,8 +76,10 @@ public class AndroidGenericMethods {
 	
 	public void killAppAndroid(AndroidDriver driver)throws InterruptedException, IOException {
 
-		driver.removeApp("com.cloudengines.pogoplug");
-		
+	//	driver.removeApp("com.pogoplug.android");
+		driver.resetApp();
+		//driver.removeApp(bundleId);
+				
 		try {
 			driver.quit();
 		} catch (Exception x) {
@@ -312,13 +314,26 @@ public class AndroidGenericMethods {
 		}
 	*/
 
-	public void takeScreenShot(AndroidDriver driver, AndroidGenericMethods genMeth, String imageName) throws IOException {
+	public void takeScreenShot(AndroidDriver driver,
+			AndroidGenericMethods genMeth, String imageName) throws IOException {
 
 		File scrFile = (driver.getScreenshotAs(OutputType.FILE));
 		String currentTime = genMeth.currentTime();
 
 		// Now you can do whatever you need to do with it, for example copy somewhere
 		String imagePath = genMeth.getValueFromPropFile("screenshotPath") + currentTime + "_" + imageName + ".JPG";
+		FileUtils.copyFile(scrFile, new File(imagePath));
+
+	}
+	
+	public void takeScreenShotPositive(AndroidDriver driver,
+			AndroidGenericMethods genMeth, String imageName) throws IOException {
+
+		File scrFile = (driver.getScreenshotAs(OutputType.FILE));
+		String currentTime = genMeth.currentTime();
+
+		// Now you can do whatever you need to do with it, for example copy somewhere
+		String imagePath = genMeth.getValueFromPropFile("screenshotPathPositive") + currentTime + "_" + imageName + ".JPG";
 		FileUtils.copyFile(scrFile, new File(imagePath));
 
 	}
@@ -474,6 +489,24 @@ public class AndroidGenericMethods {
 		}
 
 	}
+	
+	
+	public void tapBy(AndroidDriver driver, AndroidGenericMethods genMeth, By by) throws InterruptedException {
+
+
+		try {
+
+			WebElement myElement = genMeth.fluentwait(driver, by);
+			driver.tap(1, myElement, 1000);
+		}
+
+		catch (Exception e) {
+
+			org.testng.Assert.fail("WebElement can't be located");
+
+		}
+
+	}
 
 	public void clickCss(AndroidDriver driver, AndroidGenericMethods genMeth, String cssSelector)
 			throws InterruptedException {
@@ -494,13 +527,30 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void clickId(AndroidDriver driver, AndroidGenericMethods genMeth, String id)
-			throws InterruptedException {
+	public void clickId(AndroidDriver driver, AndroidGenericMethods genMeth,
+			String id) throws InterruptedException {
 
 		try {
 
 			WebElement myElement = genMeth.fluentwait(driver, By.id(id));
 			myElement.click();
+		}
+
+		catch (Exception e) {
+
+			org.testng.Assert.fail(id + " didn't display");
+
+		}
+	}
+	
+	public void tapId(AndroidDriver driver, AndroidGenericMethods genMeth,
+			String id) throws InterruptedException {
+
+		try {
+
+			WebElement myElement = genMeth.fluentwait(driver, By.id(id));
+			driver.tap(1, myElement, 1000);
+
 		}
 
 		catch (Exception e) {
@@ -526,6 +576,7 @@ public class AndroidGenericMethods {
 		}
 
 	}
+	
 
 	public void clickXpth(AndroidDriver driver, AndroidGenericMethods genMeth, String xpth)
 			throws InterruptedException, IOException {
@@ -551,6 +602,30 @@ public class AndroidGenericMethods {
 		}
 
 	}
+	
+	public void tapXpth(AndroidDriver driver, AndroidGenericMethods genMeth, String xpth)
+			throws InterruptedException, IOException {
+
+		By by = By.xpath(xpth);
+
+		// (new WebDriverWait(driver,
+		// 50000)).until(ExpectedConditions.visibilityOfElementLocated(by));
+
+		// WebElement my1Element = genMeth.fluentwait(driver, By.xpath(xpth));
+
+		try {
+
+			WebElement myElement = genMeth.fluentwait(driver, by);
+			driver.tap(1, myElement, 1000);
+		}
+
+		catch (Exception e) {
+			genMeth.takeScreenShot(driver, genMeth, xpth);
+			org.testng.Assert.fail(xpth + " didn't display");
+
+		}
+
+	}
 
 	public void clickName(AndroidDriver driver,AndroidGenericMethods genMeth, String name)
 			throws InterruptedException, IOException {
@@ -559,6 +634,26 @@ public class AndroidGenericMethods {
 
 			WebElement myElement = genMeth.fluentwait(driver, By.name(name));
 			myElement.click();
+
+		}
+
+		catch (Exception e) {
+			// String testName = new
+			// Object(){}.getClass().getEnclosingMethod().getName();
+			genMeth.takeScreenShot(driver, genMeth, name);
+			org.testng.Assert.fail(name + " didn't display");
+
+		}
+
+	}
+	
+	public void tapName(AndroidDriver driver,AndroidGenericMethods genMeth, String name)
+			throws InterruptedException, IOException {
+
+		try {
+
+			WebElement myElement = genMeth.fluentwait(driver, By.name(name));
+			driver.tap(1, myElement, 1000);
 
 		}
 

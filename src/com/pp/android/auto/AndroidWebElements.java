@@ -56,6 +56,9 @@ public class AndroidWebElements {
 	String OPTIONsortOldestFirst_name;
 	String OPTIONsortSmallestFirst_name;
 	String OPTIONsortBiggestFirst_name;
+	String OPTIONsignOut_Name;
+	
+	
 	
 	String LIST1_xpth;
 	String LIST2_xpth;
@@ -64,9 +67,12 @@ public class AndroidWebElements {
 	String LIST5_xpth;
 	String LIST6_xpth;
 	String ListSecondaryText_ID;
+	String scrollDown;
+	String scrollUp;
 	
 	//STRINGS
 	String userUnlimited_name;
+	String userLimited_name;
 	String password;
 	String NeverLoseAPhoto;
 	String CATEGORIES;
@@ -77,6 +83,13 @@ public class AndroidWebElements {
 	String ImageNotAvailable_Name;
 	String FullScreen_ID;
 	String BTNhome_ID;
+	String TransferPhonesSimply_name;
+	String UnlimitedProtection_Name;
+	String BTNskip_ID;
+	String TourUpgradeTextInfo_Name;
+	String BTNtourUpgradeNow_ID;
+	String BillingUrl_Name;
+	String TransferPhonesSimplyFullText_name;
 
 	
 	
@@ -108,8 +121,10 @@ public class AndroidWebElements {
 		this.BTNok_Name = XmlHandel.readAndroidXml("BTNok_Name", langXml, xmlPath);
 		this.BTNmoreOptions_ClassName = XmlHandel.readAndroidXml("BTNmoreOptions_ClassName", langXml, xmlPath);
 		this.BTNhome_ID = XmlHandel.readAndroidXml("BTNhome_ID", langXml, xmlPath);
+		this.BTNskip_ID = XmlHandel.readAndroidXml("BTNskip_ID", langXml, xmlPath);
 
-		
+
+
 		this.TEXTFIELDemail_id = XmlHandel.readAndroidXml("TEXTFIELDemail_id", langXml, xmlPath);
 		this.TEXTFIELDpassword_id = XmlHandel.readAndroidXml("TEXTFIELDpassword_id", langXml, xmlPath);
 		this.OPTIONcaptureNewPhoto_name = XmlHandel.readAndroidXml("OPTIONcaptureNewPhoto_name", langXml, xmlPath);
@@ -124,6 +139,9 @@ public class AndroidWebElements {
 		this.OPTIONsortOldestFirst_name = XmlHandel.readAndroidXml("OPTIONsortOldestFirst_name", langXml, xmlPath);
 		this.OPTIONsortSmallestFirst_name = XmlHandel.readAndroidXml("OPTIONsortSmallestFirst_name", langXml, xmlPath);
 		this.OPTIONsortBiggestFirst_name = XmlHandel.readAndroidXml("OPTIONsortBiggestFirst_name", langXml, xmlPath);
+		this.OPTIONsignOut_Name = XmlHandel.readAndroidXml("OPTIONsignOut_Name", langXml, xmlPath);
+
+		
 		
 		
 		this.LIST1_xpth = XmlHandel.readAndroidXml("LIST1_xpth", langXml, xmlPath);
@@ -138,6 +156,7 @@ public class AndroidWebElements {
 		
 		
 		this.userUnlimited_name = XmlHandel.readAndroidXml("userUnlimited_name", langXml, xmlPath);
+		this.userLimited_name = XmlHandel.readAndroidXml("userLimited_name", langXml, xmlPath);
 		this.password = XmlHandel.readAndroidXml("password", langXml, xmlPath);
 		this.NeverLoseAPhoto = XmlHandel.readAndroidXml("NeverLoseAPhoto", langXml, xmlPath);
 		this.CATEGORIES = XmlHandel.readAndroidXml("CATEGORIES", langXml, xmlPath);
@@ -147,6 +166,15 @@ public class AndroidWebElements {
 		this.ImageNotAvailable_ID = XmlHandel.readAndroidXml("ImageNotAvailable_ID", langXml, xmlPath);
 		this.ImageNotAvailable_Name = XmlHandel.readAndroidXml("ImageNotAvailable_Name", langXml, xmlPath);
 		this.FullScreen_ID = XmlHandel.readAndroidXml("FullScreen_ID", langXml, xmlPath);
+		this.scrollDown = XmlHandel.readAndroidXml("scrollDown", langXml, xmlPath);
+		this.scrollUp = XmlHandel.readAndroidXml("scrollUp", langXml, xmlPath);
+		this.TransferPhonesSimply_name = XmlHandel.readAndroidXml("TransferPhonesSimply_name", langXml, xmlPath);
+		this.UnlimitedProtection_Name = XmlHandel.readAndroidXml("UnlimitedProtection_Name", langXml, xmlPath);
+		this.TourUpgradeTextInfo_Name = XmlHandel.readAndroidXml("TourUpgradeTextInfo_Name", langXml, xmlPath);
+		this.BTNtourUpgradeNow_ID = XmlHandel.readAndroidXml("BTNtourUpgradeNow_ID", langXml, xmlPath);
+		this.BillingUrl_Name = XmlHandel.readAndroidXml("BillingUrl_Name", langXml, xmlPath);		
+		this.TransferPhonesSimplyFullText_name = XmlHandel.readAndroidXml("TransferPhonesSimplyFullText_name", langXml, xmlPath);
+
 		
 		
 

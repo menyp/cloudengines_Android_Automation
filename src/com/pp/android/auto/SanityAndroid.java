@@ -169,7 +169,7 @@ public class SanityAndroid {
 	// Make sure that the "Image not available" text doesn't displayed
 		Thread.sleep(3000);
 		genMeth.isElementInvisibleText(driver, By.name(androidData.ImageNotAvailable_Name), androidData.ImageNotAvailable_Name);
-		genMeth.takeScreenShot(driver, genMeth, "testUploadImage_"+currentUpload);
+		genMeth.takeScreenShotPositive(driver, genMeth, "testUploadImage_"+currentUpload);
 		Thread.sleep(1000);	
 	//	genMeth.clickXpth(driver, genMeth, "//android.view.View[1]");
 		genMeth.clickId(driver, genMeth, androidData.FullScreen_ID);
@@ -185,47 +185,122 @@ public class SanityAndroid {
 		}
 	
 	
-	@Test(enabled = false, testName = "Sanity Tests", description = "Test TOUR for New accounts and for upgrade accounts",
-			groups = { "Sanity Android" })
+	@Test(enabled = true, testName = "Sanity Tests", description = "Test TOUR for New accounts and for upgrade accounts",
+			groups = { "Sanity Android now" })
 	public void testTour() throws Exception, Throwable {
 
 		
 		 // =============================================================== 
 		 //        Tour for Free Account
 		 //===============================================================
+		 String curentTime = genMeth.currentTime();
 		 
+		genMeth.killAppAndroid(driver);
+		driver = genMeth.setCapabilitiesAndroid(genMeth);
+		genMeth.clickId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userLimited_name);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
+		genMeth.tapId(driver, genMeth, androidData.BTNlogin_id);
+		Thread.sleep(3000);
 		
-		// Login with a new created account
-		driver.removeApp(genMeth.getValueFromPropFile("appPackage"));
+		// check Never loose a photo
+		genMeth.isElementVisible(driver, By.name(androidData.NeverLoseAPhoto));
+		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + androidData.NeverLoseAPhoto );
+		driver.swipe(600, 800, 50, 800, 600);
 		
-		//genMeth.cleanLoginAndroid(driver, genMeth, androidData, user);
-
+		//Check Transfer phones simply
+		genMeth.isElementVisible(driver, By.name(androidData.TransferPhonesSimply_name));
+		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + androidData.TransferPhonesSimply_name );
+		driver.swipe(600, 800, 50, 800, 600);
+		// Check Unlimited protection
+		genMeth.isElementVisible(driver, By.name(androidData.UnlimitedProtection_Name));
+		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + androidData.UnlimitedProtection_Name );
+		
+		// SKIP 
+		genMeth.clickId(driver, genMeth, androidData.BTNskip_ID);
+		
+		// Check Backup
+		genMeth.isElementVisible(driver, By.name(androidData.Backup_Name));
+		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + androidData.Backup_Name );
 		
 		// press the Continue button 
+		genMeth.clickId(driver, genMeth, androidData.BTNfinishTour_id);	
+		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
 		
-		// 
+		//Verify that LOGOUT & RELOGIN will not prompt the tour
+		genMeth.clickXpth(driver, genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
+		genMeth.clickName(driver, genMeth, androidData.OPTIONsignOut_Name);
+		genMeth.clickName(driver, genMeth, androidData.BTNok_Name);
+		genMeth.clickId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userLimited_name);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
+		genMeth.tapId(driver, genMeth, androidData.BTNlogin_id);
+		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
 		
-		//
-		
-		
-		// ====== SKIP for Go Unlimited screen ===== - Login with Free/Limited account & check the tour display & text
-		
-		
-	
-		// ===== X BUTTON for Go Unlimited screen ====== - Login with Free/Limited account & check the tour display & text
-		
-		
-		
+		 
+		// same test only with Upgrade now at pogoplug.com
+		genMeth.killAppAndroid(driver);
+		driver = genMeth.setCapabilitiesAndroid(genMeth);
+		genMeth.clickId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id,androidData.userLimited_name);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id,androidData.password);
+		genMeth.tapId(driver, genMeth, androidData.BTNlogin_id);
 
-		// ====== GO UNLIMITED BUTTON ====- Login with Free/Limited account & check the tour display & text
+		// check Never loose a photo
+		genMeth.isElementVisible(driver, By.name(androidData.NeverLoseAPhoto));
+		driver.swipe(600, 800, 50, 800, 600);
+
+		// Check Transfer phones simply
+		genMeth.isElementVisible(driver,By.name(androidData.TransferPhonesSimply_name));
+		driver.swipe(600, 800, 50, 800, 600);
+		// Check Unlimited protection
+		genMeth.isElementVisible(driver,By.name(androidData.UnlimitedProtection_Name));
+		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + "_Tour");
+
+		// UPGRADE now at pogoplug.com
+		genMeth.clickId(driver, genMeth, androidData.BTNtourUpgradeNow_ID);
+		genMeth.isElementVisible(driver, By.name(androidData.BillingUrl_Name));
+		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + "_Tour_Billing_Page");
 		
-	
 		
 		
 	// =====================================================
 	//     Tour for Unlimited Account
 	// =====================================================
 		 
+		
+		genMeth.killAppAndroid(driver);
+		driver = genMeth.setCapabilitiesAndroid(genMeth);
+		genMeth.clickId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userUnlimited_name);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
+		genMeth.tapId(driver, genMeth, androidData.BTNlogin_id);
+		
+		// check Never loose a photo
+		genMeth.isElementVisible(driver, By.name(androidData.NeverLoseAPhoto));
+		driver.swipe(600, 800, 50, 800, 600);
+		
+		//Check Transfer phones simply
+		genMeth.isElementVisible(driver, By.name(androidData.TransferPhonesSimply_name));
+		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + "_Tour_Finish");
+		genMeth.clickId(driver, genMeth, "com.pogoplug.android:id/tour_indicator_placehoder");
+		
+		// Check Backup
+		genMeth.isElementVisible(driver, By.name(androidData.Backup_Name));
+		
+		// press the Continue button 
+		genMeth.clickId(driver, genMeth, androidData.BTNfinishTour_id);	
+		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
+		
+		// logout & relogin will not prompt the tour
+		genMeth.clickXpth(driver, genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
+		genMeth.clickName(driver, genMeth, androidData.OPTIONsignOut_Name);
+		genMeth.clickName(driver, genMeth, androidData.BTNok_Name);
+		genMeth.clickId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userUnlimited_name);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
+		genMeth.tapId(driver, genMeth, androidData.BTNlogin_id);
+		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
 		
 	}
 	
@@ -474,7 +549,7 @@ public class SanityAndroid {
 
 	@Test(enabled = false, testName = "Sanity Tests", description = "Switching from Foreground to Background and vice versa use cases",
 			groups = { "Sanity Android" })
-	public void foregroundBackgroundSwith() throws Exception, Throwable {
+	public void foregroundBackgroundSwitch() throws Exception, Throwable {
 
 		//Take the app to background & foreground x times
 		
@@ -571,7 +646,14 @@ public class SanityAndroid {
 	@AfterSuite (alwaysRun=true)
 
 		public void sendMail() throws Exception {
-			driver.quit();	
+//			driver.removeApp("com.pogoplug.android");
+		
+			try {
+				driver.quit();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 			//SendResults sr = new SendResults("elicherni444@gmail.com", "meny@cloudengines.com", "TestNG results", "Test Results");
 			//sr.sendTestNGResult();
 		

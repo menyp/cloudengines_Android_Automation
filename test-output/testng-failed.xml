@@ -4,13 +4,13 @@
   <test name="Sanity Tests(failed)" parallel="none">
     <groups>
       <run>
-        <include name="Sanity Android"/>
+        <include name="Sanity Android now"/>
       </run>
     </groups>
     <classes>
       <class name="com.pp.android.auto.SanityAndroid">
         <methods>
-          <include name="testUploadImage"/>
+          <include name="testTour"/>
           <include name="sendMail"/>
           <include name="setupBeforeSuite"/>
           <include name="checkHomeScreen"/>
