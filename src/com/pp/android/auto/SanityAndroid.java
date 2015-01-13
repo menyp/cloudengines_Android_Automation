@@ -83,7 +83,7 @@ public class SanityAndroid {
 	}
 	
 
-	@Test (enabled = false , description = "Test the Create folder with Android" , groups= {"Sanity Android"}  /*dependsOnMethods={"testLogin"}*/)	
+	@Test (enabled = true , description = "Test the Create folder with Android" , groups= {"Sanity Android"}  /*dependsOnMethods={"testLogin"}*/)	
 	public void testCreatefolder() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
 		String currentDate = genMeth.currentTime();
@@ -130,7 +130,7 @@ public class SanityAndroid {
 		  }
 
 	
-	@Test (enabled = false ,testName="Sanity Tests", description = "Test the Upload utility with Android" , groups= {"Sanity Android"})	
+	@Test (enabled = true ,testName="Sanity Tests", description = "Test the Upload utility with Android" , groups= {"Sanity Android"})	
 	public void testUploadImage() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
 	// open pogoplug cloud & press
@@ -186,7 +186,7 @@ public class SanityAndroid {
 	
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Test TOUR for New accounts and for upgrade accounts",
-			groups = { "Sanity Android now" })
+			groups = { "Sanity Android" })
 	public void testTour() throws Exception, Throwable {
 
 		
@@ -307,15 +307,26 @@ public class SanityAndroid {
 	@Test(enabled = false, testName = "Sanity Tests", description = "Sign up- Create new user (Negetive positive test), Privacy Policy, TRUSTe",
 			groups = { "Sanity Android" })
 	public void createNewUser() throws Exception, Throwable {
-
+//		genMeth.clickName(driver, genMeth, name);
+		
 		
 	}
 	
-	@Test(enabled = false, testName = "Sanity Tests", description = "login with bad/missing credentials , forgot password (negative & positive)",
+	@Test(enabled = true, testName = "Sanity Tests", description = "login with bad/missing credentials , forgot password (negative & positive)",
 			groups = { "Sanity Android" })
 	public void badCredentials() throws Exception, Throwable {
-
-		
+		String currentTime = genMeth.currentTime();
+		genMeth.signOutFromStartupAndroid(genMeth, driver, androidData);
+		genMeth.clickId(driver,  genMeth, androidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, currentTime);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
+		genMeth.clickId(driver, genMeth, androidData.BTNlogin_id);
+		Thread.sleep(3000);
+		genMeth.takeScreenShotPositive(driver, genMeth, currentTime + "_Bad_login");
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userUnlimited_name);
+		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
+		genMeth.clickId(driver, genMeth, androidData.BTNlogin_id);		
+		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
 
 
 		// Login with bad credentials
@@ -328,7 +339,7 @@ public class SanityAndroid {
 	
 	}
 	
-	@Test(enabled = false, testName = "Sanity Tests", description = "Search functionality & filter",
+	@Test(enabled = true, testName = "Sanity Tests", description = "Search functionality & filter",
 			groups = { "Sanity Android" })
 	public void search() throws Exception, Throwable {
 		
@@ -398,26 +409,38 @@ public class SanityAndroid {
 		
 	}
 	
-	@Test(enabled = false, testName = "Sanity Tests", description = "Settings: Passcode",
-			groups = { "Sanity Android" })
-	public void settingsPasscodeSanity() throws Exception, Throwable {
-
-		// Cancel the Passcode screen
+	@Test(enabled = true, testName = "Sanity Tests", description = "Settings: Passcode",
+			groups = { "Sanity Android1" })
+	public void createSnapShot() throws Exception, Throwable {
+		
+		Thread.sleep(1000);
+		//driver.closeApp();
+		//driver.launchApp();
+		genMeth.clickName(driver, genMeth, androidData.Settings_Name);
+		driver.scrollToExact("Restore Snapshot");
+		genMeth.clickName(driver, genMeth, "Restore Snapshot");
+		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
+		
+		
+		genMeth.clickName(driver, genMeth, "Gallery");
 		
 
-		// Attempt to create wrong Passcode
+		// Make sure that there are no snap shot
+		
+		//Create a snapshot
+		
+		// Make sure a new entry was made
+		
+		// delete all the images from camera roll
+		
+		// Restore snapshot
+		
+		//Make sure all images were restored successfully 
 		
 
-		// Create a correct Passcode
+		
 		
 
-		// make sure that the passcode initiated properly
-		
-
-		// Disable the passcode
-		
-
-		// make sure that the passcode isn't initiated
 		
 		// Go to startup screen
 		

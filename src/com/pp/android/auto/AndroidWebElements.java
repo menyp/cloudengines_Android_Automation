@@ -37,6 +37,7 @@ public class AndroidWebElements {
 	String BTNcontinue_Name;
 	String BTNok_Name;
 	String BTNmoreOptions_ClassName;
+	String BTNsingOut_Name;
 	
 	
 	String TEXTFIELDgeneral_ID;
@@ -122,7 +123,7 @@ public class AndroidWebElements {
 		this.BTNmoreOptions_ClassName = XmlHandel.readAndroidXml("BTNmoreOptions_ClassName", langXml, xmlPath);
 		this.BTNhome_ID = XmlHandel.readAndroidXml("BTNhome_ID", langXml, xmlPath);
 		this.BTNskip_ID = XmlHandel.readAndroidXml("BTNskip_ID", langXml, xmlPath);
-
+		this.BTNsingOut_Name = XmlHandel.readAndroidXml("BTNsingOut_Name", langXml, xmlPath);
 
 
 		this.TEXTFIELDemail_id = XmlHandel.readAndroidXml("TEXTFIELDemail_id", langXml, xmlPath);

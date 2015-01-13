@@ -10,6 +10,8 @@ import java.net.URL;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +19,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
@@ -88,15 +91,14 @@ public class AndroidGenericMethods {
 		//driver = genMeth.setCapabilitiesIos();
 	}
 	
-/*
-	public void signOutFromStartupAndroid(AndroidDriver driver, WebElementsAndroid iosData) throws InterruptedException, IOException {
-		GenericMethods genMeth = new GenericMethods();
-		genMeth.clickName(driver,genMeth, iosData.Settings_Name);
-		genMeth.scroll(driver, iosData.scrollDown);
-		genMeth.scroll(driver, iosData.scrollDown);
-		genMeth.clickName(driver,genMeth, iosData.BTNsignOut_Name);
+
+	public void signOutFromStartupAndroid(AndroidGenericMethods genMeth, AndroidDriver driver, AndroidWebElements androidData) throws InterruptedException, IOException {
+		genMeth.clickName(driver,genMeth, androidData.Settings_Name);
+		genMeth.clickName(driver,genMeth, androidData.BTNsingOut_Name);
+		genMeth.clickName(driver, genMeth, androidData.BTNok_Name);
 	}
 	
+	/*
 	public void loginIos(GenericMethods genMeth, WebElementsAndroid iosData, String user)throws InterruptedException, IOException,ParserConfigurationException, SAXException {
 
 		genMeth.clickName(driver,genMeth, iosData.BTNalreadyHaveAnAccount_name);
@@ -153,15 +155,28 @@ public class AndroidGenericMethods {
 
 	}
 	
-	
+	*/
     public void scroll(AndroidDriver driver , String direction){       
         JavascriptExecutor js= (JavascriptExecutor) driver;
         Map<String, String>scrollMap =new HashMap<String, String>();
         scrollMap.put("direction", direction);  
         js.executeScript("mobile: scroll", scrollMap);  
 }
+ 
+    public void scrollUp(AndroidDriver driver){       
+        JavascriptExecutor js= (JavascriptExecutor) driver;
+        Map<String, String>scrollMap =new HashMap<String, String>();
+        scrollMap.put("direction", "up");  
+        js.executeScript("mobile: scroll", scrollMap);  
+}
     
- */
+    public void scrollDown(AndroidDriver driver){       
+        JavascriptExecutor js= (JavascriptExecutor) driver;
+        Map<String, String>scrollMap =new HashMap<String, String>();
+        scrollMap.put("direction", "down");  
+        js.executeScript("mobile: scroll", scrollMap);  
+}
+ 
 	public AndroidDriver setCapabilitiesAndroid(AndroidGenericMethods genMeth)
 			throws IOException {
 		

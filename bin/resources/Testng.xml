@@ -4,7 +4,7 @@
   <test name="Sanity Tests">
       <groups>
 		<run>
-		    <include name="Sanity Android now"/>     
+		    <include name="Sanity Android1"/>     
 		    
 		</run>
 	</groups>

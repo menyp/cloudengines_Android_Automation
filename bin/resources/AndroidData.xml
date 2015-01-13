@@ -28,6 +28,7 @@
 			<BTNhome_ID>android:id/home</BTNhome_ID>
 			<BTNskip_ID>com.pogoplug.android:id/tour_skip_upgrade_btn</BTNskip_ID>
 			<BTNtourUpgradeNow_ID>com.pogoplug.android:id/tour_upgrade_now_btn</BTNtourUpgradeNow_ID>
+			<BTNsingOut_Name>Sign out</BTNsingOut_Name>
 			
 			    
 		</Buttons>

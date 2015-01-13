@@ -3,20 +3,16 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.pp.android.auto.TestResults">
-        <methods>
-          <include name="runSuccessFaillure"/>
-        </methods>
-      </class> <!-- com.pp.android.auto.TestResults -->
-      <class name="com.pp.android.auto.SendReport">
-        <methods>
-          <include name="sendMail"/>
-        </methods>
-      </class> <!-- com.pp.android.auto.SendReport -->
       <class name="com.pp.android.auto.SanityAndroid">
         <methods>
+          <include name="testTour"/>
           <include name="testCreatefolder"/>
+          <include name="createSnapShot"/>
+          <include name="testUploadImage"/>
+          <include name="sendMail"/>
+          <include name="badCredentials"/>
           <include name="setupBeforeSuite"/>
+          <include name="search"/>
         </methods>
       </class> <!-- com.pp.android.auto.SanityAndroid -->
     </classes>
