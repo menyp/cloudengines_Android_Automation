@@ -1,6 +1,7 @@
 package com.pp.android.auto;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyCode;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class AndroidGenericMethods {
 
 		
 		// check if this is a Limited or Unlimited account
-		boolean isUnlimitedAccount = genMeth.checkIsElementVisibleNative(driver, By.name(androidData.NeverLoseAPhoto));
+		boolean isUnlimitedAccount = genMeth.checkIsElementVisible(driver, By.name(androidData.NeverLoseAPhoto));
 		if (isUnlimitedAccount == true) {
 			// Navigate through the intro
 			driver.swipe(600, 800, 50, 800, 600);
@@ -921,7 +922,7 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void waitForElementToBeVisible(AndroidDriver driver, By byType,
+	public void waitForElementToBeVisible(AndroidDriver driver, By By,
 			int numAttempts) throws IOException, ParserConfigurationException,
 			SAXException {
 
@@ -933,7 +934,7 @@ public class AndroidGenericMethods {
 						.withTimeout(60, TimeUnit.SECONDS)
 						.pollingEvery(5, TimeUnit.SECONDS)
 						.ignoring(NoSuchElementException.class)
-						.until(ExpectedConditions.elementToBeClickable(byType));
+						.until(ExpectedConditions.elementToBeClickable(By));
 
 				if (elementToBeVisible != null) {
 
@@ -1028,7 +1029,7 @@ public class AndroidGenericMethods {
 
 	// This method checks if a given element is invisible on the screen
 
-	public void isElementInvisibleNative(AndroidDriver driver, By By)
+	public void isElementInvisible(AndroidDriver driver, By By)
 			throws ParserConfigurationException, SAXException, IOException {
 
 		try {
@@ -1074,7 +1075,7 @@ public class AndroidGenericMethods {
 
 	}
 
-	public boolean checkIsElementVisibleNative(AndroidDriver driver, By by)
+	public boolean checkIsElementVisible(AndroidDriver driver, By By)
 			throws ParserConfigurationException, SAXException, IOException {
 
 		boolean isWebElementVisible = false;
@@ -1084,10 +1085,10 @@ public class AndroidGenericMethods {
 			// (new WebDriverWait(driver,
 			// 20)).until(ExpectedConditions.visibilityOfElementLocated(by));
 			element = new FluentWait<AndroidDriver>(driver)
-					.withTimeout(30, TimeUnit.SECONDS)
+					.withTimeout(10, TimeUnit.SECONDS)
 					.pollingEvery(1, TimeUnit.SECONDS)
 					.ignoring(NoSuchElementException.class)
-					.until(ExpectedConditions.visibilityOfElementLocated(by));
+					.until(ExpectedConditions.visibilityOfElementLocated(By));
 
 		}
 
@@ -1207,7 +1208,7 @@ public class AndroidGenericMethods {
 		
 	}
 	
-	public void goToAirPlaneMode(String mode) {
+	public void goToAirPlaneMode(AndroidDriver driver, String mode) {
 
 		NetworkConnection mobileDriver = (NetworkConnection) driver;
 		if (mode == "AIRPLANE_MODE") {
@@ -1232,6 +1233,18 @@ public class AndroidGenericMethods {
 			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.ALL);
 
 		}
+		
+	}
+	
+	public void pressHomeButton(AndroidDriver driver){
+		int Home = AndroidKeyCode.HOME;
+		driver.sendKeyEvent(Home);
+		
+	}
+	
+	public void pressBackButton(){
+		int Back = AndroidKeyCode.BACK;
+		driver.sendKeyEvent(Back);
 		
 	}
 /*

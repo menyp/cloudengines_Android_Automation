@@ -6,13 +6,16 @@ import org.testng.annotations.Test;
 import io.appium.java_client.NetworkConnectionSetting;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyCode;
 
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.mobile.NetworkConnection;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeSuite;
@@ -62,7 +65,7 @@ public class SanityAndroid {
 		}
 
 		else {
-			boolean StartUpScreenDisplay = genMeth.checkIsElementVisibleNative( driver , By.name(androidData.Settings_Name));
+			boolean StartUpScreenDisplay = genMeth.checkIsElementVisible( driver , By.name(androidData.Settings_Name));
 
 			if (StartUpScreenDisplay != true) {
 
@@ -84,7 +87,7 @@ public class SanityAndroid {
 	
 
 	@Test (enabled = true , description = "Test the Create folder with Android" , groups= {"Sanity Android"}  /*dependsOnMethods={"testLogin"}*/)	
-	public void testCreatefolder() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
+	public void createfolder() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
 		String currentDate = genMeth.currentTime();
 		genMeth.clickName(driver, genMeth, androidData.FileExplorer_Name);	
@@ -96,7 +99,7 @@ public class SanityAndroid {
 		genMeth.clickId(driver, genMeth, androidData.BTNdismissNewFolder_id);
 
 //	 	make sure that the folder wasn't created
-		genMeth.isElementInvisibleNative(driver, By.name(currentDate));
+		genMeth.isElementInvisible(driver, By.name(currentDate));
 		
 //		Now Press the create folder
 		genMeth.clickName(driver, genMeth, androidData.BTNnewFolder_name);
@@ -122,7 +125,7 @@ public class SanityAndroid {
 		genMeth.longPressElement(driver, genMeth, By.name(currentDate));
 		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);;
 		genMeth.clickId(driver, genMeth, androidData.BTNdeleteConfirm_id);
-		genMeth.isElementInvisibleNative(driver, By.name(currentDate));
+		genMeth.isElementInvisible(driver, By.name(currentDate));
 		
 	// Go to strtup page (LSM left side menu)
 		genMeth.clickId(driver, genMeth, androidData.BTNlsm_ID);
@@ -131,7 +134,7 @@ public class SanityAndroid {
 
 	
 	@Test (enabled = true ,testName="Sanity Tests", description = "Test the Upload utility with Android" , groups= {"Sanity Android"})	
-	public void testUploadImage() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
+	public void uploadImage() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
 	// open pogoplug cloud & press
 		genMeth.clickId(driver, genMeth, androidData.BTNlsm_ID);
@@ -180,14 +183,14 @@ public class SanityAndroid {
 		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
 		genMeth.clickId(driver, genMeth, androidData.BTNdeleteConfirm_id);
 	// Check that the image was deleted
-		genMeth.isElementInvisibleNative(driver, By.id(androidData.FullScreen_ID));
+		genMeth.isElementInvisible(driver, By.id(androidData.FullScreen_ID));
 		
 		}
 	
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Test TOUR for New accounts and for upgrade accounts",
 			groups = { "Sanity Android" })
-	public void testTour() throws Exception, Throwable {
+	public void tour() throws Exception, Throwable {
 
 		
 		 // =============================================================== 
@@ -409,44 +412,76 @@ public class SanityAndroid {
 		
 	}
 	
-	@Test(enabled = true, testName = "Sanity Tests", description = "Settings: Passcode",
+	@Test(enabled = true, testName = "Sanity Tests", description = "Settings: create & restore a snapshot",
 			groups = { "Sanity Android1" })
-	public void createSnapShot() throws Exception, Throwable {
+	public void createRestoreSnapShot() throws Exception, Throwable {
 		
-		Thread.sleep(1000);
-		//driver.closeApp();
-		//driver.launchApp();
+		String currentTime = genMeth.currentTime();
+		
 		genMeth.clickName(driver, genMeth, androidData.Settings_Name);
-		driver.scrollToExact("Restore Snapshot");
-		genMeth.clickName(driver, genMeth, "Restore Snapshot");
-		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
+		driver.scrollToExact(androidData.BTNrestoreSnapshot_Name);
+		genMeth.clickName(driver, genMeth, androidData.BTNrestoreSnapshot_Name);
 		
+		//Make sure That no previous snapshot exist (if so delete them)
+		Boolean isEmpty = genMeth.checkIsElementVisible(driver, By.name(androidData.NoFiles_Name));
+		if (isEmpty !=true){
+			genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
+			genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
+			genMeth.clickName(driver, genMeth, androidData.BTNrestoreSnapshot_Name);
+		}
 		
-		genMeth.clickName(driver, genMeth, "Gallery");
-		
-
-		// Make sure that there are no snap shot
-		
-		//Create a snapshot
-		
-		// Make sure a new entry was made
+		//Create snapshot
+		genMeth.clickId(driver, genMeth, androidData.BTNhome_ID);
+		genMeth.clickName(driver, genMeth, androidData.BTNcreateSnapshot_Name);
+		genMeth.takeScreenShotPositive(driver, genMeth, currentTime + "_CreatingSnapshotScreen");
+		genMeth.waitForElementToBeVisible(driver, By.name(androidData.SnapshotTakenSuccessfully_Name), 3);
+		genMeth.clickName(driver, genMeth, androidData.BTNdismiss_Name);
 		
 		// delete all the images from camera roll
-		
-		// Restore snapshot
-		
-		//Make sure all images were restored successfully 
-		
+		genMeth.pressHomeButton(driver);
+		genMeth.clickName(driver, genMeth, androidData.GalleryApp_Name);
 
+		Boolean isGalleryEmpty = genMeth.checkIsElementVisible(driver, By.name(androidData.NoFiles_Name));
+		if (isGalleryEmpty != true){
+			driver.tap(1, 140, 280, 500);
+			genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
+			genMeth.clickName(driver, genMeth, androidData.CheckBoxselectAll_Name);
+			genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
+			genMeth.clickName(driver, genMeth, androidData.BTNyes_Name);
+		}
 		
+		driver.runAppInBackground(1);
+		driver.scrollToExact(androidData.BTNrestoreSnapshot_Name);
+		genMeth.clickName(driver, genMeth, androidData.BTNrestoreSnapshot_Name);
 		
+		// Make sure a new entry was made
+		genMeth.isElementInvisible(driver, By.name(androidData.NoFilesFound_Name));
+		genMeth.clickXpth(driver, genMeth, "//android.view.View[1]/android.widget.FrameLayout[2]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView[1]");
+		genMeth.clickName(driver, genMeth, androidData.BTNstart_Name);
+		genMeth.clickName(driver, genMeth, androidData.BTNphone_Name);
 
+		genMeth.waitForElementToBeVisible(driver, By.name("Set up my profile"), 2);
+		genMeth.pressBackButton();
+		genMeth.waitForElementToBeVisible(driver, By.name(androidData.RestoreCompletedSuccessfully_Name), 2);
+		genMeth.clickName(driver, genMeth, androidData.BTNdismiss_Name);
+		
+		//Now go verify that the images/videos were restored to the device successfully
+		genMeth.pressHomeButton(driver);
+		genMeth.clickName(driver, genMeth, androidData.GalleryApp_Name);
+		driver.tap(1, 140, 280, 500);
+		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
+		genMeth.clickName(driver, genMeth, androidData.CheckBoxselectAll_Name);
+		genMeth.isElementVisible(driver, By.name("2 selected"));
+		
+		genMeth.clickId(driver, genMeth, androidData.BTNcancelGalleryApp_ID);
+		genMeth.clickName(driver, genMeth, "Camera, Navigate up");		
+		driver.runAppInBackground(1);
 		
 		// Go to startup screen
-		
-		
-
-
+		genMeth.clickId(driver, genMeth, androidData.IconLeftUpperBack_ID);
+		genMeth.clickId(driver, genMeth, androidData.IconLeftUpperBack_ID);
+		genMeth.isElementVisible(driver, By.name(androidData.Settings_Name));
+			
 	}
 	
 	@Test(enabled = false, testName = "Sanity Tests", description = "Settings: Save Login",
@@ -665,7 +700,6 @@ public class SanityAndroid {
 	} 
 	
 	
-//
 	@AfterSuite (alwaysRun=true)
 
 		public void sendMail() throws Exception {

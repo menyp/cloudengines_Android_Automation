@@ -29,6 +29,13 @@
 			<BTNskip_ID>com.pogoplug.android:id/tour_skip_upgrade_btn</BTNskip_ID>
 			<BTNtourUpgradeNow_ID>com.pogoplug.android:id/tour_upgrade_now_btn</BTNtourUpgradeNow_ID>
 			<BTNsingOut_Name>Sign out</BTNsingOut_Name>
+			<BTNrestoreSnapshot_Name>Restore Snapshot</BTNrestoreSnapshot_Name>
+			<BTNcreateSnapshot_Name>Create Snapshot</BTNcreateSnapshot_Name>
+			<BTNdismiss_Name>Dismiss</BTNdismiss_Name>
+			<BTNyes_Name>Yes</BTNyes_Name>
+			<BTNstart_Name>Start</BTNstart_Name>
+			<BTNphone_Name>Phone</BTNphone_Name>
+			<BTNcancelGalleryApp_ID>com.android.gallery3d:id/selection_cancel</BTNcancelGalleryApp_ID>
 			
 			    
 		</Buttons>
@@ -41,6 +48,7 @@
 		</TextFields>
 		
 		<CheckBox>
+		    <CheckBoxselectAll_Name>Select all</CheckBoxselectAll_Name>
 		    
 		</CheckBox>
 		
@@ -84,9 +92,10 @@
 		    <FullScreen_ID>com.pogoplug.android:id/full_list_item_image</FullScreen_ID>
 		    <TourUpgradeTextInfo_Name>Upgrade today to protect all your photos and videos forever. Just $4.99/month or $49.99/year. Save 15%!</TourUpgradeTextInfo_Name>
 		    <BillingUrl_Name>https://my.pogoplug.com/newbilling?plan=POGOPLAN-MCLOUD</BillingUrl_Name>
-		    
-		    
-		    
+		    <NoFilesFound_Name>No files found</NoFilesFound_Name>
+		    <SnapshotTakenSuccessfully_Name>Snapshot taken successfully</SnapshotTakenSuccessfully_Name>
+		    <NoFiles_Name>No files</NoFiles_Name>
+		    <RestoreCompletedSuccessfully_Name>Restore completed successfully</RestoreCompletedSuccessfully_Name>
 		    
 		</Strings>
 		                
@@ -97,12 +106,12 @@
 	   	<scrollUp>up</scrollUp>
 		<userUnlimited_name>automation1@test.com</userUnlimited_name>
 		<userLimited_name>Automation1@limited.com</userLimited_name>
-	
 		<password>1</password>
 		<newPassword>2</newPassword>
 		<badPassword>incorrectPassword</badPassword>
 		<emptyPassword></emptyPassword>
 		<emptyUserName></emptyUserName>
+		<GalleryApp_Name>Gallery</GalleryApp_Name>
 
 	</GeneralInfo>
 	
@@ -117,6 +126,13 @@
 		
 	</errorText>
 	
+	<Icon>
+	    
+	   <IconLeftUpperBack_ID>android:id/up</IconLeftUpperBack_ID> 
+	    
+	</Icon>
+	
+	android:id/up
 	
 	
 	

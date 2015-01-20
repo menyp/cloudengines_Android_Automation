@@ -8,13 +8,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 public class AndroidWebElements {
-	//GenericMethods genMeth = new GenericMethods();
 
 	String BTNalreadyHaveAnAccount_id;
 	String BTNlogin_id;
 	String BTNfinishTour_id;
 	String BTNcontinue_id;
-	
 	String BTNupload_name;
 	String BTNsearch_name;
 	String BTNrefresh_name;
@@ -23,7 +21,6 @@ public class AndroidWebElements {
 	String BTNdelete_name;
 	String BTNcapturePhoto_id;
 	String BTNcapturePhoto_LG_id;
-	
 	String BTNcaptureVideo_id;
 	String BTNcaptureDone_id;
 	String BTNretakeCapture_id;
@@ -38,11 +35,19 @@ public class AndroidWebElements {
 	String BTNok_Name;
 	String BTNmoreOptions_ClassName;
 	String BTNsingOut_Name;
+	String BTNrestoreSnapshot_Name;
+	String BTNcreateSnapshot_Name;
+	String BTNdismiss_Name;
+	String BTNyes_Name;
+	String BTNstart_Name;
+	String BTNphone_Name;
+	String BTNcancelGalleryApp_ID;
 	
 	
 	String TEXTFIELDgeneral_ID;
 	String TEXTFIELDemail_id;
 	String TEXTFIELDpassword_id;
+	String GalleryApp_Name;
 	
 	String OPTIONcaptureNewPhoto_name;
 	String OPTIONcaptureNewVideo_name;
@@ -50,7 +55,6 @@ public class AndroidWebElements {
 	String OPTIONlocalVideo;
 	String OPTIONmusicPlayer_name;
 	String OPTIONanyFile_name;
-	
 	String OPTIONsortAZ_name;
 	String OPTIONsortZA_name;
 	String OPTIONsortNewestFirst_name;
@@ -91,8 +95,16 @@ public class AndroidWebElements {
 	String BTNtourUpgradeNow_ID;
 	String BillingUrl_Name;
 	String TransferPhonesSimplyFullText_name;
-
+	String NoFilesFound_Name;
+	String SnapshotTakenSuccessfully_Name;
+	String NoFiles_Name;
+	String RestoreCompletedSuccessfully_Name;
 	
+	//Checkbox
+	String CheckBoxselectAll_Name;
+	
+	//Icons
+	String IconLeftUpperBack_ID;
 	
 	public AndroidWebElements(String langXml, String xmlPath ) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		this.BTNalreadyHaveAnAccount_id = XmlHandel.readAndroidXml("BTNalreadyHaveAnAccount_id", langXml, xmlPath);
@@ -124,6 +136,17 @@ public class AndroidWebElements {
 		this.BTNhome_ID = XmlHandel.readAndroidXml("BTNhome_ID", langXml, xmlPath);
 		this.BTNskip_ID = XmlHandel.readAndroidXml("BTNskip_ID", langXml, xmlPath);
 		this.BTNsingOut_Name = XmlHandel.readAndroidXml("BTNsingOut_Name", langXml, xmlPath);
+		this.BTNrestoreSnapshot_Name = XmlHandel.readAndroidXml("BTNrestoreSnapshot_Name", langXml, xmlPath);
+		this.BTNcreateSnapshot_Name = XmlHandel.readAndroidXml("BTNcreateSnapshot_Name", langXml, xmlPath);
+		this.BTNdismiss_Name = XmlHandel.readAndroidXml("BTNdismiss_Name", langXml, xmlPath);
+		this.BTNyes_Name = XmlHandel.readAndroidXml("BTNyes_Name", langXml, xmlPath);
+		this.BTNstart_Name = XmlHandel.readAndroidXml("BTNstart_Name", langXml, xmlPath);
+		this.BTNphone_Name = XmlHandel.readAndroidXml("BTNphone_Name", langXml, xmlPath);
+		this.BTNcancelGalleryApp_ID = XmlHandel.readAndroidXml("BTNcancelGalleryApp_ID", langXml, xmlPath);
+
+		
+		
+		
 
 
 		this.TEXTFIELDemail_id = XmlHandel.readAndroidXml("TEXTFIELDemail_id", langXml, xmlPath);
@@ -153,8 +176,8 @@ public class AndroidWebElements {
 		this.LIST6_xpth = XmlHandel.readAndroidXml("LIST6_xpth", langXml, xmlPath);
 		this.ListSecondaryText_ID = XmlHandel.readAndroidXml("ListSecondaryText_ID", langXml, xmlPath);
 
-		
-		
+		this.CheckBoxselectAll_Name = XmlHandel.readAndroidXml("CheckBoxselectAll_Name", langXml, xmlPath);
+
 		
 		this.userUnlimited_name = XmlHandel.readAndroidXml("userUnlimited_name", langXml, xmlPath);
 		this.userLimited_name = XmlHandel.readAndroidXml("userLimited_name", langXml, xmlPath);
@@ -175,9 +198,17 @@ public class AndroidWebElements {
 		this.BTNtourUpgradeNow_ID = XmlHandel.readAndroidXml("BTNtourUpgradeNow_ID", langXml, xmlPath);
 		this.BillingUrl_Name = XmlHandel.readAndroidXml("BillingUrl_Name", langXml, xmlPath);		
 		this.TransferPhonesSimplyFullText_name = XmlHandel.readAndroidXml("TransferPhonesSimplyFullText_name", langXml, xmlPath);
+		this.NoFilesFound_Name = XmlHandel.readAndroidXml("NoFilesFound_Name", langXml, xmlPath);
+		this.SnapshotTakenSuccessfully_Name = XmlHandel.readAndroidXml("SnapshotTakenSuccessfully_Name", langXml, xmlPath);
+		this.NoFiles_Name = XmlHandel.readAndroidXml("NoFiles_Name", langXml, xmlPath);
+		this.GalleryApp_Name = XmlHandel.readAndroidXml("GalleryApp_Name", langXml, xmlPath);
+		this.RestoreCompletedSuccessfully_Name = XmlHandel.readAndroidXml("RestoreCompletedSuccessfully_Name", langXml, xmlPath);
 
 		
+		this.IconLeftUpperBack_ID = XmlHandel.readAndroidXml("IconLeftUpperBack_ID", langXml, xmlPath);
+
 		
+
 
 	}
 
