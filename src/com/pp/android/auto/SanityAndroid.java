@@ -28,7 +28,7 @@ public class SanityAndroid {
 	String	webElementXmlPath;
 	String StartServerPath;
 	String StopServerPath;
-	AndroidWebElements androidData;
+	AndroidWebElements droidData;
 	public AndroidDriver driver;
 	AndroidGenericMethods genMeth = new AndroidGenericMethods();
 	
@@ -42,10 +42,10 @@ public class SanityAndroid {
 		webElementXmlPath = genMeth.getValueFromPropFile("webElementXmlPath");
 		webElementXmlLang = genMeth.getValueFromPropFile("webElementXmlLang");
 		
-		androidData= new AndroidWebElements(webElementXmlLang, webElementXmlPath);
+		droidData= new AndroidWebElements(webElementXmlLang, webElementXmlPath);
 		driver = genMeth.setCapabilitiesAndroid(genMeth);
 
-		genMeth.cleanLoginAndroid(driver, genMeth, androidData, androidData.userUnlimited_name); 
+		genMeth.cleanLoginAndroid(genMeth, droidData, droidData.userUnlimited_name); 
 
 	}
 
@@ -61,11 +61,11 @@ public class SanityAndroid {
 				// swallow if fails
 			}
 			driver = genMeth.setCapabilitiesAndroid(genMeth);
-			genMeth.cleanLoginAndroid(driver, genMeth, androidData, androidData.userUnlimited_name );
+			genMeth.cleanLoginAndroid(genMeth, droidData, droidData.userUnlimited_name );
 		}
 
 		else {
-			boolean StartUpScreenDisplay = genMeth.checkIsElementVisible( driver , By.name(androidData.Settings_Name));
+			boolean StartUpScreenDisplay = genMeth.checkIsElementVisible( By.name(droidData.Settings_Name));
 
 			if (StartUpScreenDisplay != true) {
 
@@ -77,7 +77,7 @@ public class SanityAndroid {
 				}
 
 				driver = genMeth.setCapabilitiesAndroid(genMeth);
-				genMeth.cleanLoginAndroid(driver, genMeth, androidData, androidData.userUnlimited_name);
+				genMeth.cleanLoginAndroid(genMeth, droidData, droidData.userUnlimited_name);
 
 			}
 
@@ -90,45 +90,45 @@ public class SanityAndroid {
 	public void createfolder() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
 		String currentDate = genMeth.currentTime();
-		genMeth.clickName(driver, genMeth, androidData.FileExplorer_Name);	
+		genMeth.clickName( genMeth, droidData.FileExplorer_Name);	
 //		Create a new folder 
-		genMeth.clickName(driver, genMeth,  androidData.BTNnewFolder_name);
+		genMeth.clickName( genMeth, droidData.BTNnewFolder_name);
 		
 //	 	Dismiss the create folder window		
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDgeneral_ID, currentDate);
-		genMeth.clickId(driver, genMeth, androidData.BTNdismissNewFolder_id);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDgeneral_ID, currentDate);
+		genMeth.clickId(  genMeth, droidData.BTNdismissNewFolder_id);
 
 //	 	make sure that the folder wasn't created
-		genMeth.isElementInvisible(driver, By.name(currentDate));
+		genMeth.isElementInvisible(  By.name(currentDate));
 		
 //		Now Press the create folder
-		genMeth.clickName(driver, genMeth, androidData.BTNnewFolder_name);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDgeneral_ID, currentDate);
-		genMeth.clickId(driver, genMeth, androidData.BTNcreateNewFolder_id);
+		genMeth.clickName( genMeth, droidData.BTNnewFolder_name);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDgeneral_ID, currentDate);
+		genMeth.clickId(  genMeth, droidData.BTNcreateNewFolder_id);
 		
 //		Check if the folder was created successfully 
-		genMeth.isElementVisible(driver, By.name(currentDate));
+		genMeth.isElementVisible( By.name(currentDate));
 		
 	// sort the list in order to place the image in the first position
-		genMeth.clickName(driver, genMeth,androidData.BTNsort_name);
-		genMeth.clickName(driver,genMeth, androidData.OPTIONsortOldestFirst_name);
+		genMeth.clickName( genMeth,droidData.BTNsort_name);
+		genMeth.clickName(genMeth, droidData.OPTIONsortOldestFirst_name);
 
 	// long press the folder (choosing the folder for deletion by swipe long duration- need to figure out how to do it by proper long press code)
 		genMeth.longPressElement(driver, genMeth, By.name(currentDate));
-		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
+		genMeth.clickName( genMeth, droidData.BTNdelete_name);
 		
 	// Cancel the delete & make sure that the folder wasn't deleted
-		genMeth.clickId(driver, genMeth, androidData.BTNcancelDelete_id);
-		genMeth.isElementVisible(driver, By.name(currentDate));
+		genMeth.clickId(  genMeth, droidData.BTNcancelDelete_id);
+		genMeth.isElementVisible( By.name(currentDate));
 		
 	// now delete the folder & make sure it was deleted properly
 		genMeth.longPressElement(driver, genMeth, By.name(currentDate));
-		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);;
-		genMeth.clickId(driver, genMeth, androidData.BTNdeleteConfirm_id);
-		genMeth.isElementInvisible(driver, By.name(currentDate));
+		genMeth.clickName( genMeth, droidData.BTNdelete_name);;
+		genMeth.clickId(  genMeth, droidData.BTNdeleteConfirm_id);
+		genMeth.isElementInvisible(  By.name(currentDate));
 		
 	// Go to strtup page (LSM left side menu)
-		genMeth.clickId(driver, genMeth, androidData.BTNlsm_ID);
+		genMeth.clickId(  genMeth, droidData.BTNlsm_ID);
 		
 		  }
 
@@ -137,17 +137,17 @@ public class SanityAndroid {
 	public void uploadImage() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
 	// open pogoplug cloud & press
-		genMeth.clickId(driver, genMeth, androidData.BTNlsm_ID);
-		genMeth.clickName(driver, genMeth, "upload from existing test");
+		genMeth.clickId(  genMeth, droidData.BTNlsm_ID);
+		genMeth.clickName( genMeth, "upload from existing test");
 	// Capture an image
-		genMeth.clickName(driver, genMeth, androidData.BTNupload_name);
-		genMeth.clickName(driver, genMeth, androidData.OPTIONcaptureNewPhoto_name);
+		genMeth.clickName( genMeth, droidData.BTNupload_name);
+		genMeth.clickName( genMeth, droidData.OPTIONcaptureNewPhoto_name);
 		Thread.sleep(2000);
-		genMeth.clickId(driver, genMeth, androidData.BTNcapturePhoto_LG_id);
-		genMeth.clickName(driver, genMeth, androidData.BTNok_Name);
+		genMeth.clickId(  genMeth, droidData.BTNcapturePhoto_LG_id);
+		genMeth.clickName( genMeth, droidData.BTNok_Name);
 		Thread.sleep(2000);
-		genMeth.clickClassName(driver, genMeth, androidData.BTNmoreOptions_ClassName);
-		genMeth.clickName(driver, genMeth, androidData.BTNrefresh_name);
+		genMeth.clickClassName(driver, genMeth, droidData.BTNmoreOptions_ClassName);
+		genMeth.clickName( genMeth, droidData.BTNrefresh_name);
 		
 	// Check if the image display in the list
 		WebElement uploadedImage = genMeth.returnId(driver, genMeth, "com.pogoplug.android:id/text_secondary");
@@ -157,33 +157,33 @@ public class SanityAndroid {
 		
 	// Add an if that will verify that the Upload has finished (compare the KB - once not changing it probably has finished or stuck)	
 		if (lastUpload != currentUpload ){
-			genMeth.clickClassName(driver, genMeth, androidData.BTNmoreOptions_ClassName);
-			genMeth.clickName(driver, genMeth, androidData.BTNrefresh_name);
+			genMeth.clickClassName(driver, genMeth, droidData.BTNmoreOptions_ClassName);
+			genMeth.clickName( genMeth, droidData.BTNrefresh_name);
 			lastUpload = uploadedImage.getText();
 			Thread.sleep(5000);
-			genMeth.clickClassName(driver, genMeth, androidData.BTNmoreOptions_ClassName);
-			genMeth.clickName(driver, genMeth, androidData.BTNrefresh_name);
+			genMeth.clickClassName(driver, genMeth, droidData.BTNmoreOptions_ClassName);
+			genMeth.clickName( genMeth, droidData.BTNrefresh_name);
 			currentUpload = uploadedImage.getText();
 			
 		}
 		
 	// Open the image & make sure that it displays 
-		genMeth.clickName(driver, genMeth, currentUpload);
+		genMeth.clickName( genMeth, currentUpload);
 	// Make sure that the "Image not available" text doesn't displayed
 		Thread.sleep(3000);
-		genMeth.isElementInvisibleText(driver, By.name(androidData.ImageNotAvailable_Name), androidData.ImageNotAvailable_Name);
-		genMeth.takeScreenShotPositive(driver, genMeth, "testUploadImage_"+currentUpload);
+		genMeth.isElementInvisibleText( By.name(droidData.ImageNotAvailable_Name), droidData.ImageNotAvailable_Name);
+		genMeth.takeScreenShotPositive( genMeth, "testUploadImage_"+currentUpload);
 		Thread.sleep(1000);	
 	//	genMeth.clickXpth(driver, genMeth, "//android.view.View[1]");
-		genMeth.clickId(driver, genMeth, androidData.FullScreen_ID);
-		genMeth.clickId(driver, genMeth, androidData.BTNhome_ID);
+		genMeth.clickId(  genMeth, droidData.FullScreen_ID);
+		genMeth.clickId(  genMeth, droidData.BTNhome_ID);
 	// Delete the image
-		genMeth.longPressElement(driver, genMeth, By.id(androidData.ListSecondaryText_ID));
+		genMeth.longPressElement(driver, genMeth, By.id(droidData.ListSecondaryText_ID));
 		Thread.sleep(5000);
-		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
-		genMeth.clickId(driver, genMeth, androidData.BTNdeleteConfirm_id);
+		genMeth.clickName( genMeth, droidData.BTNdelete_name);
+		genMeth.clickId(  genMeth, droidData.BTNdeleteConfirm_id);
 	// Check that the image was deleted
-		genMeth.isElementInvisible(driver, By.id(androidData.FullScreen_ID));
+		genMeth.isElementInvisible(  By.id(droidData.FullScreen_ID));
 		
 		}
 	
@@ -200,70 +200,70 @@ public class SanityAndroid {
 		 
 		genMeth.killAppAndroid(driver);
 		driver = genMeth.setCapabilitiesAndroid(genMeth);
-		genMeth.clickId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userLimited_name);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
-		genMeth.tapId(driver, genMeth, androidData.BTNlogin_id);
+		genMeth.clickId(  genMeth, droidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDemail_id, droidData.userLimited_name);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
+		genMeth.tapId( genMeth, droidData.BTNlogin_id);
 		Thread.sleep(3000);
 		
 		// check Never loose a photo
-		genMeth.isElementVisible(driver, By.name(androidData.NeverLoseAPhoto));
-		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + androidData.NeverLoseAPhoto );
+		genMeth.isElementVisible( By.name(droidData.NeverLoseAPhoto));
+		genMeth.takeScreenShotPositive( genMeth, curentTime + droidData.NeverLoseAPhoto );
 		driver.swipe(600, 800, 50, 800, 600);
 		
 		//Check Transfer phones simply
-		genMeth.isElementVisible(driver, By.name(androidData.TransferPhonesSimply_name));
-		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + androidData.TransferPhonesSimply_name );
+		genMeth.isElementVisible( By.name(droidData.TransferPhonesSimply_name));
+		genMeth.takeScreenShotPositive( genMeth, curentTime + droidData.TransferPhonesSimply_name );
 		driver.swipe(600, 800, 50, 800, 600);
 		// Check Unlimited protection
-		genMeth.isElementVisible(driver, By.name(androidData.UnlimitedProtection_Name));
-		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + androidData.UnlimitedProtection_Name );
+		genMeth.isElementVisible( By.name(droidData.UnlimitedProtection_Name));
+		genMeth.takeScreenShotPositive( genMeth, curentTime + droidData.UnlimitedProtection_Name );
 		
 		// SKIP 
-		genMeth.clickId(driver, genMeth, androidData.BTNskip_ID);
+		genMeth.clickId(  genMeth, droidData.BTNskip_ID);
 		
 		// Check Backup
-		genMeth.isElementVisible(driver, By.name(androidData.Backup_Name));
-		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + androidData.Backup_Name );
+		genMeth.isElementVisible( By.name(droidData.Backup_Name));
+		genMeth.takeScreenShotPositive( genMeth, curentTime + droidData.Backup_Name );
 		
 		// press the Continue button 
-		genMeth.clickId(driver, genMeth, androidData.BTNfinishTour_id);	
-		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
+		genMeth.clickId(  genMeth, droidData.BTNfinishTour_id);	
+		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
 		
 		//Verify that LOGOUT & RELOGIN will not prompt the tour
 		genMeth.clickXpth(driver, genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
-		genMeth.clickName(driver, genMeth, androidData.OPTIONsignOut_Name);
-		genMeth.clickName(driver, genMeth, androidData.BTNok_Name);
-		genMeth.clickId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userLimited_name);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
-		genMeth.tapId(driver, genMeth, androidData.BTNlogin_id);
-		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
+		genMeth.clickName( genMeth, droidData.OPTIONsignOut_Name);
+		genMeth.clickName( genMeth, droidData.BTNok_Name);
+		genMeth.clickId(  genMeth, droidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDemail_id, droidData.userLimited_name);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
+		genMeth.tapId( genMeth, droidData.BTNlogin_id);
+		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
 		
 		 
 		// same test only with Upgrade now at pogoplug.com
 		genMeth.killAppAndroid(driver);
 		driver = genMeth.setCapabilitiesAndroid(genMeth);
-		genMeth.clickId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id,androidData.userLimited_name);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id,androidData.password);
-		genMeth.tapId(driver, genMeth, androidData.BTNlogin_id);
+		genMeth.clickId(  genMeth, droidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDemail_id,droidData.userLimited_name);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDpassword_id,droidData.password);
+		genMeth.tapId( genMeth, droidData.BTNlogin_id);
 
 		// check Never loose a photo
-		genMeth.isElementVisible(driver, By.name(androidData.NeverLoseAPhoto));
+		genMeth.isElementVisible( By.name(droidData.NeverLoseAPhoto));
 		driver.swipe(600, 800, 50, 800, 600);
 
 		// Check Transfer phones simply
-		genMeth.isElementVisible(driver,By.name(androidData.TransferPhonesSimply_name));
+		genMeth.isElementVisible(By.name(droidData.TransferPhonesSimply_name));
 		driver.swipe(600, 800, 50, 800, 600);
 		// Check Unlimited protection
-		genMeth.isElementVisible(driver,By.name(androidData.UnlimitedProtection_Name));
-		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + "_Tour");
+		genMeth.isElementVisible(By.name(droidData.UnlimitedProtection_Name));
+		genMeth.takeScreenShotPositive( genMeth, curentTime + "_Tour");
 
 		// UPGRADE now at pogoplug.com
-		genMeth.clickId(driver, genMeth, androidData.BTNtourUpgradeNow_ID);
-		genMeth.isElementVisible(driver, By.name(androidData.BillingUrl_Name));
-		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + "_Tour_Billing_Page");
+		genMeth.clickId(  genMeth, droidData.BTNtourUpgradeNow_ID);
+		genMeth.isElementVisible( By.name(droidData.BillingUrl_Name));
+		genMeth.takeScreenShotPositive( genMeth, curentTime + "_Tour_Billing_Page");
 		
 		
 		
@@ -274,43 +274,43 @@ public class SanityAndroid {
 		
 		genMeth.killAppAndroid(driver);
 		driver = genMeth.setCapabilitiesAndroid(genMeth);
-		genMeth.clickId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userUnlimited_name);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
-		genMeth.tapId(driver, genMeth, androidData.BTNlogin_id);
+		genMeth.clickId(  genMeth, droidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDemail_id, droidData.userUnlimited_name);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
+		genMeth.tapId( genMeth, droidData.BTNlogin_id);
 		
 		// check Never loose a photo
-		genMeth.isElementVisible(driver, By.name(androidData.NeverLoseAPhoto));
+		genMeth.isElementVisible( By.name(droidData.NeverLoseAPhoto));
 		driver.swipe(600, 800, 50, 800, 600);
 		
 		//Check Transfer phones simply
-		genMeth.isElementVisible(driver, By.name(androidData.TransferPhonesSimply_name));
-		genMeth.takeScreenShotPositive(driver, genMeth, curentTime + "_Tour_Finish");
-		genMeth.clickId(driver, genMeth, "com.pogoplug.android:id/tour_indicator_placehoder");
+		genMeth.isElementVisible( By.name(droidData.TransferPhonesSimply_name));
+		genMeth.takeScreenShotPositive( genMeth, curentTime + "_Tour_Finish");
+		genMeth.clickId(  genMeth, "com.pogoplug.android:id/tour_indicator_placehoder");
 		
 		// Check Backup
-		genMeth.isElementVisible(driver, By.name(androidData.Backup_Name));
+		genMeth.isElementVisible( By.name(droidData.Backup_Name));
 		
 		// press the Continue button 
-		genMeth.clickId(driver, genMeth, androidData.BTNfinishTour_id);	
-		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
+		genMeth.clickId(  genMeth, droidData.BTNfinishTour_id);	
+		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
 		
 		// logout & relogin will not prompt the tour
 		genMeth.clickXpth(driver, genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
-		genMeth.clickName(driver, genMeth, androidData.OPTIONsignOut_Name);
-		genMeth.clickName(driver, genMeth, androidData.BTNok_Name);
-		genMeth.clickId(driver, genMeth, androidData.BTNalreadyHaveAnAccount_id);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userUnlimited_name);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
-		genMeth.tapId(driver, genMeth, androidData.BTNlogin_id);
-		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
+		genMeth.clickName( genMeth, droidData.OPTIONsignOut_Name);
+		genMeth.clickName( genMeth, droidData.BTNok_Name);
+		genMeth.clickId(  genMeth, droidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDemail_id, droidData.userUnlimited_name);
+		genMeth.sendId(  genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
+		genMeth.tapId( genMeth, droidData.BTNlogin_id);
+		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
 		
 	}
 	
 	@Test(enabled = false, testName = "Sanity Tests", description = "Sign up- Create new user (Negetive positive test), Privacy Policy, TRUSTe",
 			groups = { "Sanity Android" })
 	public void createNewUser() throws Exception, Throwable {
-//		genMeth.clickName(driver, genMeth, name);
+//		genMeth.clickName( genMeth, name);
 		
 		
 	}
@@ -319,17 +319,17 @@ public class SanityAndroid {
 			groups = { "Sanity Android" })
 	public void badCredentials() throws Exception, Throwable {
 		String currentTime = genMeth.currentTime();
-		genMeth.signOutFromStartupAndroid(genMeth, driver, androidData);
-		genMeth.clickId(driver,  genMeth, androidData.BTNalreadyHaveAnAccount_id);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, currentTime);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
-		genMeth.clickId(driver, genMeth, androidData.BTNlogin_id);
+		genMeth.signOutFromStartupAndroid(genMeth, driver, droidData);
+		genMeth.clickId( genMeth, droidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, currentTime);
+		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
+		genMeth.clickId( genMeth, droidData.BTNlogin_id);
 		Thread.sleep(3000);
-		genMeth.takeScreenShotPositive(driver, genMeth, currentTime + "_Bad_login");
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, androidData.userUnlimited_name);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
-		genMeth.clickId(driver, genMeth, androidData.BTNlogin_id);		
-		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
+		genMeth.takeScreenShotPositive( genMeth, currentTime + "_Bad_login");
+		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, droidData.userUnlimited_name);
+		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
+		genMeth.clickId( genMeth, droidData.BTNlogin_id);		
+		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
 
 
 		// Login with bad credentials
@@ -343,67 +343,180 @@ public class SanityAndroid {
 	}
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Search functionality & filter",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 	public void search() throws Exception, Throwable {
 		
+		//Search Folder in ROOT
 		String Random = genMeth.randomString();	
+//		genMeth.sendId(genMeth, "com.pogoplug.android:id/main", droidData.SearchFolderFromRoot_Name);
+		WebElement search = genMeth.returnId(driver, genMeth, "com.pogoplug.android:id/main" );
+		search.click();
+		genMeth.sendId(genMeth, "android:id/search_view", droidData.SearchFolderFromRoot_Name);
+		genMeth.pressEnter();
+		genMeth.isElementVisible( By.name(droidData.SearchFolderFromRoot_Name));
+		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
+//		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		
+		// Search Image in ROOT
+		Thread.sleep(2000);
+		search.click();
+		genMeth.sendId(genMeth, "android:id/search_view", droidData.SearchImageFromRoot_Name);
+		genMeth.pressEnter();
+		genMeth.isElementVisible( By.name(droidData.SearchImageFromRoot_Name));
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(2000);
 
-		//Search in ROOT for a folder
-	
+		// Search Empty results in ROOT
+		search.click();
+		genMeth.sendId(genMeth, "android:id/search_view", Random);
+		genMeth.clickId( genMeth, "android:id/search_close_btn");
+		genMeth.isElementVisible( By.id("android:id/search_src_text"));
+		genMeth.takeScreenShotPositive( genMeth, "Delete_TextBox_Via_X");
+		Thread.sleep(2000);
 
-		// Search in ROOT for an image
-		
+		genMeth.sendId(genMeth, "android:id/search_view", Random);
+		genMeth.pressEnter();
+		genMeth.isElementVisible( By.name(droidData.NoFilesFound_Name));
+		genMeth.takeScreenShotPositive( genMeth, droidData.NoFilesFound_Name);
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
+		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
+//		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
 
-		// Search in ROOT for empty results
-		
-		
-		// Search in FOLDER for a folder
-		
+		// Search FOLDER in FOLDER
+		genMeth.clickName( genMeth, droidData.BTNsearch_name);
+		genMeth.sendId(genMeth, "android:id/search_src_text", droidData.SearchFolderFromFolder_Name);
+		genMeth.pressEnter();
+		genMeth.isElementInvisible( By.name(droidData.NoFilesFound_Name));
+		genMeth.isElementVisible( By.name(droidData.SearchFolderFromFolder_Name));
+		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
 
-		// Search in FOLDER for an image
+//		genMeth.takeScreenShotPositive(genMeth, droidData.SearchFolderFromFolder_Name);
 
+		// Search Image in FOLDER 
+//		genMeth.tapName(genMeth, droidData.BTNsearch_name);
+		genMeth.clickName( genMeth, droidData.BTNsearch_name);
+		genMeth.sendId(genMeth, "android:id/search_src_text", droidData.SearchImageFromFolder_Name);
+		
+		genMeth.pressEnter();
+		genMeth.isElementInvisible( By.name(droidData.NoFilesFound_Name));
+		genMeth.isElementVisible( By.name(droidData.SearchImageFromFolder_Name));
+		genMeth.takeScreenShotPositive(genMeth, droidData.SearchImageFromFolder_Name);
+		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
 
-		// Search in FOLDER for empty results
-	
+		// Search Empty results in FOLDER
+		genMeth.clickName( genMeth, droidData.BTNsearch_name);
+		genMeth.sendId(genMeth, "android:id/search_src_text", Random);
+		genMeth.pressEnter();
+		genMeth.isElementVisible( By.name(droidData.NoFilesFound_Name));
 		
-		// Search in POGOPLUG for a folder
-
+		//Verify that the "x" deletes the text in the search
+		genMeth.clickName( genMeth, droidData.BTNsearch_name);
+		genMeth.sendId(genMeth, "android:id/search_src_text", Random);
+		genMeth.isElementVisible( By.name(Random));
 		
-		// Search in POGOPLUG for an image
-	
-		// Search in POGOPLUG for empty results
+		//Search in Songs A song
+		genMeth.clickId(genMeth, "android:id/closeButton");
+		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
+		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
+//		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		genMeth.clickName(genMeth, "Music Player");
+		genMeth.clickName(genMeth, "Search");
+		genMeth.sendId(genMeth, "android:id/search_src_text", droidData.SearchSongInSong_Name);
+		genMeth.pressEnter();
+		genMeth.isElementVisible(By.name(droidData.SearchSongInSong_Name));
+		genMeth.isElementInvisible(By.name(droidData.NoFilesFound_Name));
 		
-		
-		//   Music Player  
-		
-		
-		//Search in Songs A song	
-	
-
 		//Search in songs empty results
-		
+		genMeth.clickName(genMeth, "Search");
+		genMeth.sendId(genMeth, "android:id/search_src_text", Random);
+		genMeth.pressEnter();
+		genMeth.isElementVisible(By.name(droidData.NoFilesFound_Name));
 
 		//Search in Artists song
-		
-		
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
+		genMeth.pressBackButton();
+		Thread.sleep(1000);
+		genMeth.clickName(genMeth, "Artists");
+		genMeth.clickName(genMeth, "Search");
+		genMeth.sendId(genMeth, "android:id/search_src_text" , droidData.SearchSongInArtists_Name);
+		genMeth.pressEnter();
+		genMeth.isElementVisible(By.name(droidData.SearchSongInArtists_Name));
+		genMeth.isElementInvisible(By.name(droidData.NoFilesFound_Name));
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
+
 		//Search in Artists empty results
-		
+		genMeth.clickName(genMeth, "Search");
+		genMeth.sendId(genMeth, "android:id/search_src_text" , Random);
+		genMeth.pressEnter();
+		genMeth.isElementVisible(By.name(droidData.NoFilesFound_Name));
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
+//		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+
 		
 		//Search in Albums song
-		
+		genMeth.clickName(genMeth, "Albums");
+		genMeth.clickName(genMeth, "Search");
+		genMeth.sendId(genMeth, "android:id/search_src_text" , droidData.SearchSongInAlbums_Name);
+		genMeth.pressEnter();
+		genMeth.isElementVisible(By.name(droidData.SearchSongInAlbums_Name));
+		genMeth.isElementInvisible(By.name(droidData.NoFilesFound_Name));
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
 		
 		//Search in Albums empty results
-	
-		
+		genMeth.clickName(genMeth, "Search");
+		genMeth.sendId(genMeth, "android:id/search_src_text" , Random);
+		genMeth.pressEnter();
+		genMeth.isElementVisible(By.name(droidData.NoFilesFound_Name));
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
+
 		//Search in Genres song 
+		genMeth.clickName(genMeth, "Genres");
+		genMeth.clickName(genMeth, "Search");
+		genMeth.sendId(genMeth, "android:id/search_src_text" , droidData.SearchSongInGenres_Name);
+		genMeth.pressEnter();
+		genMeth.isElementVisible(By.name(droidData.SearchSongInGenres_Name));
+		genMeth.isElementInvisible(By.name(droidData.NoFilesFound_Name));
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
 		
 		//Search in Genres empty results
-	
-		//search in add users screen
-		
+		genMeth.clickName(genMeth, "Search");
+		genMeth.sendId(genMeth, "android:id/search_src_text" , Random);
+		genMeth.pressEnter();
+		genMeth.isElementVisible(By.name(droidData.NoFilesFound_Name));
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		Thread.sleep(1000);
 		
 		//search for a contact
-	
+		genMeth.clickName(genMeth, droidData.FileExplorer_Name);
+		genMeth.clickId(genMeth, "com.pogoplug.android:id/number_of_sharees");
+		genMeth.clickId(genMeth, "com.pogoplug.android:id/add_email");
+			driver.findElementById("android:id/search_src_text").sendKeys("Meny");
+		genMeth.isElementVisible(By.name("Meny"));
+		genMeth.isElementInvisible(By.name("No matching contacts found."));
+
+		genMeth.clickId(genMeth, "android:id/search_close_btn");
+//		genMeth.clickName(genMeth, "Clear query");
+		driver.findElementById("android:id/search_src_text").sendKeys(Random);
+//		genMeth.sendName(genMeth, "Search contacts", Random);
+		genMeth.isElementVisible(By.name("No matching contacts found."));
+		genMeth.clickId(genMeth, "android:id/search_close_btn");
+		genMeth.isElementVisible(By.name("Meny"));
+		genMeth.pressBackButton();	
+		genMeth.pressBackButton();
+		genMeth.clickName(genMeth, droidData.BTNcancelCapture_id);
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		
 		//no results search using clear & cancel 
 	
@@ -413,74 +526,74 @@ public class SanityAndroid {
 	}
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Settings: create & restore a snapshot",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 	public void createRestoreSnapShot() throws Exception, Throwable {
 		
 		String currentTime = genMeth.currentTime();
 		
-		genMeth.clickName(driver, genMeth, androidData.Settings_Name);
-		driver.scrollToExact(androidData.BTNrestoreSnapshot_Name);
-		genMeth.clickName(driver, genMeth, androidData.BTNrestoreSnapshot_Name);
+		genMeth.clickName( genMeth, droidData.Settings_Name);
+		driver.scrollToExact(droidData.BTNrestoreSnapshot_Name);
+		genMeth.clickName( genMeth, droidData.BTNrestoreSnapshot_Name);
 		
 		//Make sure That no previous snapshot exist (if so delete them)
-		Boolean isEmpty = genMeth.checkIsElementVisible(driver, By.name(androidData.NoFiles_Name));
+		Boolean isEmpty = genMeth.checkIsElementVisible( By.name(droidData.NoFiles_Name));
 		if (isEmpty !=true){
-			genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
-			genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
-			genMeth.clickName(driver, genMeth, androidData.BTNrestoreSnapshot_Name);
+			genMeth.clickName( genMeth, droidData.BTNdelete_name);
+			genMeth.clickName( genMeth, droidData.BTNdelete_name);
+			genMeth.clickName( genMeth, droidData.BTNrestoreSnapshot_Name);
 		}
 		
 		//Create snapshot
-		genMeth.clickId(driver, genMeth, androidData.BTNhome_ID);
-		genMeth.clickName(driver, genMeth, androidData.BTNcreateSnapshot_Name);
-		genMeth.takeScreenShotPositive(driver, genMeth, currentTime + "_CreatingSnapshotScreen");
-		genMeth.waitForElementToBeVisible(driver, By.name(androidData.SnapshotTakenSuccessfully_Name), 3);
-		genMeth.clickName(driver, genMeth, androidData.BTNdismiss_Name);
+		genMeth.clickId(  genMeth, droidData.BTNhome_ID);
+		genMeth.clickName( genMeth, droidData.BTNcreateSnapshot_Name);
+		genMeth.takeScreenShotPositive( genMeth, currentTime + "_CreatingSnapshotScreen");
+		genMeth.waitForElementToBeVisible(driver, By.name(droidData.SnapshotTakenSuccessfully_Name), 3);
+		genMeth.clickName( genMeth, droidData.BTNdismiss_Name);
 		
 		// delete all the images from camera roll
-		genMeth.pressHomeButton(driver);
-		genMeth.clickName(driver, genMeth, androidData.GalleryApp_Name);
+		genMeth.pressHomeButton();
+		genMeth.clickName( genMeth, droidData.GalleryApp_Name);
 
-		Boolean isGalleryEmpty = genMeth.checkIsElementVisible(driver, By.name(androidData.NoFiles_Name));
+		Boolean isGalleryEmpty = genMeth.checkIsElementVisible( By.name(droidData.NoFiles_Name));
 		if (isGalleryEmpty != true){
 			driver.tap(1, 140, 280, 500);
-			genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
-			genMeth.clickName(driver, genMeth, androidData.CheckBoxselectAll_Name);
-			genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
-			genMeth.clickName(driver, genMeth, androidData.BTNyes_Name);
+			genMeth.clickName( genMeth, droidData.BTNdelete_name);
+			genMeth.clickName( genMeth, droidData.CheckBoxselectAll_Name);
+			genMeth.clickName( genMeth, droidData.BTNdelete_name);
+			genMeth.clickName( genMeth, droidData.BTNyes_Name);
 		}
 		
 		driver.runAppInBackground(1);
-		driver.scrollToExact(androidData.BTNrestoreSnapshot_Name);
-		genMeth.clickName(driver, genMeth, androidData.BTNrestoreSnapshot_Name);
+		driver.scrollToExact(droidData.BTNrestoreSnapshot_Name);
+		genMeth.clickName( genMeth, droidData.BTNrestoreSnapshot_Name);
 		
 		// Make sure a new entry was made
-		genMeth.isElementInvisible(driver, By.name(androidData.NoFilesFound_Name));
+		genMeth.isElementInvisible(  By.name(droidData.NoFilesFound_Name));
 		genMeth.clickXpth(driver, genMeth, "//android.view.View[1]/android.widget.FrameLayout[2]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView[1]");
-		genMeth.clickName(driver, genMeth, androidData.BTNstart_Name);
-		genMeth.clickName(driver, genMeth, androidData.BTNphone_Name);
+		genMeth.clickName( genMeth, droidData.BTNstart_Name);
+		genMeth.clickName( genMeth, droidData.BTNphone_Name);
 
 		genMeth.waitForElementToBeVisible(driver, By.name("Set up my profile"), 2);
 		genMeth.pressBackButton();
-		genMeth.waitForElementToBeVisible(driver, By.name(androidData.RestoreCompletedSuccessfully_Name), 2);
-		genMeth.clickName(driver, genMeth, androidData.BTNdismiss_Name);
+		genMeth.waitForElementToBeVisible(driver, By.name(droidData.RestoreCompletedSuccessfully_Name), 2);
+		genMeth.clickName( genMeth, droidData.BTNdismiss_Name);
 		
 		//Now go verify that the images/videos were restored to the device successfully
-		genMeth.pressHomeButton(driver);
-		genMeth.clickName(driver, genMeth, androidData.GalleryApp_Name);
+		genMeth.pressHomeButton();
+		genMeth.clickName( genMeth, droidData.GalleryApp_Name);
 		driver.tap(1, 140, 280, 500);
-		genMeth.clickName(driver, genMeth, androidData.BTNdelete_name);
-		genMeth.clickName(driver, genMeth, androidData.CheckBoxselectAll_Name);
-		genMeth.isElementVisible(driver, By.name("2 selected"));
+		genMeth.clickName( genMeth, droidData.BTNdelete_name);
+		genMeth.clickName( genMeth, droidData.CheckBoxselectAll_Name);
+		genMeth.isElementVisible( By.name("2 selected"));
 		
-		genMeth.clickId(driver, genMeth, androidData.BTNcancelGalleryApp_ID);
-		genMeth.clickName(driver, genMeth, "Camera, Navigate up");		
+		genMeth.clickId(  genMeth, droidData.BTNcancelGalleryApp_ID);
+		genMeth.clickName( genMeth, "Camera, Navigate up");		
 		driver.runAppInBackground(1);
 		
 		// Go to startup screen
-		genMeth.clickId(driver, genMeth, androidData.IconLeftUpperBack_ID);
-		genMeth.clickId(driver, genMeth, androidData.IconLeftUpperBack_ID);
-		genMeth.isElementVisible(driver, By.name(androidData.Settings_Name));
+		genMeth.clickId(  genMeth, droidData.IconLeftUpperBack_ID);
+		genMeth.clickId(  genMeth, droidData.IconLeftUpperBack_ID);
+		genMeth.isElementVisible( By.name(droidData.Settings_Name));
 			
 	}
 	
@@ -668,7 +781,7 @@ public class SanityAndroid {
 		
 		//Remove share folder from the SHARED user
 
-		//genMeth.clickName(driver, iosData.BTNremoveShare_Name);
+		//genMeth.clickName( iosData.BTNremoveShare_Name);
 
 		
 		//Make sure that the shared folder was removed

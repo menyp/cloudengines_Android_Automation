@@ -45,31 +45,32 @@ public class AndroidGenericMethods {
 
 	AndroidDriver driver;
 
-	public void cleanLoginAndroid(AndroidDriver driver, AndroidGenericMethods genMeth, AndroidWebElements androidData , String user) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
+	public void cleanLoginAndroid(AndroidGenericMethods genMeth, AndroidWebElements androidData , String user) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
 			
 
-		genMeth.clickId(driver,  genMeth, androidData.BTNalreadyHaveAnAccount_id);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDemail_id, user);
-		genMeth.sendId(driver, genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
-		genMeth.clickId(driver, genMeth, androidData.BTNlogin_id);
+		genMeth.clickId(  genMeth, androidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId( genMeth, androidData.TEXTFIELDemail_id, user);
+		Thread.sleep(1000);
+		genMeth.sendId( genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
+		genMeth.clickId( genMeth, androidData.BTNlogin_id);
 
 		
 		// check if this is a Limited or Unlimited account
-		boolean isUnlimitedAccount = genMeth.checkIsElementVisible(driver, By.name(androidData.NeverLoseAPhoto));
+		boolean isUnlimitedAccount = genMeth.checkIsElementVisible( By.name(androidData.NeverLoseAPhoto));
 		if (isUnlimitedAccount == true) {
 			// Navigate through the intro
 			driver.swipe(600, 800, 50, 800, 600);
 
-			genMeth.clickId(driver, genMeth, androidData.BTNfinishTour_id);
-			genMeth.clickId(driver, genMeth, androidData.BTNcontinue_id);
+			genMeth.clickId( genMeth, androidData.BTNfinishTour_id);
+			genMeth.clickId( genMeth, androidData.BTNcontinue_id);
 
 			// Make sure that the Login was successful By verifying that the "CATEGORIES" display in the *LSM (Left Side Menu)
 			genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
 		}
 
 		else {
-			genMeth.isElementVisible(driver,By.name(androidData.Backup_Name));
-			genMeth.clickId(driver,genMeth, androidData.BTNcontinue_id);
+			genMeth.isElementVisible( By.name(androidData.Backup_Name));
+			genMeth.clickId(genMeth, androidData.BTNcontinue_id);
 		}
 				
 		// Make sure that the Login was successful By verifying that the "CATEGORIES" display in the *LSM (Left Side Menu)
@@ -94,9 +95,9 @@ public class AndroidGenericMethods {
 	
 
 	public void signOutFromStartupAndroid(AndroidGenericMethods genMeth, AndroidDriver driver, AndroidWebElements androidData) throws InterruptedException, IOException {
-		genMeth.clickName(driver,genMeth, androidData.Settings_Name);
-		genMeth.clickName(driver,genMeth, androidData.BTNsingOut_Name);
-		genMeth.clickName(driver, genMeth, androidData.BTNok_Name);
+		genMeth.clickName( genMeth, androidData.Settings_Name);
+		genMeth.clickName( genMeth, androidData.BTNsingOut_Name);
+		genMeth.clickName( genMeth, androidData.BTNok_Name);
 	}
 	
 	/*
@@ -342,8 +343,7 @@ public class AndroidGenericMethods {
 
 	}
 	
-	public void takeScreenShotPositive(AndroidDriver driver,
-			AndroidGenericMethods genMeth, String imageName) throws IOException {
+	public void takeScreenShotPositive(AndroidGenericMethods genMeth, String imageName) throws IOException {
 
 		File scrFile = (driver.getScreenshotAs(OutputType.FILE));
 		String currentTime = genMeth.currentTime();
@@ -543,7 +543,7 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void clickId(AndroidDriver driver, AndroidGenericMethods genMeth,
+	public void clickId( AndroidGenericMethods genMeth,
 			String id) throws InterruptedException {
 
 		try {
@@ -559,7 +559,7 @@ public class AndroidGenericMethods {
 		}
 	}
 	
-	public void tapId(AndroidDriver driver, AndroidGenericMethods genMeth,
+	public void tapId( AndroidGenericMethods genMeth,
 			String id) throws InterruptedException {
 
 		try {
@@ -643,7 +643,7 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void clickName(AndroidDriver driver,AndroidGenericMethods genMeth, String name)
+	public void clickName( AndroidGenericMethods genMeth, String name )
 			throws InterruptedException, IOException {
 
 		try {
@@ -663,7 +663,7 @@ public class AndroidGenericMethods {
 
 	}
 	
-	public void tapName(AndroidDriver driver,AndroidGenericMethods genMeth, String name)
+	public void tapName(AndroidGenericMethods genMeth, String name)
 			throws InterruptedException, IOException {
 
 		try {
@@ -724,7 +724,7 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void sendId(AndroidDriver driver, AndroidGenericMethods genMeth, String id, String send)
+	public void sendId( AndroidGenericMethods genMeth, String id, String send)
 			throws InterruptedException, IOException {
 
 		try {
@@ -779,7 +779,7 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void sendName(AndroidDriver driver, AndroidGenericMethods genMeth, String name, String send)
+	public void sendName( AndroidGenericMethods genMeth, String name, String send)
 			throws IOException {
 
 
@@ -1029,7 +1029,7 @@ public class AndroidGenericMethods {
 
 	// This method checks if a given element is invisible on the screen
 
-	public void isElementInvisible(AndroidDriver driver, By By)
+	public void isElementInvisible( By By)
 			throws ParserConfigurationException, SAXException, IOException {
 
 		try {
@@ -1050,7 +1050,7 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void isElementVisible(AndroidDriver driver, By By)
+	public void isElementVisible( By By)
 			throws ParserConfigurationException, SAXException, IOException {
 
 		try {
@@ -1075,7 +1075,7 @@ public class AndroidGenericMethods {
 
 	}
 
-	public boolean checkIsElementVisible(AndroidDriver driver, By By)
+	public boolean checkIsElementVisible( By By )
 			throws ParserConfigurationException, SAXException, IOException {
 
 		boolean isWebElementVisible = false;
@@ -1085,7 +1085,7 @@ public class AndroidGenericMethods {
 			// (new WebDriverWait(driver,
 			// 20)).until(ExpectedConditions.visibilityOfElementLocated(by));
 			element = new FluentWait<AndroidDriver>(driver)
-					.withTimeout(10, TimeUnit.SECONDS)
+					.withTimeout(15, TimeUnit.SECONDS)
 					.pollingEvery(1, TimeUnit.SECONDS)
 					.ignoring(NoSuchElementException.class)
 					.until(ExpectedConditions.visibilityOfElementLocated(By));
@@ -1113,7 +1113,7 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void isElementInvisibleText(AndroidDriver driver, By By, String Text) throws ParserConfigurationException,
+	public void isElementInvisibleText( By By, String Text) throws ParserConfigurationException,
 			SAXException, IOException {
 
 		try {
@@ -1236,7 +1236,7 @@ public class AndroidGenericMethods {
 		
 	}
 	
-	public void pressHomeButton(AndroidDriver driver){
+	public void pressHomeButton(){
 		int Home = AndroidKeyCode.HOME;
 		driver.sendKeyEvent(Home);
 		
@@ -1245,6 +1245,12 @@ public class AndroidGenericMethods {
 	public void pressBackButton(){
 		int Back = AndroidKeyCode.BACK;
 		driver.sendKeyEvent(Back);
+		
+	}
+	
+	public void pressEnter(){
+		int Enter = AndroidKeyCode.ENTER;
+		driver.sendKeyEvent(Enter);
 		
 	}
 /*

@@ -97,6 +97,16 @@
 		    <NoFiles_Name>No files</NoFiles_Name>
 		    <RestoreCompletedSuccessfully_Name>Restore completed successfully</RestoreCompletedSuccessfully_Name>
 		    
+		    <SearchFolderFromRoot_Name>search1-;().,?!'_Pogoplug_Cloud</SearchFolderFromRoot_Name>
+		    <SearchImageFromRoot_Name>IMG_0005_in_Pogoplug_Cloud.JPG</SearchImageFromRoot_Name>
+		    <SearchFolderFromFolder_Name>search1-;().,?!'_Current_Folder</SearchFolderFromFolder_Name>
+		   	<SearchImageFromFolder_Name>IMG_0005_in_Current_Folder.JPG</SearchImageFromFolder_Name>
+		   	<SearchMainFolder_Name>Search Main Folder</SearchMainFolder_Name>
+		   	<SearchSongInSong_Name>Morning light</SearchSongInSong_Name>
+		   	<SearchSongInArtists_Name>Red Gyarados</SearchSongInArtists_Name>
+		   	<SearchSongInAlbums_Name>Poo Pop</SearchSongInAlbums_Name>
+		   	<SearchSongInGenres_Name>Blues</SearchSongInGenres_Name>
+		    
 		</Strings>
 		                
 	

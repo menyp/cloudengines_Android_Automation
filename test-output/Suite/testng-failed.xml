@@ -12,7 +12,7 @@
         <methods>
           <include name="sendMail"/>
           <include name="setupBeforeSuite"/>
-          <include name="createRestoreSnapShot"/>
+          <include name="search"/>
           <include name="checkHomeScreen"/>
         </methods>
       </class> <!-- com.pp.android.auto.SanityAndroid -->

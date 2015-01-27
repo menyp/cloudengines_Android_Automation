@@ -5,13 +5,13 @@
     <classes>
       <class name="com.pp.android.auto.SanityAndroid">
         <methods>
-          <include name="testTour"/>
-          <include name="testCreatefolder"/>
-          <include name="createSnapShot"/>
-          <include name="testUploadImage"/>
+          <include name="tour"/>
+          <include name="uploadImage"/>
           <include name="sendMail"/>
+          <include name="createfolder"/>
           <include name="badCredentials"/>
           <include name="setupBeforeSuite"/>
+          <include name="createRestoreSnapShot"/>
           <include name="search"/>
         </methods>
       </class> <!-- com.pp.android.auto.SanityAndroid -->

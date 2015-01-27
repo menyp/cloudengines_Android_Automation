@@ -47,6 +47,7 @@ public class AndroidWebElements {
 	String TEXTFIELDgeneral_ID;
 	String TEXTFIELDemail_id;
 	String TEXTFIELDpassword_id;
+	String SearchFolderFromFolder_Name;
 	String GalleryApp_Name;
 	
 	String OPTIONcaptureNewPhoto_name;
@@ -99,6 +100,14 @@ public class AndroidWebElements {
 	String SnapshotTakenSuccessfully_Name;
 	String NoFiles_Name;
 	String RestoreCompletedSuccessfully_Name;
+	String SearchFolderFromRoot_Name;
+	String SearchImageFromRoot_Name;
+	String SearchImageFromFolder_Name;
+	String SearchSongInSong_Name;
+	String SearchSongInArtists_Name;
+	String SearchSongInAlbums_Name;
+	String SearchSongInGenres_Name;
+	
 	
 	//Checkbox
 	String CheckBoxselectAll_Name;
@@ -203,6 +212,14 @@ public class AndroidWebElements {
 		this.NoFiles_Name = XmlHandel.readAndroidXml("NoFiles_Name", langXml, xmlPath);
 		this.GalleryApp_Name = XmlHandel.readAndroidXml("GalleryApp_Name", langXml, xmlPath);
 		this.RestoreCompletedSuccessfully_Name = XmlHandel.readAndroidXml("RestoreCompletedSuccessfully_Name", langXml, xmlPath);
+		this.SearchFolderFromRoot_Name = XmlHandel.readAndroidXml("SearchFolderFromRoot_Name", langXml, xmlPath);
+		this.SearchImageFromRoot_Name = XmlHandel.readAndroidXml("SearchImageFromRoot_Name", langXml, xmlPath);
+		this.SearchFolderFromFolder_Name = XmlHandel.readAndroidXml("SearchFolderFromFolder_Name", langXml, xmlPath);
+		this.SearchImageFromFolder_Name = XmlHandel.readAndroidXml("SearchImageFromFolder_Name", langXml, xmlPath);
+		this.SearchSongInSong_Name = XmlHandel.readAndroidXml("SearchSongInSong_Name", langXml, xmlPath);
+		this.SearchSongInArtists_Name = XmlHandel.readAndroidXml("SearchSongInArtists_Name", langXml, xmlPath);
+		this.SearchSongInAlbums_Name = XmlHandel.readAndroidXml("SearchSongInAlbums_Name", langXml, xmlPath);
+		this.SearchSongInGenres_Name = XmlHandel.readAndroidXml("SearchSongInGenres_Name", langXml, xmlPath);
 
 		
 		this.IconLeftUpperBack_ID = XmlHandel.readAndroidXml("IconLeftUpperBack_ID", langXml, xmlPath);
