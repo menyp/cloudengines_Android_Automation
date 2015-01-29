@@ -129,11 +129,14 @@ public class SanityAndroid {
 		
 	// Go to strtup page (LSM left side menu)
 		genMeth.clickId(  genMeth, droidData.BTNlsm_ID);
+		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
+
 		
 		  }
 
 	
-	@Test (enabled = true ,testName="Sanity Tests", description = "Test the Upload utility with Android" , groups= {"Sanity Android"})	
+	@Test (enabled = true ,testName="Sanity Tests", description = "Test the Upload utility with Android" ,
+			groups= {"Sanity Android"})	
 	public void uploadImage() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
 	// open pogoplug cloud & press
@@ -143,8 +146,12 @@ public class SanityAndroid {
 		genMeth.clickName( genMeth, droidData.BTNupload_name);
 		genMeth.clickName( genMeth, droidData.OPTIONcaptureNewPhoto_name);
 		Thread.sleep(2000);
-		genMeth.clickId(  genMeth, droidData.BTNcapturePhoto_LG_id);
-		genMeth.clickName( genMeth, droidData.BTNok_Name);
+		
+//		genMeth.clickId(  genMeth, droidData.BTNcapturePhoto_LG_id);
+		genMeth.clickName(genMeth, droidData.BTNcapturePhoto_GooglePhone_Name);
+		genMeth.clickName(genMeth, droidData.IconReviewDoneForImageGooglePhone_Name);
+
+//		genMeth.clickName( genMeth, droidData.BTNok_Name);
 		Thread.sleep(2000);
 		genMeth.clickClassName(driver, genMeth, droidData.BTNmoreOptions_ClassName);
 		genMeth.clickName( genMeth, droidData.BTNrefresh_name);
@@ -172,24 +179,32 @@ public class SanityAndroid {
 	// Make sure that the "Image not available" text doesn't displayed
 		Thread.sleep(3000);
 		genMeth.isElementInvisibleText( By.name(droidData.ImageNotAvailable_Name), droidData.ImageNotAvailable_Name);
-		genMeth.takeScreenShotPositive( genMeth, "testUploadImage_"+currentUpload);
+		genMeth.takeScreenShotPositive( genMeth, "testUploadImage");
 		Thread.sleep(1000);	
 	//	genMeth.clickXpth(driver, genMeth, "//android.view.View[1]");
 		genMeth.clickId(  genMeth, droidData.FullScreen_ID);
 		genMeth.clickId(  genMeth, droidData.BTNhome_ID);
 	// Delete the image
 		genMeth.longPressElement(driver, genMeth, By.id(droidData.ListSecondaryText_ID));
-		Thread.sleep(5000);
+//		Thread.sleep(5000);
 		genMeth.clickName( genMeth, droidData.BTNdelete_name);
 		genMeth.clickId(  genMeth, droidData.BTNdeleteConfirm_id);
 	// Check that the image was deleted
 		genMeth.isElementInvisible(  By.id(droidData.FullScreen_ID));
+		genMeth.clickClassName(driver, genMeth, droidData.BTNmoreOptions_ClassName);
+		genMeth.clickName( genMeth, droidData.BTNrefresh_name);
+		genMeth.isElementVisible(By.name(droidData.NoFilesFound_Name));
+		//Back to start page
+		genMeth.pressBackButton();
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
+
 		
 		}
 	
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Test TOUR for New accounts and for upgrade accounts",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 	public void tour() throws Exception, Throwable {
 
 		
@@ -229,9 +244,12 @@ public class SanityAndroid {
 		// press the Continue button 
 		genMeth.clickId(  genMeth, droidData.BTNfinishTour_id);	
 		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
+		Thread.sleep(1000);
 		
 		//Verify that LOGOUT & RELOGIN will not prompt the tour
-		genMeth.clickXpth(driver, genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
+//		genMeth.clickXpth(genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
+		genMeth.tapXpth( genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
+		driver.scrollToExact(droidData.OPTIONsignOut_Name);
 		genMeth.clickName( genMeth, droidData.OPTIONsignOut_Name);
 		genMeth.clickName( genMeth, droidData.BTNok_Name);
 		genMeth.clickId(  genMeth, droidData.BTNalreadyHaveAnAccount_id);
@@ -294,9 +312,11 @@ public class SanityAndroid {
 		// press the Continue button 
 		genMeth.clickId(  genMeth, droidData.BTNfinishTour_id);	
 		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
-		
+		Thread.sleep(1000);
 		// logout & relogin will not prompt the tour
-		genMeth.clickXpth(driver, genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
+//		genMeth.clickXpth(genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
+		genMeth.tapXpth( genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
+		driver.scrollToExact(droidData.OPTIONsignOut_Name);
 		genMeth.clickName( genMeth, droidData.OPTIONsignOut_Name);
 		genMeth.clickName( genMeth, droidData.BTNok_Name);
 		genMeth.clickId(  genMeth, droidData.BTNalreadyHaveAnAccount_id);
@@ -343,19 +363,18 @@ public class SanityAndroid {
 	}
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Search functionality & filter",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 	public void search() throws Exception, Throwable {
 		
 		//Search Folder in ROOT
 		String Random = genMeth.randomString();	
-//		genMeth.sendId(genMeth, "com.pogoplug.android:id/main", droidData.SearchFolderFromRoot_Name);
 		WebElement search = genMeth.returnId(driver, genMeth, "com.pogoplug.android:id/main" );
 		search.click();
 		genMeth.sendId(genMeth, "android:id/search_view", droidData.SearchFolderFromRoot_Name);
 		genMeth.pressEnter();
 		genMeth.isElementVisible( By.name(droidData.SearchFolderFromRoot_Name));
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
-//		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		
 		// Search Image in ROOT
 		Thread.sleep(2000);
@@ -363,6 +382,7 @@ public class SanityAndroid {
 		genMeth.sendId(genMeth, "android:id/search_view", droidData.SearchImageFromRoot_Name);
 		genMeth.pressEnter();
 		genMeth.isElementVisible( By.name(droidData.SearchImageFromRoot_Name));
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(2000);
 
@@ -381,25 +401,23 @@ public class SanityAndroid {
 		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(1000);
 		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
-//		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(1000);
 
 		// Search FOLDER in FOLDER
 		genMeth.clickName( genMeth, droidData.BTNsearch_name);
 		genMeth.sendId(genMeth, "android:id/search_src_text", droidData.SearchFolderFromFolder_Name);
 		genMeth.pressEnter();
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementInvisible( By.name(droidData.NoFilesFound_Name));
 		genMeth.isElementVisible( By.name(droidData.SearchFolderFromFolder_Name));
 		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
 
-//		genMeth.takeScreenShotPositive(genMeth, droidData.SearchFolderFromFolder_Name);
-
 		// Search Image in FOLDER 
-//		genMeth.tapName(genMeth, droidData.BTNsearch_name);
 		genMeth.clickName( genMeth, droidData.BTNsearch_name);
 		genMeth.sendId(genMeth, "android:id/search_src_text", droidData.SearchImageFromFolder_Name);
 		
 		genMeth.pressEnter();
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementInvisible( By.name(droidData.NoFilesFound_Name));
 		genMeth.isElementVisible( By.name(droidData.SearchImageFromFolder_Name));
 		genMeth.takeScreenShotPositive(genMeth, droidData.SearchImageFromFolder_Name);
@@ -422,18 +440,19 @@ public class SanityAndroid {
 		Thread.sleep(1000);
 		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(1000);
-//		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
-		genMeth.clickName(genMeth, "Music Player");
-		genMeth.clickName(genMeth, "Search");
+		genMeth.clickName(genMeth, droidData.MusicPlayer_Name);
+		genMeth.clickName(genMeth, droidData.BTNsearch_name);
 		genMeth.sendId(genMeth, "android:id/search_src_text", droidData.SearchSongInSong_Name);
 		genMeth.pressEnter();
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementVisible(By.name(droidData.SearchSongInSong_Name));
 		genMeth.isElementInvisible(By.name(droidData.NoFilesFound_Name));
 		
 		//Search in songs empty results
-		genMeth.clickName(genMeth, "Search");
+		genMeth.clickName(genMeth, droidData.BTNsearch_name);
 		genMeth.sendId(genMeth, "android:id/search_src_text", Random);
 		genMeth.pressEnter();
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementVisible(By.name(droidData.NoFilesFound_Name));
 
 		//Search in Artists song
@@ -441,19 +460,21 @@ public class SanityAndroid {
 		Thread.sleep(1000);
 		genMeth.pressBackButton();
 		Thread.sleep(1000);
-		genMeth.clickName(genMeth, "Artists");
-		genMeth.clickName(genMeth, "Search");
+		genMeth.clickName(genMeth, droidData.Artists_Name);
+		genMeth.clickName(genMeth, droidData.BTNsearch_name);
 		genMeth.sendId(genMeth, "android:id/search_src_text" , droidData.SearchSongInArtists_Name);
 		genMeth.pressEnter();
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementVisible(By.name(droidData.SearchSongInArtists_Name));
 		genMeth.isElementInvisible(By.name(droidData.NoFilesFound_Name));
 		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(1000);
 
 		//Search in Artists empty results
-		genMeth.clickName(genMeth, "Search");
+		genMeth.clickName(genMeth, droidData.BTNsearch_name);
 		genMeth.sendId(genMeth, "android:id/search_src_text" , Random);
 		genMeth.pressEnter();
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementVisible(By.name(droidData.NoFilesFound_Name));
 		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(1000);
@@ -461,37 +482,41 @@ public class SanityAndroid {
 
 		
 		//Search in Albums song
-		genMeth.clickName(genMeth, "Albums");
-		genMeth.clickName(genMeth, "Search");
+		genMeth.clickName(genMeth, droidData.Albums_name);
+		genMeth.clickName(genMeth, droidData.BTNsearch_name);
 		genMeth.sendId(genMeth, "android:id/search_src_text" , droidData.SearchSongInAlbums_Name);
 		genMeth.pressEnter();
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementVisible(By.name(droidData.SearchSongInAlbums_Name));
 		genMeth.isElementInvisible(By.name(droidData.NoFilesFound_Name));
 		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(1000);
 		
 		//Search in Albums empty results
-		genMeth.clickName(genMeth, "Search");
+		genMeth.clickName(genMeth, droidData.BTNsearch_name);
 		genMeth.sendId(genMeth, "android:id/search_src_text" , Random);
 		genMeth.pressEnter();
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementVisible(By.name(droidData.NoFilesFound_Name));
 		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(1000);
 
 		//Search in Genres song 
-		genMeth.clickName(genMeth, "Genres");
-		genMeth.clickName(genMeth, "Search");
+		genMeth.clickName(genMeth, droidData.Genres_Name);
+		genMeth.clickName(genMeth, droidData.BTNsearch_name);
 		genMeth.sendId(genMeth, "android:id/search_src_text" , droidData.SearchSongInGenres_Name);
 		genMeth.pressEnter();
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementVisible(By.name(droidData.SearchSongInGenres_Name));
 		genMeth.isElementInvisible(By.name(droidData.NoFilesFound_Name));
 		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(1000);
 		
 		//Search in Genres empty results
-		genMeth.clickName(genMeth, "Search");
+		genMeth.clickName(genMeth, droidData.BTNsearch_name);
 		genMeth.sendId(genMeth, "android:id/search_src_text" , Random);
 		genMeth.pressEnter();
+		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementVisible(By.name(droidData.NoFilesFound_Name));
 		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(1000);
@@ -500,28 +525,27 @@ public class SanityAndroid {
 		
 		//search for a contact
 		genMeth.clickName(genMeth, droidData.FileExplorer_Name);
-		genMeth.clickId(genMeth, "com.pogoplug.android:id/number_of_sharees");
-		genMeth.clickId(genMeth, "com.pogoplug.android:id/add_email");
-			driver.findElementById("android:id/search_src_text").sendKeys("Meny");
-		genMeth.isElementVisible(By.name("Meny"));
-		genMeth.isElementInvisible(By.name("No matching contacts found."));
-
-		genMeth.clickId(genMeth, "android:id/search_close_btn");
-//		genMeth.clickName(genMeth, "Clear query");
-		driver.findElementById("android:id/search_src_text").sendKeys(Random);
-//		genMeth.sendName(genMeth, "Search contacts", Random);
-		genMeth.isElementVisible(By.name("No matching contacts found."));
-		genMeth.clickId(genMeth, "android:id/search_close_btn");
-		genMeth.isElementVisible(By.name("Meny"));
-		genMeth.pressBackButton();	
-		genMeth.pressBackButton();
-		genMeth.clickName(genMeth, droidData.BTNcancelCapture_id);
-		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		genMeth.clickId(genMeth, droidData.IconNumbrOfSharedContacts_ID);
+		genMeth.clickId(genMeth, droidData.IconAddShareUser_ID);
+		driver.findElementById("android:id/search_src_text").sendKeys("MenyTheb");
+		genMeth.isElementVisible(By.name("Menythebest"));
 		
-		//no results search using clear & cancel 
-	
+//		genMeth.isElementInvisible(By.name("No matching contacts found."));
+//		genMeth.clickId(genMeth, "android:id/search_close_btn");
+////	genMeth.clickName(genMeth, "Clear query");
+//		driver.findElementById("android:id/search_src_text").sendKeys(Random);
+////	genMeth.sendName(genMeth, "Search contacts", Random);
+//		genMeth.isElementVisible(By.name("No matching contacts found."));
+//		genMeth.clickId(genMeth, "android:id/search_close_btn");
+//		genMeth.isElementVisible(By.name("Meny"));
 		
 		//Back to start up screen
+		genMeth.pressBackButton();
+		genMeth.pressBackButton();
+		genMeth.clickName(genMeth, droidData.BTNcancel_Name);
+		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
+		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
+
 		
 	}
 	
@@ -536,7 +560,7 @@ public class SanityAndroid {
 		genMeth.clickName( genMeth, droidData.BTNrestoreSnapshot_Name);
 		
 		//Make sure That no previous snapshot exist (if so delete them)
-		Boolean isEmpty = genMeth.checkIsElementVisible( By.name(droidData.NoFiles_Name));
+		Boolean isEmpty = genMeth.fastCheckIsElementVisible( By.name(droidData.NoFiles_Name));
 		if (isEmpty !=true){
 			genMeth.clickName( genMeth, droidData.BTNdelete_name);
 			genMeth.clickName( genMeth, droidData.BTNdelete_name);
@@ -553,34 +577,66 @@ public class SanityAndroid {
 		// delete all the images from camera roll
 		genMeth.pressHomeButton();
 		genMeth.clickName( genMeth, droidData.GalleryApp_Name);
+		genMeth.clickId(genMeth, "com.android.gallery3d:id/gl_root_view");
 
-		Boolean isGalleryEmpty = genMeth.checkIsElementVisible( By.name(droidData.NoFiles_Name));
+		Boolean isGalleryEmpty = genMeth.fastCheckIsElementVisible( By.name(droidData.NoFiles_Name));
 		if (isGalleryEmpty != true){
+			//Samsung Nexus
+			genMeth.clickName(genMeth, droidData.BTNmoreOptions_Name);
+			genMeth.clickName(genMeth, droidData.BTNselectItem_Name);
+			genMeth.clickName(genMeth, "0 selected");
+			genMeth.clickName(genMeth, "Select all");
+			genMeth.clickName( genMeth, droidData.BTNdelete_name);
+			genMeth.clickName( genMeth, droidData.BTNok_Name);
+
+			/*
+			 * LG
 			driver.tap(1, 140, 280, 500);
 			genMeth.clickName( genMeth, droidData.BTNdelete_name);
 			genMeth.clickName( genMeth, droidData.CheckBoxselectAll_Name);
 			genMeth.clickName( genMeth, droidData.BTNdelete_name);
 			genMeth.clickName( genMeth, droidData.BTNyes_Name);
+			*/
 		}
-		
-		driver.runAppInBackground(1);
+		genMeth.pressBackButton();
+
+		try {
+			driver.runAppInBackground(1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.scrollToExact(droidData.BTNrestoreSnapshot_Name);
 		genMeth.clickName( genMeth, droidData.BTNrestoreSnapshot_Name);
 		
 		// Make sure a new entry was made
 		genMeth.isElementInvisible(  By.name(droidData.NoFilesFound_Name));
-		genMeth.clickXpth(driver, genMeth, "//android.view.View[1]/android.widget.FrameLayout[2]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView[1]");
+		genMeth.clickId(genMeth, "com.pogoplug.android:id/list_item_image");
 		genMeth.clickName( genMeth, droidData.BTNstart_Name);
+		/*
+		 * LG
 		genMeth.clickName( genMeth, droidData.BTNphone_Name);
-
 		genMeth.waitForElementToBeVisible(driver, By.name("Set up my profile"), 2);
 		genMeth.pressBackButton();
+		*/
 		genMeth.waitForElementToBeVisible(driver, By.name(droidData.RestoreCompletedSuccessfully_Name), 2);
 		genMeth.clickName( genMeth, droidData.BTNdismiss_Name);
 		
 		//Now go verify that the images/videos were restored to the device successfully
 		genMeth.pressHomeButton();
 		genMeth.clickName( genMeth, droidData.GalleryApp_Name);
+		genMeth.clickId(genMeth, "com.android.gallery3d:id/gl_root_view");
+		genMeth.clickName(genMeth, droidData.BTNmoreOptions_Name);
+		genMeth.clickName(genMeth, droidData.BTNselectItem_Name);
+		genMeth.clickName(genMeth, "0 selected");
+		genMeth.clickName(genMeth, droidData.BTNselectAll_Name);
+		genMeth.isElementVisible(By.name("2 selected"));
+		genMeth.takeScreenShotPositive(genMeth, "restored snapshot to gallery");
+		genMeth.pressBackButton();		
+		genMeth.pressBackButton();
+		genMeth.pressBackButton();
+		
+		/*
 		driver.tap(1, 140, 280, 500);
 		genMeth.clickName( genMeth, droidData.BTNdelete_name);
 		genMeth.clickName( genMeth, droidData.CheckBoxselectAll_Name);
@@ -589,12 +645,10 @@ public class SanityAndroid {
 		genMeth.clickId(  genMeth, droidData.BTNcancelGalleryApp_ID);
 		genMeth.clickName( genMeth, "Camera, Navigate up");		
 		driver.runAppInBackground(1);
+		genMeth.clickId(  genMeth, droidData.IconLeftUpperBack_ID);
+		genMeth.clickId(  genMeth, droidData.IconLeftUpperBack_ID);
+		*/
 		
-		// Go to startup screen
-		genMeth.clickId(  genMeth, droidData.IconLeftUpperBack_ID);
-		genMeth.clickId(  genMeth, droidData.IconLeftUpperBack_ID);
-		genMeth.isElementVisible( By.name(droidData.Settings_Name));
-			
 	}
 	
 	@Test(enabled = false, testName = "Sanity Tests", description = "Settings: Save Login",

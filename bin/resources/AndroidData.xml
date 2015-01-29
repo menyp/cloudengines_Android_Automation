@@ -36,8 +36,14 @@
 			<BTNstart_Name>Start</BTNstart_Name>
 			<BTNphone_Name>Phone</BTNphone_Name>
 			<BTNcancelGalleryApp_ID>com.android.gallery3d:id/selection_cancel</BTNcancelGalleryApp_ID>
+			<BTNmoreOptions_Name>More options</BTNmoreOptions_Name>
+			<BTNselectItem_Name>Select item</BTNselectItem_Name>
+			<BTN0Selected_Name>0 selected</BTN0Selected_Name>
+			<BTNselectAll_Name>Select all</BTNselectAll_Name>
+			<BTNcancel_Name>Cancel</BTNcancel_Name>
+			<BTNcapturePhoto_GooglePhone_Name>Shutter button</BTNcapturePhoto_GooglePhone_Name>
 			
-			    
+			
 		</Buttons>
 		
 		<TextFields>
@@ -106,6 +112,12 @@
 		   	<SearchSongInArtists_Name>Red Gyarados</SearchSongInArtists_Name>
 		   	<SearchSongInAlbums_Name>Poo Pop</SearchSongInAlbums_Name>
 		   	<SearchSongInGenres_Name>Blues</SearchSongInGenres_Name>
+		    <Loading_Name>Loading…</Loading_Name>
+		    <MusicPlayer_Name>Music Player</MusicPlayer_Name>
+		    <Artists_Name>Artists</Artists_Name>
+		    <Albums_name>Albums</Albums_name>
+		    <Genres_Name>Genres</Genres_Name>
+		    
 		    
 		</Strings>
 		                
@@ -139,6 +151,9 @@
 	<Icon>
 	    
 	   <IconLeftUpperBack_ID>android:id/up</IconLeftUpperBack_ID> 
+	   <IconNumbrOfSharedContacts_ID>com.pogoplug.android:id/number_of_sharees</IconNumbrOfSharedContacts_ID>
+	   <IconAddShareUser_ID>com.pogoplug.android:id/add_email</IconAddShareUser_ID>
+	   <IconReviewDoneForImageGooglePhone_Name>Review done</IconReviewDoneForImageGooglePhone_Name>
 	    
 	</Icon>
 	

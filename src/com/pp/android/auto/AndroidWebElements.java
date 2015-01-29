@@ -42,8 +42,12 @@ public class AndroidWebElements {
 	String BTNstart_Name;
 	String BTNphone_Name;
 	String BTNcancelGalleryApp_ID;
-	
-	
+	String BTNmoreOptions_Name;
+	String BTNselectItem_Name;
+	String BTNselectAll_Name;
+	String BTNcancel_Name;
+	String BTNcapturePhoto_GooglePhone_Name;
+		
 	String TEXTFIELDgeneral_ID;
 	String TEXTFIELDemail_id;
 	String TEXTFIELDpassword_id;
@@ -107,6 +111,12 @@ public class AndroidWebElements {
 	String SearchSongInArtists_Name;
 	String SearchSongInAlbums_Name;
 	String SearchSongInGenres_Name;
+	String Loading_Name;
+	String MusicPlayer_Name;
+	String Artists_Name;
+	String Albums_name;
+	String Genres_Name;
+
 	
 	
 	//Checkbox
@@ -114,6 +124,9 @@ public class AndroidWebElements {
 	
 	//Icons
 	String IconLeftUpperBack_ID;
+	String IconNumbrOfSharedContacts_ID;
+	String IconAddShareUser_ID;
+	String IconReviewDoneForImageGooglePhone_Name;
 	
 	public AndroidWebElements(String langXml, String xmlPath ) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		this.BTNalreadyHaveAnAccount_id = XmlHandel.readAndroidXml("BTNalreadyHaveAnAccount_id", langXml, xmlPath);
@@ -152,11 +165,14 @@ public class AndroidWebElements {
 		this.BTNstart_Name = XmlHandel.readAndroidXml("BTNstart_Name", langXml, xmlPath);
 		this.BTNphone_Name = XmlHandel.readAndroidXml("BTNphone_Name", langXml, xmlPath);
 		this.BTNcancelGalleryApp_ID = XmlHandel.readAndroidXml("BTNcancelGalleryApp_ID", langXml, xmlPath);
+		this.BTNmoreOptions_Name = XmlHandel.readAndroidXml("BTNmoreOptions_Name", langXml, xmlPath);
+		this.BTNselectItem_Name = XmlHandel.readAndroidXml("BTNselectItem_Name", langXml, xmlPath);
+		this.BTNselectAll_Name = XmlHandel.readAndroidXml("BTNselectAll_Name", langXml, xmlPath);
+		this.BTNcancel_Name = XmlHandel.readAndroidXml("BTNcancel_Name", langXml, xmlPath);
+		this.BTNcapturePhoto_GooglePhone_Name = XmlHandel.readAndroidXml("BTNcapturePhoto_GooglePhone_Name", langXml, xmlPath);
 
 		
 		
-		
-
 
 		this.TEXTFIELDemail_id = XmlHandel.readAndroidXml("TEXTFIELDemail_id", langXml, xmlPath);
 		this.TEXTFIELDpassword_id = XmlHandel.readAndroidXml("TEXTFIELDpassword_id", langXml, xmlPath);
@@ -220,12 +236,20 @@ public class AndroidWebElements {
 		this.SearchSongInArtists_Name = XmlHandel.readAndroidXml("SearchSongInArtists_Name", langXml, xmlPath);
 		this.SearchSongInAlbums_Name = XmlHandel.readAndroidXml("SearchSongInAlbums_Name", langXml, xmlPath);
 		this.SearchSongInGenres_Name = XmlHandel.readAndroidXml("SearchSongInGenres_Name", langXml, xmlPath);
-
+		this.Loading_Name = XmlHandel.readAndroidXml("Loading_Name", langXml, xmlPath);
+		this.MusicPlayer_Name = XmlHandel.readAndroidXml("MusicPlayer_Name", langXml, xmlPath);
+		this.Artists_Name = XmlHandel.readAndroidXml("Artists_Name", langXml, xmlPath);
+		this.Albums_name = XmlHandel.readAndroidXml("Albums_name", langXml, xmlPath);
+		this.Genres_Name = XmlHandel.readAndroidXml("Genres_Name", langXml, xmlPath);
+		
 		
 		this.IconLeftUpperBack_ID = XmlHandel.readAndroidXml("IconLeftUpperBack_ID", langXml, xmlPath);
+		this.IconNumbrOfSharedContacts_ID = XmlHandel.readAndroidXml("IconNumbrOfSharedContacts_ID", langXml, xmlPath);
+		this.IconAddShareUser_ID = XmlHandel.readAndroidXml("IconAddShareUser_ID", langXml, xmlPath);
+		this.IconReviewDoneForImageGooglePhone_Name = XmlHandel.readAndroidXml("IconReviewDoneForImageGooglePhone_Name", langXml, xmlPath);
 
 		
-
+		
 
 	}
 
