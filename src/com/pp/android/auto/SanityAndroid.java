@@ -204,7 +204,7 @@ public class SanityAndroid {
 	
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Test TOUR for New accounts and for upgrade accounts",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 	public void tour() throws Exception, Throwable {
 
 		
@@ -314,7 +314,6 @@ public class SanityAndroid {
 		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
 		Thread.sleep(1000);
 		// logout & relogin will not prompt the tour
-//		genMeth.clickXpth(genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
 		genMeth.tapXpth( genMeth, "//android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[7]");
 		driver.scrollToExact(droidData.OPTIONsignOut_Name);
 		genMeth.clickName( genMeth, droidData.OPTIONsignOut_Name);
@@ -339,7 +338,7 @@ public class SanityAndroid {
 			groups = { "Sanity Android" })
 	public void badCredentials() throws Exception, Throwable {
 		String currentTime = genMeth.currentTime();
-		genMeth.signOutFromStartupAndroid(genMeth, driver, droidData);
+		genMeth.signOutFromStartupAndroid(genMeth, droidData);
 		genMeth.clickId( genMeth, droidData.BTNalreadyHaveAnAccount_id);
 		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, currentTime);
 		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
@@ -854,13 +853,107 @@ public class SanityAndroid {
 	
 		
 	}
-	@Test(enabled = false, testName = "connection lost handling", description = "Checking how the app owrks while connection is lost & back again" )
-	public void connectionLost(){
+	@Test(enabled = true, testName = "connection lost handling", description = "Checking how the app owrks while connection is lost & back again",
+			groups={ "Sanity Android1"} )
+	public void connectionLost() throws InterruptedException, IOException, ParserConfigurationException, SAXException{
 		
-		// check app while connection is lost & back during login
-		 
-		 
+		// check app while connection is lost & return during login
+		genMeth.signOutFromStartupAndroid(genMeth, droidData);
+		
+		genMeth.setAirplainMode();
+		genMeth.clickId(  genMeth, droidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, droidData.userUnlimited_name);
+		Thread.sleep(1000);
+		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
+		genMeth.clickId( genMeth, droidData.BTNlogin_id);
+		genMeth.takeScreenShotPositive(genMeth, "login_without_connection");
+		genMeth.isElementVisible(By.id(droidData.TEXTFIELDemail_id));
+		
+		
+		// check app while connection is lost & post login
+		genMeth.setWifiOn();
+		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, droidData.userUnlimited_name);
+		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
+		genMeth.clickId( genMeth, droidData.BTNlogin_id);
+		Thread.sleep(5000);
+		
+		genMeth.setAirplainMode();
+		genMeth.clickName(genMeth, droidData.FileExplorer_Name);
+		genMeth.clickName( genMeth, droidData.BTNrefresh_name);
+		genMeth.isElementVisible(By.name("No internet connection"));
+		genMeth.takeScreenShotPositive(genMeth, "No internet connection");
+		
+		genMeth.setWifiOn();
+		genMeth.clickName(genMeth, droidData.BTNrefresh_name);
+		genMeth.isElementInvisible(By.name("No internet connection"));
+		genMeth.clickName(genMeth, "upload from existing test");
+		
 		// check app while connection is lost & back during backup/upload
+		genMeth.clickName( genMeth, droidData.BTNupload_name);
+		genMeth.clickName( genMeth, droidData.OPTIONcaptureNewPhoto_name);
+		genMeth.clickName(genMeth, droidData.BTNcapturePhoto_GooglePhone_Name);
+		genMeth.clickName(genMeth, droidData.BTNcapturePhoto_GooglePhone_Name);
+		genMeth.clickName(genMeth, droidData.IconReviewDoneForImageGooglePhone_Name);
+		
+		//Now kill the connection
+		genMeth.setAirplainMode();
+		genMeth.clickClassName(driver, genMeth, droidData.BTNmoreOptions_ClassName);
+		genMeth.clickName( genMeth, droidData.BTNrefresh_name);
+		
+		//Open connection & make sure that upload has finished successfully 
+		genMeth.setWifiOn();
+		genMeth.clickClassName(driver, genMeth, droidData.BTNmoreOptions_ClassName);
+		genMeth.clickName( genMeth, droidData.BTNrefresh_name);
+		
+	// Check if the image display in the list
+		WebElement uploadedImage = genMeth.returnId(driver, genMeth, "com.pogoplug.android:id/text_secondary");
+		String lastUpload = uploadedImage.getText();
+		String currentUpload= "None";
+		Thread.sleep(1000);
+		
+	// Add an if that will verify that the Upload has finished (compare the KB - once not changing it probably has finished or stuck)	
+		if (lastUpload != currentUpload ){
+			genMeth.clickClassName(driver, genMeth, droidData.BTNmoreOptions_ClassName);
+			genMeth.clickName( genMeth, droidData.BTNrefresh_name);
+			lastUpload = uploadedImage.getText();
+			Thread.sleep(5000);
+			genMeth.clickClassName(driver, genMeth, droidData.BTNmoreOptions_ClassName);
+			genMeth.clickName( genMeth, droidData.BTNrefresh_name);
+			currentUpload = uploadedImage.getText();
+			
+		}
+		
+	// Open the image & make sure that it displays 
+		genMeth.clickName( genMeth, currentUpload);
+		
+	// Make sure that the "Image not available" text doesn't displayed
+		Thread.sleep(3000);
+		genMeth.isElementInvisibleText( By.name(droidData.ImageNotAvailable_Name), droidData.ImageNotAvailable_Name);
+		genMeth.takeScreenShotPositive( genMeth, "testUploadImage");
+		Thread.sleep(1000);	
+		genMeth.clickId(  genMeth, droidData.FullScreen_ID);
+		genMeth.clickId(  genMeth, droidData.BTNhome_ID);
+		
+	// Delete the image
+		genMeth.longPressElement(driver, genMeth, By.id(droidData.ListSecondaryText_ID));
+		genMeth.clickName( genMeth, droidData.BTNdelete_name);
+		genMeth.clickId(  genMeth, droidData.BTNdeleteConfirm_id);
+		
+	// Check that the image was deleted
+		genMeth.isElementInvisible(  By.id(droidData.FullScreen_ID));
+		genMeth.clickClassName(driver, genMeth, droidData.BTNmoreOptions_ClassName);
+		genMeth.clickName( genMeth, droidData.BTNrefresh_name);
+		genMeth.isElementVisible(By.name(droidData.NoFilesFound_Name));
+		
+		//Back to start page
+		genMeth.pressBackButton();
+		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
+		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
+
+
+		
+		// check app while connection is lost & back post refresh
+
 		
 		
 		

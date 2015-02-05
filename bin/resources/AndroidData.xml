@@ -59,7 +59,7 @@
 		</CheckBox>
 		
 		<Options>
-			<OPTIONcaptureNewPhoto_name>Capture new photo</OPTIONcaptureNewPhoto_name>
+			<OPTIONcaptureNewPhoto_name>Capture new photo</OPTIONcaptureNewPhoto_name>			
 			<OPTIONcaptureNewVideo_name>Capture new video</OPTIONcaptureNewVideo_name>
 			<OPTIONlocalPhoto_name>Local photo</OPTIONlocalPhoto_name>
 			<OPTIONlocalVideo>Local video</OPTIONlocalVideo>
@@ -134,6 +134,10 @@
 		<emptyPassword></emptyPassword>
 		<emptyUserName></emptyUserName>
 		<GalleryApp_Name>Gallery</GalleryApp_Name>
+		<ConnectionAIRPLANE_MODE>AIRPLANE_MODE</ConnectionAIRPLANE_MODE>
+		<ConnectionWIFI>WIFI</ConnectionWIFI>
+		<CoonectionDATA>DATA</CoonectionDATA>
+		<ConnectionALL>ALL</ConnectionALL>
 
 	</GeneralInfo>
 	

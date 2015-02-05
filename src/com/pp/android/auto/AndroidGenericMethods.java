@@ -1,4 +1,5 @@
 package com.pp.android.auto;
+import io.appium.java_client.NetworkConnectionSetting;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
@@ -44,37 +45,40 @@ import com.google.common.base.Function;
 public class AndroidGenericMethods {
 
 	AndroidDriver driver;
+	AndroidWebElements droidData;
 
-	public void cleanLoginAndroid(AndroidGenericMethods genMeth, AndroidWebElements droidData , String user) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
+	public AndroidGenericMethods (){}
+
+	public void cleanLoginAndroid(AndroidGenericMethods genMeth, AndroidWebElements androidData , String user) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
 			
 
-		genMeth.clickId(  genMeth, droidData.BTNalreadyHaveAnAccount_id);
-		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, user);
+		genMeth.clickId(  genMeth, androidData.BTNalreadyHaveAnAccount_id);
+		genMeth.sendId( genMeth, androidData.TEXTFIELDemail_id, user);
 		Thread.sleep(1000);
-		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
-		genMeth.clickId( genMeth, droidData.BTNlogin_id);
+		genMeth.sendId( genMeth, androidData.TEXTFIELDpassword_id, androidData.password);
+		genMeth.clickId( genMeth, androidData.BTNlogin_id);
 
 		
 		// check if this is a Limited or Unlimited account
-		boolean isUnlimitedAccount = genMeth.checkIsElementVisible( By.name(droidData.NeverLoseAPhoto));
+		boolean isUnlimitedAccount = genMeth.checkIsElementVisible( By.name(androidData.NeverLoseAPhoto));
 		if (isUnlimitedAccount == true) {
 			// Navigate through the intro
 			driver.swipe(600, 800, 50, 800, 600);
 
-			genMeth.clickId( genMeth, droidData.BTNfinishTour_id);
-			genMeth.clickId( genMeth, droidData.BTNcontinue_id);
+			genMeth.clickId( genMeth, androidData.BTNfinishTour_id);
+			genMeth.clickId( genMeth, androidData.BTNcontinue_id);
 
 			// Make sure that the Login was successful By verifying that the "CATEGORIES" display in the *LSM (Left Side Menu)
-			genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
+			genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
 		}
 
 		else {
-			genMeth.isElementVisible( By.name(droidData.Backup_Name));
-			genMeth.clickId(genMeth, droidData.BTNcontinue_id);
+			genMeth.isElementVisible( By.name(androidData.Backup_Name));
+			genMeth.clickId(genMeth, androidData.BTNcontinue_id);
 		}
 				
 		// Make sure that the Login was successful By verifying that the "CATEGORIES" display in the *LSM (Left Side Menu)
-		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
+		genMeth.isTextPresentAndroid(driver, By.name(androidData.CATEGORIES), androidData.CATEGORIES);
 
 	}
 
@@ -94,7 +98,7 @@ public class AndroidGenericMethods {
 	}
 	
 
-	public void signOutFromStartupAndroid(AndroidGenericMethods genMeth, AndroidDriver driver, AndroidWebElements droidData) throws InterruptedException, IOException {
+	public void signOutFromStartupAndroid(AndroidGenericMethods genMeth, AndroidWebElements droidData) throws InterruptedException, IOException {
 		genMeth.clickName( genMeth, droidData.Settings_Name);
 		genMeth.clickName( genMeth, droidData.BTNsingOut_Name);
 		genMeth.clickName( genMeth, droidData.BTNok_Name);
@@ -105,6 +109,7 @@ public class AndroidGenericMethods {
 
 		genMeth.clickName(driver,genMeth, iosData.BTNalreadyHaveAnAccount_name);
 		genMeth.sendId(driver, genMeth, iosData.TEXTFIELDemail_Id, user);
+		genMeth.sendId(driver, genMeth, iosData.TEXTFIELDpass_Id, iosData.password);
 		genMeth.clickName(driver,genMeth, iosData.BTNsignin_Name);
 
 		// check if the tour display (will be display only if it is first login)
@@ -214,60 +219,9 @@ public class AndroidGenericMethods {
 		return driver;
 	}
 	
-/*
-	public AndroidDriver cleanLoginIos(AndroidDriver driver, AndroidGenericMethods genMeth, AndroidWebElements iosData, String user) throws InterruptedException, IOException,ParserConfigurationException, SAXException {
 
-		// Login with an existing account
-	//	genMeth.handleAccessPhotosContactsLocationNotifications(genMeth, iosData);
-		genMeth.clickName(driver,genMeth, iosData.BTNalreadyHaveAnAccount_name);
-		genMeth.sendId(driver, genMeth, iosData.TEXTFIELDemail_Id, user);
-		genMeth.sendId(driver, genMeth, iosData.TEXTFIELDpass_Id, iosData.password);
-		genMeth.clickName(driver,genMeth, iosData.BTNsignin_Name);
-		
-		genMeth.isElementVisibleNative(driver,By.name(iosData.NeverLoseAPhoto_Name));
-
-		driver.swipe(270, 265, 55, 265, 500);
-		genMeth.isElementVisibleNative(driver,By.name(iosData.TransferPhonesSimply_Name));
-		driver.swipe(270, 265, 55, 265, 500);
-
-		// check if this is a Limited or Unlimited account
-		boolean isUnlimitedAccount = genMeth.checkIsElementVisibleNative(driver, By.name(iosData.UnlimitedProtection_Name));
-		if (isUnlimitedAccount == true) {
-			// Verify that the go unlimited tour text is displayed
-			genMeth.isElementVisibleNative(driver,By.name(iosData.UnlimitedProtection_Name));
-			genMeth.isElementVisibleNative(driver,By.name(iosData.UpgradeTour_Name));
-
-			// Skip- [Need to test 3 options (X button, Go Unlimited button & Skip button)]
-			genMeth.clickName(driver,genMeth, iosData.BTNskip_Name);
-
-			// Verify that the backup tour text is displayed
-			genMeth.isElementVisibleNative(driver,By.name(iosData.Backup_Name));
-			genMeth.isElementVisibleNative(driver,By.name(iosData.BackupTourText_Name));
-			genMeth.clickName(driver,genMeth, iosData.BTNcontinue_Name);
-
-			genMeth.handleAccessPhotosContactsLocationNotifications(genMeth, iosData);
-
-			// verify that the home screen is open with the LSM (left side menu)
-			genMeth.isElementVisibleNative(driver,By.name(iosData.Settings_Name));
-		}
-
-		else {
-			genMeth.isElementVisibleNative(driver,By.name(iosData.Backup_Name));
-			genMeth.clickName(driver,genMeth, iosData.BTNcontinue_Name);
-			genMeth.handleAccessPhotosContactsLocationNotifications(genMeth,  iosData);
-		}
-
-		// verify that the home screen is open with the LSM (left side menu)
-		genMeth.handleAccessPhotosContactsLocationNotifications(genMeth,  iosData);
-		genMeth.isElementVisibleNative(driver,By.name(iosData.Settings_Name));
-		// verify that the home screen is open with the LSM (left side menu)
-		genMeth.isElementVisibleNative(driver,By.name(iosData.Settings_Name));
-
-		return driver;
-		
-	}
 	
-
+/*
 	
 	public void signUp(AndroidGenericMethods genMeth, AndroidWebElements iosData) throws InterruptedException, IOException, ParserConfigurationException, SAXException{
 		
@@ -593,7 +547,7 @@ public class AndroidGenericMethods {
 	}
 	
 
-	public void clickXpth( AndroidGenericMethods genMeth, String xpth)
+	public void clickXpth(AndroidDriver driver, AndroidGenericMethods genMeth, String xpth)
 			throws InterruptedException, IOException {
 
 		By by = By.xpath(xpth);
@@ -618,7 +572,7 @@ public class AndroidGenericMethods {
 
 	}
 	
-	public void tapXpth(AndroidGenericMethods genMeth, String xpth)
+	public void tapXpth( AndroidGenericMethods genMeth, String xpth)
 			throws InterruptedException, IOException {
 
 		By by = By.xpath(xpth);
@@ -1244,34 +1198,47 @@ public class AndroidGenericMethods {
 		
 	}
 	
-	public void goToAirPlaneMode(AndroidDriver driver, String mode) {
-
-		NetworkConnection mobileDriver = (NetworkConnection) driver;
-		if (mode == "AIRPLANE_MODE") {
-
-			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.AIRPLANE_MODE);
-		}
-
-		else if (mode == "WIFI") {
-
-			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.WIFI);
-
-		}
-
-		else if (mode == "DATA") {
-
-			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.DATA);
-
-		}
-
-		else if (mode == "ALL") {
-
-			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.ALL);
-
-		}
+//	public void changeConnectionType(String mode) {
+//
+//		NetworkConnection mobileDriver = (NetworkConnection) driver;
+//		if (mode == "AIRPLANE_MODE") {
+//
+//			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.AIRPLANE_MODE);
+//		}
+//
+//		else if (mode == "WIFI") {
+//
+//			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.WIFI);
+//
+//		}
+//
+//		else if (mode == "DATA") {
+//
+//			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.DATA);
+//
+//		}
+//
+//		else if (mode == "ALL") {
+//
+//			mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.ALL);
+//
+//		}
+//		
+//	}
+//	
+	public void setAirplainMode(){
 		
+		driver.setNetworkConnection(new NetworkConnectionSetting(true,false,false));
+
 	}
 	
+public void setWifiOn(){
+		
+		driver.setNetworkConnection(new NetworkConnectionSetting(false,true,false));
+
+	}
+	
+
 	public void pressHomeButton(){
 		int Home = AndroidKeyCode.HOME;
 		driver.sendKeyEvent(Home);

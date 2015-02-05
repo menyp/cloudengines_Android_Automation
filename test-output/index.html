@@ -101,7 +101,7 @@
                     <div class="method-list-content passed suite-Suite">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.pp.android.auto.SanityAndroid" hash-for-method="tour">tour</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.pp.android.auto.SanityAndroid" hash-for-method="connectionLost">connectionLost</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -124,11 +124,11 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="tour">
-                  </a> <!-- tour -->
-                  <span class="method-name">tour</span>
+                  <a name="connectionLost">
+                  </a> <!-- connectionLost -->
+                  <span class="method-name">connectionLost</span>
                   <em>
-(Test TOUR for New accounts and for upgrade accounts)                  </em>
+(Checking how the app owrks while connection is lost & back again)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -178,7 +178,7 @@
               <span class="test-group-name">Sanity Android1</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">tour</span>
+                <span class="method-in-group-name">connectionLost</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -200,14 +200,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'tour')
+data.setCell(0, 1, 'connectionLost')
 data.setCell(0, 2, 'com.pp.android.auto.SanityAndroid')
-data.setCell(0, 3, 292384);
+data.setCell(0, 3, 313341);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 4 minutes</span>
+              <span class="suite-total-time">Total running time: 5 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -232,6 +232,8 @@ return data;
                 <br/>
                 <span class="ignored-method-name">createNewUser</span>
                 <br/>
+                <span class="ignored-method-name">tour</span>
+                <br/>
                 <span class="ignored-method-name">createfolder</span>
                 <br/>
                 <span class="ignored-method-name">badCredentials</span>
@@ -250,8 +252,6 @@ return data;
                 <br/>
                 <span class="ignored-method-name">settingsBackupEnableDisableDuringUpload</span>
                 <br/>
-                <span class="ignored-method-name">connectionLost</span>
-                <br/>
                 <span class="ignored-method-name">search</span>
                 <br/>
                 <span class="ignored-method-name">createRestoreSnapShot</span>
@@ -268,20 +268,20 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">com.pp.android.auto.SanityAndroid</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
-                <span class="method-name">setupBeforeSuite(org.testng.TestRunner@754777cd)</span>
+                <span class="method-name">setupBeforeSuite(org.testng.TestRunner@7997b197)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
                 <span class="method-name">checkHomeScreen</span>
-                <span class="method-start">49847 ms</span>
+                <span class="method-start">52384 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">tour</span>
-                <span class="method-start">51246 ms</span>
+                <span class="method-name">connectionLost</span>
+                <span class="method-start">52482 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
                 <span class="method-name">sendMail</span>
-                <span class="method-start">343668 ms</span>
+                <span class="method-start">365871 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

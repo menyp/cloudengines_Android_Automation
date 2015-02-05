@@ -128,6 +128,15 @@ public class AndroidWebElements {
 	String IconAddShareUser_ID;
 	String IconReviewDoneForImageGooglePhone_Name;
 	
+	//General Info
+	String ConnectionAIRPLANE_MODE;
+	String ConnectionWIFI;
+	String CoonectionDATA;
+	String ConnectionALL;
+	
+	
+
+	
 	public AndroidWebElements(String langXml, String xmlPath ) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		this.BTNalreadyHaveAnAccount_id = XmlHandel.readAndroidXml("BTNalreadyHaveAnAccount_id", langXml, xmlPath);
 		this.BTNlogin_id = XmlHandel.readAndroidXml("BTNlogin_id", langXml, xmlPath);
@@ -248,6 +257,12 @@ public class AndroidWebElements {
 		this.IconAddShareUser_ID = XmlHandel.readAndroidXml("IconAddShareUser_ID", langXml, xmlPath);
 		this.IconReviewDoneForImageGooglePhone_Name = XmlHandel.readAndroidXml("IconReviewDoneForImageGooglePhone_Name", langXml, xmlPath);
 
+		this.ConnectionAIRPLANE_MODE = XmlHandel.readAndroidXml("ConnectionAIRPLANE_MODE", langXml, xmlPath);
+		this.ConnectionWIFI = XmlHandel.readAndroidXml("ConnectionWIFI", langXml, xmlPath);
+		this.CoonectionDATA = XmlHandel.readAndroidXml("CoonectionDATA", langXml, xmlPath);
+		this.ConnectionALL = XmlHandel.readAndroidXml("ConnectionALL", langXml, xmlPath);
+
+	
 		
 		
 
