@@ -650,15 +650,39 @@ public class SanityAndroid {
 		
 	}
 	
-	@Test(enabled = false, testName = "Sanity Tests", description = "Settings: Save Login",
-			groups = { "Sanity Android" })
-	public void settingsSaveLoginSanity() throws Exception, Throwable {
+	@Test(enabled = true, testName = "Sanity Tests", description = "Settings: Save Login",
+			groups = { "Sanity Android1" })
+	public void settingsKeepMeSignedIn() throws Exception, Throwable {
 
-		// Save Login = true
+		// Keep me signed in = true
+		genMeth.clickName(genMeth, droidData.Settings_Name);
+		genMeth.takeScreenShotPositive(genMeth, "keep me signed in is checked");
+		
+		try {
+			driver.closeApp();
+			driver.launchApp();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		genMeth.isElementVisible(By.name("Pogoplug Cloud"));
 		
 		
-		// Save Login = false
+		// Keep me signed in = False
+		genMeth.clickId(genMeth, droidData.IconLeftUpperBack_ID);
+		genMeth.clickName(genMeth, droidData.Settings_Name);
+		genMeth.clickName(genMeth, "Keep me signed in");
 		
+		try {
+			driver.closeApp();
+			driver.launchApp();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		genMeth.isElementVisible(By.id(droidData.BTNalreadyHaveAnAccount_id));
 
 	}
 
@@ -854,7 +878,7 @@ public class SanityAndroid {
 		
 	}
 	@Test(enabled = true, testName = "connection lost handling", description = "Checking how the app owrks while connection is lost & back again",
-			groups={ "Sanity Android1"} )
+			groups={ "Sanity Android"} )
 	public void connectionLost() throws InterruptedException, IOException, ParserConfigurationException, SAXException{
 		
 		// check app while connection is lost & return during login
