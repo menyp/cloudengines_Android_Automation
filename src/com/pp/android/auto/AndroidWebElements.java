@@ -118,7 +118,11 @@ public class AndroidWebElements {
 	String Artists_Name;
 	String Albums_name;
 	String Genres_Name;
-
+	String TermsofService_Name;
+	String TermsofServiceLink_Name;
+	String TrustLink_Name;
+	String PrivacyPolicy_Name;
+	String PrivacyPolicyLink_Name;
 	
 	
 	//Checkbox
@@ -130,6 +134,7 @@ public class AndroidWebElements {
 	String IconAddShareUser_ID;
 	String IconReviewDoneForImageGooglePhone_Name;
 	String IconIagreeToTermsOfService_Name;
+	String IconTrusT_Id;
 	
 	//General Info
 	String ConnectionAIRPLANE_MODE;
@@ -254,6 +259,13 @@ public class AndroidWebElements {
 		this.Artists_Name = XmlHandel.readAndroidXml("Artists_Name", langXml, xmlPath);
 		this.Albums_name = XmlHandel.readAndroidXml("Albums_name", langXml, xmlPath);
 		this.Genres_Name = XmlHandel.readAndroidXml("Genres_Name", langXml, xmlPath);
+		this.TermsofService_Name = XmlHandel.readAndroidXml("TermsofService_Name", langXml, xmlPath);
+		this.TermsofServiceLink_Name = XmlHandel.readAndroidXml("TermsofServiceLink_Name", langXml, xmlPath);
+		this.TrustLink_Name = XmlHandel.readAndroidXml("TrustLink_Name", langXml, xmlPath);
+		this.PrivacyPolicy_Name = XmlHandel.readAndroidXml("PrivacyPolicy_Name", langXml, xmlPath);
+		this.PrivacyPolicyLink_Name = XmlHandel.readAndroidXml("PrivacyPolicyLink_Name", langXml, xmlPath);
+
+
 		
 		
 		this.IconLeftUpperBack_ID = XmlHandel.readAndroidXml("IconLeftUpperBack_ID", langXml, xmlPath);
@@ -261,7 +273,9 @@ public class AndroidWebElements {
 		this.IconAddShareUser_ID = XmlHandel.readAndroidXml("IconAddShareUser_ID", langXml, xmlPath);
 		this.IconReviewDoneForImageGooglePhone_Name = XmlHandel.readAndroidXml("IconReviewDoneForImageGooglePhone_Name", langXml, xmlPath);
 		this.IconIagreeToTermsOfService_Name = XmlHandel.readAndroidXml("IconIagreeToTermsOfService_Name", langXml, xmlPath);
+		this.IconTrusT_Id = XmlHandel.readAndroidXml("IconTrusT_Id", langXml, xmlPath);
 
+		
 		
 		
 		this.ConnectionAIRPLANE_MODE = XmlHandel.readAndroidXml("ConnectionAIRPLANE_MODE", langXml, xmlPath);

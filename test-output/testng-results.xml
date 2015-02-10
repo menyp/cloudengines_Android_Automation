@@ -2,34 +2,34 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="40375" started-at="2015-02-10T14:06:12Z" finished-at="2015-02-10T14:06:53Z">
+  <suite name="Suite" duration-ms="21413" started-at="2015-02-10T20:27:48Z" finished-at="2015-02-10T20:28:10Z">
     <groups>
       <group name="Sanity Android1">
-        <method signature="SanityAndroid.createNewUser()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="createNewUser" class="com.pp.android.auto.SanityAndroid"/>
+        <method signature="SanityAndroid.termsOfServiceAndTruste()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="termsOfServiceAndTruste" class="com.pp.android.auto.SanityAndroid"/>
       </group> <!-- Sanity Android1 -->
     </groups>
-    <test name="Sanity Tests" duration-ms="40375" started-at="2015-02-10T14:06:12Z" finished-at="2015-02-10T14:06:53Z">
+    <test name="Sanity Tests" duration-ms="21413" started-at="2015-02-10T20:27:48Z" finished-at="2015-02-10T20:28:10Z">
       <class name="com.pp.android.auto.SanityAndroid">
-        <test-method status="PASS" signature="setupBeforeSuite(org.testng.ITestContext)[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="setupBeforeSuite" is-config="true" duration-ms="51907" started-at="2015-02-10T16:05:20Z" finished-at="2015-02-10T16:06:12Z">
+        <test-method status="PASS" signature="setupBeforeSuite(org.testng.ITestContext)[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="setupBeforeSuite" is-config="true" duration-ms="50195" started-at="2015-02-10T22:26:58Z" finished-at="2015-02-10T22:27:48Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@77307458]]>
+                <![CDATA[org.testng.TestRunner@74bdc168]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupBeforeSuite -->
-        <test-method status="PASS" signature="checkHomeScreen()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="checkHomeScreen" is-config="true" duration-ms="333" started-at="2015-02-10T16:06:12Z" finished-at="2015-02-10T16:06:13Z">
+        <test-method status="PASS" signature="checkHomeScreen()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="checkHomeScreen" is-config="true" duration-ms="545" started-at="2015-02-10T22:27:48Z" finished-at="2015-02-10T22:27:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkHomeScreen -->
-        <test-method status="PASS" signature="createNewUser()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="createNewUser" duration-ms="40011" started-at="2015-02-10T16:06:13Z" description="Sign up- Create new user (Negetive positive test), Privacy Policy, TRUSTe" finished-at="2015-02-10T16:06:53Z">
+        <test-method status="PASS" signature="termsOfServiceAndTruste()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="termsOfServiceAndTruste" duration-ms="20842" started-at="2015-02-10T22:27:49Z" description="Test the TOS &amp; TrusTe Links" finished-at="2015-02-10T22:28:10Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createNewUser -->
-        <test-method status="PASS" signature="sendMail()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="sendMail" is-config="true" duration-ms="904" started-at="2015-02-10T16:06:53Z" finished-at="2015-02-10T16:06:54Z">
+        </test-method> <!-- termsOfServiceAndTruste -->
+        <test-method status="PASS" signature="sendMail()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="sendMail" is-config="true" duration-ms="1054" started-at="2015-02-10T22:28:10Z" finished-at="2015-02-10T22:28:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sendMail -->

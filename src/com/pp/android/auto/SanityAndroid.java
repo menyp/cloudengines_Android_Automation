@@ -345,17 +345,49 @@ public class SanityAndroid {
 	public void createNewUser() throws Exception, Throwable {
 		String userRand = genMeth.randomString();
 		genMeth.signOutFromStartupAndroid(genMeth, droidData);
+		
+		//Attempt to Create a new user with bad format
 		genMeth.clickName(genMeth, droidData.BTNcreateAccount_Name);
-		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, userRand + "@test.com");
+		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, userRand );
+		
 		Thread.sleep(1000);
 		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
 		genMeth.clickName(genMeth, droidData.IconIagreeToTermsOfService_Name);
+		genMeth.clickName(genMeth, droidData.BTNcreateAccount_Name);
+		
+		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, userRand + "@test.com");
+		Thread.sleep(1000);
+		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
 		genMeth.clickName(genMeth, droidData.BTNcreateAccount_Name);
 		Thread.sleep(1000);
 		genMeth.clickName(genMeth, droidData.BTNcontinue_Name);
 		genMeth.isElementVisible(By.name( droidData.BTNupgrade_Name));
 		genMeth.takeScreenShotPositive(genMeth, "New Account");
 
+		
+	}
+	
+	@Test (enabled = true, testName = "Terms of service & TrusTe", description = "Test the TOS & TrusTe Links" ,
+			groups = {"Sanity Android1"})
+	public void termsOfServiceAndTruste () throws InterruptedException, IOException, ParserConfigurationException, SAXException{
+		
+		genMeth.signOutFromStartupAndroid(genMeth, droidData);
+		genMeth.clickName(genMeth, droidData.BTNcreateAccount_Name);
+		genMeth.clickName(genMeth, droidData.TermsofService_Name);
+		Thread.sleep(2000);
+		genMeth.isElementVisible(By.name(droidData.TermsofServiceLink_Name));
+		genMeth.takeScreenShotPositive(genMeth, "terms of service link");
+		genMeth.pressBackButton();
+		
+		genMeth.clickId(genMeth, droidData.IconTrusT_Id);
+		genMeth.isElementVisible(By.name(droidData.TrustLink_Name));
+		genMeth.takeScreenShotPositive(genMeth, "TrusT link");
+		genMeth.pressBackButton();
+
+		genMeth.clickName(genMeth, droidData.PrivacyPolicy_Name);
+		genMeth.isElementVisible(By.name( droidData.PrivacyPolicyLink_Name));
+		genMeth.takeScreenShotPositive(genMeth, "privacy policy link");
+		
 		
 	}
 	

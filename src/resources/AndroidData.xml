@@ -119,6 +119,12 @@
 		    <Artists_Name>Artists</Artists_Name>
 		    <Albums_name>Albums</Albums_name>
 		    <Genres_Name>Genres</Genres_Name>
+		    <TermsofService_Name>Terms of Service</TermsofService_Name>
+		    <TermsofServiceLink_Name>pogoplug.com/legal#terms</TermsofServiceLink_Name> 
+		    <TrustLink_Name>privacy-policy.truste.com/certified-policy/mobile/app/en/Pogoplug.com/validation.html</TrustLink_Name>
+		    <PrivacyPolicy_Name>Privacy Policy</PrivacyPolicy_Name>
+		    <PrivacyPolicyLink_Name>pogoplug.com/legal#privacy</PrivacyPolicyLink_Name>
+		      
 		    
 		    
 		</Strings>
@@ -161,9 +167,9 @@
 	   <IconAddShareUser_ID>com.pogoplug.android:id/add_email</IconAddShareUser_ID>
 	   <IconReviewDoneForImageGooglePhone_Name>Review done</IconReviewDoneForImageGooglePhone_Name>
 	   <IconIagreeToTermsOfService_Name>I agree to Terms of Service</IconIagreeToTermsOfService_Name>
+	   <IconTrusT_Id>com.pogoplug.android:id/seal</IconTrusT_Id>
 	</Icon>
 	
-	android:id/up
 	
 	
 	
