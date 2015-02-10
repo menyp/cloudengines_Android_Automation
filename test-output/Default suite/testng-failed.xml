@@ -5,14 +5,13 @@
     <classes>
       <class name="com.pp.android.auto.SanityAndroid">
         <methods>
-          <include name="tour"/>
           <include name="uploadImage"/>
           <include name="sendMail"/>
-          <include name="createfolder"/>
-          <include name="badCredentials"/>
+          <include name="settingsKeepMeSignedIn"/>
           <include name="setupBeforeSuite"/>
           <include name="createRestoreSnapShot"/>
           <include name="search"/>
+          <include name="checkHomeScreen"/>
         </methods>
       </class> <!-- com.pp.android.auto.SanityAndroid -->
     </classes>

@@ -47,6 +47,8 @@ public class AndroidWebElements {
 	String BTNselectAll_Name;
 	String BTNcancel_Name;
 	String BTNcapturePhoto_GooglePhone_Name;
+	String BTNcreateAccount_Name;
+	String BTNupgrade_Name;
 		
 	String TEXTFIELDgeneral_ID;
 	String TEXTFIELDemail_id;
@@ -127,6 +129,7 @@ public class AndroidWebElements {
 	String IconNumbrOfSharedContacts_ID;
 	String IconAddShareUser_ID;
 	String IconReviewDoneForImageGooglePhone_Name;
+	String IconIagreeToTermsOfService_Name;
 	
 	//General Info
 	String ConnectionAIRPLANE_MODE;
@@ -179,8 +182,9 @@ public class AndroidWebElements {
 		this.BTNselectAll_Name = XmlHandel.readAndroidXml("BTNselectAll_Name", langXml, xmlPath);
 		this.BTNcancel_Name = XmlHandel.readAndroidXml("BTNcancel_Name", langXml, xmlPath);
 		this.BTNcapturePhoto_GooglePhone_Name = XmlHandel.readAndroidXml("BTNcapturePhoto_GooglePhone_Name", langXml, xmlPath);
+		this.BTNcreateAccount_Name = XmlHandel.readAndroidXml("BTNcreateAccount_Name", langXml, xmlPath);
+		this.BTNupgrade_Name = XmlHandel.readAndroidXml("BTNupgrade_Name", langXml, xmlPath);
 
-		
 		
 
 		this.TEXTFIELDemail_id = XmlHandel.readAndroidXml("TEXTFIELDemail_id", langXml, xmlPath);
@@ -256,7 +260,10 @@ public class AndroidWebElements {
 		this.IconNumbrOfSharedContacts_ID = XmlHandel.readAndroidXml("IconNumbrOfSharedContacts_ID", langXml, xmlPath);
 		this.IconAddShareUser_ID = XmlHandel.readAndroidXml("IconAddShareUser_ID", langXml, xmlPath);
 		this.IconReviewDoneForImageGooglePhone_Name = XmlHandel.readAndroidXml("IconReviewDoneForImageGooglePhone_Name", langXml, xmlPath);
+		this.IconIagreeToTermsOfService_Name = XmlHandel.readAndroidXml("IconIagreeToTermsOfService_Name", langXml, xmlPath);
 
+		
+		
 		this.ConnectionAIRPLANE_MODE = XmlHandel.readAndroidXml("ConnectionAIRPLANE_MODE", langXml, xmlPath);
 		this.ConnectionWIFI = XmlHandel.readAndroidXml("ConnectionWIFI", langXml, xmlPath);
 		this.CoonectionDATA = XmlHandel.readAndroidXml("CoonectionDATA", langXml, xmlPath);

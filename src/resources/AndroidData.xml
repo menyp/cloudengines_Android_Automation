@@ -42,6 +42,8 @@
 			<BTNselectAll_Name>Select all</BTNselectAll_Name>
 			<BTNcancel_Name>Cancel</BTNcancel_Name>
 			<BTNcapturePhoto_GooglePhone_Name>Shutter button</BTNcapturePhoto_GooglePhone_Name>
+			<BTNcreateAccount_Name>Create Account</BTNcreateAccount_Name>
+			<BTNupgrade_Name>Upgrade</BTNupgrade_Name>
 			
 			
 		</Buttons>
@@ -158,7 +160,7 @@
 	   <IconNumbrOfSharedContacts_ID>com.pogoplug.android:id/number_of_sharees</IconNumbrOfSharedContacts_ID>
 	   <IconAddShareUser_ID>com.pogoplug.android:id/add_email</IconAddShareUser_ID>
 	   <IconReviewDoneForImageGooglePhone_Name>Review done</IconReviewDoneForImageGooglePhone_Name>
-	    
+	   <IconIagreeToTermsOfService_Name>I agree to Terms of Service</IconIagreeToTermsOfService_Name>
 	</Icon>
 	
 	android:id/up

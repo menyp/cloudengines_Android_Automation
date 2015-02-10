@@ -875,10 +875,10 @@ public class AndroidGenericMethods {
 
 	}
 
-	public void waitForElementToBeVisible(AndroidDriver driver, By By,
-			int numAttempts) throws IOException, ParserConfigurationException,
-			SAXException {
-
+	public void waitForElementToBeVisible(AndroidDriver driver, By By,int numAttempts) 
+			throws IOException, ParserConfigurationException,SAXException {
+		
+		AndroidGenericMethods genMeth = new AndroidGenericMethods();
 		int count = 0;
 		WebElement elementToBeVisible = null;
 		while (count < numAttempts) {
@@ -899,13 +899,12 @@ public class AndroidGenericMethods {
 
 			catch (Exception e) {
 				count++;
-
+				genMeth.takeScreenShotPositive(genMeth, "Elelement not visible");
 			}
 
 		}
 
 		if (elementToBeVisible == null) {
-			AndroidGenericMethods genMeth = new AndroidGenericMethods();
 			String imageName = "Element isn't Visible";
 			genMeth.takeScreenShot(driver, genMeth, imageName);
 			org.testng.Assert.fail("WebElement" + " is not Visible");

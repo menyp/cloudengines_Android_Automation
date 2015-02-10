@@ -2,34 +2,34 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="313463" started-at="2015-02-05T12:27:01Z" finished-at="2015-02-05T12:32:15Z">
+  <suite name="Suite" duration-ms="40375" started-at="2015-02-10T14:06:12Z" finished-at="2015-02-10T14:06:53Z">
     <groups>
       <group name="Sanity Android1">
-        <method signature="SanityAndroid.connectionLost()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="connectionLost" class="com.pp.android.auto.SanityAndroid"/>
+        <method signature="SanityAndroid.createNewUser()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="createNewUser" class="com.pp.android.auto.SanityAndroid"/>
       </group> <!-- Sanity Android1 -->
     </groups>
-    <test name="Sanity Tests" duration-ms="313463" started-at="2015-02-05T12:27:01Z" finished-at="2015-02-05T12:32:15Z">
+    <test name="Sanity Tests" duration-ms="40375" started-at="2015-02-10T14:06:12Z" finished-at="2015-02-10T14:06:53Z">
       <class name="com.pp.android.auto.SanityAndroid">
-        <test-method status="PASS" signature="setupBeforeSuite(org.testng.ITestContext)[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="setupBeforeSuite" is-config="true" duration-ms="52367" started-at="2015-02-05T14:26:09Z" finished-at="2015-02-05T14:27:01Z">
+        <test-method status="PASS" signature="setupBeforeSuite(org.testng.ITestContext)[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="setupBeforeSuite" is-config="true" duration-ms="51907" started-at="2015-02-10T16:05:20Z" finished-at="2015-02-10T16:06:12Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@7997b197]]>
+                <![CDATA[org.testng.TestRunner@77307458]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupBeforeSuite -->
-        <test-method status="PASS" signature="checkHomeScreen()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="checkHomeScreen" is-config="true" duration-ms="98" started-at="2015-02-05T14:27:01Z" finished-at="2015-02-05T14:27:02Z">
+        <test-method status="PASS" signature="checkHomeScreen()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="checkHomeScreen" is-config="true" duration-ms="333" started-at="2015-02-10T16:06:12Z" finished-at="2015-02-10T16:06:13Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkHomeScreen -->
-        <test-method status="PASS" signature="connectionLost()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="connectionLost" duration-ms="313341" started-at="2015-02-05T14:27:02Z" description="Checking how the app owrks while connection is lost &amp; back again" finished-at="2015-02-05T14:32:15Z">
+        <test-method status="PASS" signature="createNewUser()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="createNewUser" duration-ms="40011" started-at="2015-02-10T16:06:13Z" description="Sign up- Create new user (Negetive positive test), Privacy Policy, TRUSTe" finished-at="2015-02-10T16:06:53Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- connectionLost -->
-        <test-method status="PASS" signature="sendMail()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="sendMail" is-config="true" duration-ms="1015" started-at="2015-02-05T14:32:15Z" finished-at="2015-02-05T14:32:16Z">
+        </test-method> <!-- createNewUser -->
+        <test-method status="PASS" signature="sendMail()[pri:0, instance:com.pp.android.auto.SanityAndroid@527e5409]" name="sendMail" is-config="true" duration-ms="904" started-at="2015-02-10T16:06:53Z" finished-at="2015-02-10T16:06:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sendMail -->

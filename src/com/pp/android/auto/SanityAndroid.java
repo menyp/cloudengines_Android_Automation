@@ -142,6 +142,20 @@ public class SanityAndroid {
 	// open pogoplug cloud & press
 		genMeth.clickId(  genMeth, droidData.BTNlsm_ID);
 		genMeth.clickName( genMeth, "upload from existing test");
+		boolean isEmpty = genMeth.checkIsElementVisible(By.name(droidData.NoFilesFound_Name));
+		if ( isEmpty != true){
+			
+			genMeth.longPressElement(driver, genMeth, By.id(droidData.ListSecondaryText_ID));
+			genMeth.clickName( genMeth, droidData.BTNdelete_name);
+			genMeth.clickId(  genMeth, droidData.BTNdeleteConfirm_id);
+			genMeth.clickName(genMeth, droidData.BTNmoreOptions_Name);
+			genMeth.clickName(genMeth, droidData.BTNrefresh_name);
+			isEmpty = genMeth.checkIsElementVisible(By.name(droidData.NoFilesFound_Name));
+		}
+		
+		
+		//Make sure that the folder is empty
+		
 	// Capture an image
 		genMeth.clickName( genMeth, droidData.BTNupload_name);
 		genMeth.clickName( genMeth, droidData.OPTIONcaptureNewPhoto_name);
@@ -326,11 +340,22 @@ public class SanityAndroid {
 		
 	}
 	
-	@Test(enabled = false, testName = "Sanity Tests", description = "Sign up- Create new user (Negetive positive test), Privacy Policy, TRUSTe",
+	@Test(enabled = true, testName = "Sanity Tests", description = "Sign up- Create new user (Negetive positive test), Privacy Policy, TRUSTe",
 			groups = { "Sanity Android" })
 	public void createNewUser() throws Exception, Throwable {
-//		genMeth.clickName( genMeth, name);
-		
+		String userRand = genMeth.randomString();
+		genMeth.signOutFromStartupAndroid(genMeth, droidData);
+		genMeth.clickName(genMeth, droidData.BTNcreateAccount_Name);
+		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, userRand + "@test.com");
+		Thread.sleep(1000);
+		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
+		genMeth.clickName(genMeth, droidData.IconIagreeToTermsOfService_Name);
+		genMeth.clickName(genMeth, droidData.BTNcreateAccount_Name);
+		Thread.sleep(1000);
+		genMeth.clickName(genMeth, droidData.BTNcontinue_Name);
+		genMeth.isElementVisible(By.name( droidData.BTNupgrade_Name));
+		genMeth.takeScreenShotPositive(genMeth, "New Account");
+
 		
 	}
 	
@@ -524,19 +549,13 @@ public class SanityAndroid {
 		
 		//search for a contact
 		genMeth.clickName(genMeth, droidData.FileExplorer_Name);
-		genMeth.clickId(genMeth, droidData.IconNumbrOfSharedContacts_ID);
+		//open a random folder in order to be able to press the add user
+		genMeth.clickName(genMeth, "Favorites");
+		genMeth.clickName(genMeth, "Add Users");
+//		genMeth.clickId(genMeth, droidData.IconNumbrOfSharedContacts_ID);
 		genMeth.clickId(genMeth, droidData.IconAddShareUser_ID);
 		driver.findElementById("android:id/search_src_text").sendKeys("MenyTheb");
 		genMeth.isElementVisible(By.name("Menythebest"));
-		
-//		genMeth.isElementInvisible(By.name("No matching contacts found."));
-//		genMeth.clickId(genMeth, "android:id/search_close_btn");
-////	genMeth.clickName(genMeth, "Clear query");
-//		driver.findElementById("android:id/search_src_text").sendKeys(Random);
-////	genMeth.sendName(genMeth, "Search contacts", Random);
-//		genMeth.isElementVisible(By.name("No matching contacts found."));
-//		genMeth.clickId(genMeth, "android:id/search_close_btn");
-//		genMeth.isElementVisible(By.name("Meny"));
 		
 		//Back to start up screen
 		genMeth.pressBackButton();
@@ -544,8 +563,7 @@ public class SanityAndroid {
 		genMeth.clickName(genMeth, droidData.BTNcancel_Name);
 		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
 		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
-
-		
+	
 	}
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Settings: create & restore a snapshot",
@@ -565,8 +583,8 @@ public class SanityAndroid {
 			genMeth.clickName( genMeth, droidData.BTNdelete_name);
 			genMeth.clickName( genMeth, droidData.BTNrestoreSnapshot_Name);
 		}
-		
-		//Create snapshot
+				
+		//Create snapshot (precondition is to make sure that at least one image video & contact is available!!!)
 		genMeth.clickId(  genMeth, droidData.BTNhome_ID);
 		genMeth.clickName( genMeth, droidData.BTNcreateSnapshot_Name);
 		genMeth.takeScreenShotPositive( genMeth, currentTime + "_CreatingSnapshotScreen");
@@ -576,11 +594,13 @@ public class SanityAndroid {
 		// delete all the images from camera roll
 		genMeth.pressHomeButton();
 		genMeth.clickName( genMeth, droidData.GalleryApp_Name);
-		genMeth.clickId(genMeth, "com.android.gallery3d:id/gl_root_view");
+		//genMeth.clickId(genMeth, "com.android.gallery3d:id/gl_root_view");
 
-		Boolean isGalleryEmpty = genMeth.fastCheckIsElementVisible( By.name(droidData.NoFiles_Name));
+//		Boolean isGalleryEmpty = genMeth.fastCheckIsElementVisible( By.name(droidData.NoFiles_Name));
+		Boolean isGalleryEmpty = genMeth.fastCheckIsElementVisible( By.name("Camera"));
 		if (isGalleryEmpty != true){
 			//Samsung Nexus
+			genMeth.clickId(genMeth, "com.android.gallery3d:id/gl_root_view");
 			genMeth.clickName(genMeth, droidData.BTNmoreOptions_Name);
 			genMeth.clickName(genMeth, droidData.BTNselectItem_Name);
 			genMeth.clickName(genMeth, "0 selected");
@@ -651,16 +671,16 @@ public class SanityAndroid {
 	}
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Settings: Save Login",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android12" })
 	public void settingsKeepMeSignedIn() throws Exception, Throwable {
 
 		// Keep me signed in = true
 		genMeth.clickName(genMeth, droidData.Settings_Name);
-		genMeth.takeScreenShotPositive(genMeth, "keep me signed in is checked");
+//		genMeth.takeScreenShotPositive(genMeth, "keep me signed in is checked");
 		
 		try {
-			driver.closeApp();
 			driver.launchApp();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -675,7 +695,7 @@ public class SanityAndroid {
 		genMeth.clickName(genMeth, "Keep me signed in");
 		
 		try {
-			driver.closeApp();
+			driver.close();
 			driver.launchApp();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
