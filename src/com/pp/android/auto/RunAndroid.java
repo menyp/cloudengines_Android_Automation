@@ -22,20 +22,20 @@ public class RunAndroid {
 	    //Thread.sleep(4000);
 		
 		//Run the first suite
-		
+//		
 		TestNG testng1 = new TestNG();
 		testng1.setTestClasses(new Class[] { SanityAndroid.class });
-		testng1.setGroups("");
+		testng1.setGroups("Sanity Android");
 		testng1.addListener(tla);
 		testng1.run();
-//		
+		
 //		//Second suite- send report by mail
-//		TestNG testng2 = new TestNG();
-//		testng2.setTestClasses(new Class[] { SendReport.class });
-//		testng2.setGroups("send mail");
-//		testng2.addListener(tla);
-//		testng2.run();
-//		
+		TestNG testng2 = new TestNG();
+		testng2.setTestClasses(new Class[] { SendReport.class });
+		testng2.setGroups("send mail");
+		testng2.addListener(tla);
+		testng2.run();
+
 //		//Stop Appium server
 //		//Runtime.getRuntime().exec(stopServer);
 //		//Runtime.getRuntime().exec("/Users/pogoplug/stopAppium");

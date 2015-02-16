@@ -90,7 +90,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">2 methods,   2 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -101,7 +101,12 @@
                     <div class="method-list-content passed suite-Suite">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.pp.android.auto.SanityAndroid" hash-for-method="termsOfServiceAndTruste">termsOfServiceAndTruste</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.pp.android.auto.SanityAndroid" hash-for-method="createRestoreSnapShot">createRestoreSnapShot</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.pp.android.auto.SanityAndroid" hash-for-method="tour">tour</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -124,11 +129,20 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="termsOfServiceAndTruste">
-                  </a> <!-- termsOfServiceAndTruste -->
-                  <span class="method-name">termsOfServiceAndTruste</span>
+                  <a name="createRestoreSnapShot">
+                  </a> <!-- createRestoreSnapShot -->
+                  <span class="method-name">createRestoreSnapShot</span>
                   <em>
-(Test the TOS & TrusTe Links)                  </em>
+(Settings: create & restore a snapshot)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="tour">
+                  </a> <!-- tour -->
+                  <span class="method-name">tour</span>
+                  <em>
+(Test TOUR for New accounts and for upgrade accounts)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -178,7 +192,11 @@
               <span class="test-group-name">Sanity Android1</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">termsOfServiceAndTruste</span>
+                <span class="method-in-group-name">createRestoreSnapShot</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">tour</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -198,16 +216,20 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'termsOfServiceAndTruste')
+data.setCell(0, 1, 'createRestoreSnapShot')
 data.setCell(0, 2, 'com.pp.android.auto.SanityAndroid')
-data.setCell(0, 3, 20842);
+data.setCell(0, 3, 2001046);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'tour')
+data.setCell(1, 2, 'com.pp.android.auto.SanityAndroid')
+data.setCell(1, 3, 1266257);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 20 seconds</span>
+              <span class="suite-total-time">Total running time: 54 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -222,7 +244,7 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">15 ignored methods</span>
+            <span class="header-content">14 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
@@ -232,8 +254,6 @@ return data;
                 <br/>
                 <span class="ignored-method-name">createNewUser</span>
                 <br/>
-                <span class="ignored-method-name">tour</span>
-                <br/>
                 <span class="ignored-method-name">settingsKeepMeSignedIn</span>
                 <br/>
                 <span class="ignored-method-name">createfolder</span>
@@ -241,6 +261,8 @@ return data;
                 <span class="ignored-method-name">badCredentials</span>
                 <br/>
                 <span class="ignored-method-name">backupInBackground</span>
+                <br/>
+                <span class="ignored-method-name">termsOfServiceAndTruste</span>
                 <br/>
                 <span class="ignored-method-name">Favorites</span>
                 <br/>
@@ -256,8 +278,6 @@ return data;
                 <br/>
                 <span class="ignored-method-name">search</span>
                 <br/>
-                <span class="ignored-method-name">createRestoreSnapShot</span>
-                <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -270,20 +290,28 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">com.pp.android.auto.SanityAndroid</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
-                <span class="method-name">setupBeforeSuite(org.testng.TestRunner@74bdc168)</span>
+                <span class="method-name">setupBeforeSuite(org.testng.TestRunner@6063d80a)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
                 <span class="method-name">checkHomeScreen</span>
-                <span class="method-start">50216 ms</span>
+                <span class="method-start">57832 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">termsOfServiceAndTruste</span>
-                <span class="method-start">50761 ms</span>
+                <span class="method-name">createRestoreSnapShot</span>
+                <span class="method-start">58030 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">checkHomeScreen</span>
+                <span class="method-start">2059082 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">tour</span>
+                <span class="method-start">2156181 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
                 <span class="method-name">sendMail</span>
-                <span class="method-start">71633 ms</span>
+                <span class="method-start">3422578 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

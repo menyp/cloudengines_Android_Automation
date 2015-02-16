@@ -8,7 +8,7 @@ public class SendReport {
 	public void sendMail() throws Exception {
 
 		SendResults sr = new SendResults("elicherni444@gmail.com","meny@cloudengines.com", "TestNG results", "Test Results");
-	//	sr.sendTestNGResult();
+//		sr.sendTestNGResult();
 		sr.sendRegularEmail();
 
 	}

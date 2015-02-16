@@ -6,7 +6,6 @@
 		<run>
 		    
 		    <include name="Sanity Android1"/>     
-		    
 		</run>
 	</groups>
     <classes>

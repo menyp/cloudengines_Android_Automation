@@ -3,20 +3,13 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import io.appium.java_client.NetworkConnectionSetting;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
-
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.mobile.NetworkConnection;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeSuite;
 import org.xml.sax.SAXException;
@@ -86,7 +79,8 @@ public class SanityAndroid {
 	}
 	
 
-	@Test (enabled = true , description = "Test the Create folder with Android" , groups= {"Sanity Android"}  /*dependsOnMethods={"testLogin"}*/)	
+	@Test (enabled = true , description = "Test the Create folder with Android" ,
+			groups= {"Sanity Android"}  /*dependsOnMethods={"testLogin"}*/)	
 	public void createfolder() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
 		String currentDate = genMeth.currentTime();
@@ -139,6 +133,7 @@ public class SanityAndroid {
 			groups= {"Sanity Android"})	
 	public void uploadImage() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
+		String currentTime = genMeth.currentTime();
 	// open pogoplug cloud & press
 		genMeth.clickId(  genMeth, droidData.BTNlsm_ID);
 		genMeth.clickName( genMeth, "upload from existing test");
@@ -193,7 +188,7 @@ public class SanityAndroid {
 	// Make sure that the "Image not available" text doesn't displayed
 		Thread.sleep(3000);
 		genMeth.isElementInvisibleText( By.name(droidData.ImageNotAvailable_Name), droidData.ImageNotAvailable_Name);
-		genMeth.takeScreenShotPositive( genMeth, "testUploadImage");
+		genMeth.takeScreenShotPositive( genMeth, currentTime +  "testUploadImage");
 		Thread.sleep(1000);	
 	//	genMeth.clickXpth(driver, genMeth, "//android.view.View[1]");
 		genMeth.clickId(  genMeth, droidData.FullScreen_ID);
@@ -218,14 +213,15 @@ public class SanityAndroid {
 	
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Test TOUR for New accounts and for upgrade accounts",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 	public void tour() throws Exception, Throwable {
 
 		
 		 // =============================================================== 
 		 //        Tour for Free Account
 		 //===============================================================
-		 String curentTime = genMeth.currentTime();
+		 String currentTime = genMeth.currentTime();
+		 String currentDate = genMeth.currentDate();
 		 
 		genMeth.killAppAndroid(driver);
 		driver = genMeth.setCapabilitiesAndroid(genMeth);
@@ -237,23 +233,23 @@ public class SanityAndroid {
 		
 		// check Never loose a photo
 		genMeth.isElementVisible( By.name(droidData.NeverLoseAPhoto));
-		genMeth.takeScreenShotPositive( genMeth, curentTime + droidData.NeverLoseAPhoto );
+		genMeth.takeScreenShotPositive( genMeth, currentTime +  droidData.NeverLoseAPhoto );
 		driver.swipe(600, 800, 50, 800, 600);
 		
 		//Check Transfer phones simply
 		genMeth.isElementVisible( By.name(droidData.TransferPhonesSimply_name));
-		genMeth.takeScreenShotPositive( genMeth, curentTime + droidData.TransferPhonesSimply_name );
+		genMeth.takeScreenShotPositive( genMeth, currentTime +  droidData.TransferPhonesSimply_name );
 		driver.swipe(600, 800, 50, 800, 600);
 		// Check Unlimited protection
 		genMeth.isElementVisible( By.name(droidData.UnlimitedProtection_Name));
-		genMeth.takeScreenShotPositive( genMeth, curentTime + droidData.UnlimitedProtection_Name );
+		genMeth.takeScreenShotPositive( genMeth, currentTime +  droidData.UnlimitedProtection_Name );
 		
 		// SKIP 
 		genMeth.clickId(  genMeth, droidData.BTNskip_ID);
 		
 		// Check Backup
 		genMeth.isElementVisible( By.name(droidData.Backup_Name));
-		genMeth.takeScreenShotPositive( genMeth, curentTime + droidData.Backup_Name );
+		genMeth.takeScreenShotPositive( genMeth, "/" + currentDate +  currentTime + droidData.Backup_Name );
 		
 		// press the Continue button 
 		genMeth.clickId(  genMeth, droidData.BTNfinishTour_id);	
@@ -290,12 +286,12 @@ public class SanityAndroid {
 		driver.swipe(600, 800, 50, 800, 600);
 		// Check Unlimited protection
 		genMeth.isElementVisible(By.name(droidData.UnlimitedProtection_Name));
-		genMeth.takeScreenShotPositive( genMeth, curentTime + "_Tour");
+		genMeth.takeScreenShotPositive( genMeth, "/" + currentDate +  currentTime + "_Tour");
 
 		// UPGRADE now at pogoplug.com
 		genMeth.clickId(  genMeth, droidData.BTNtourUpgradeNow_ID);
 		genMeth.isElementVisible( By.name(droidData.BillingUrl_Name));
-		genMeth.takeScreenShotPositive( genMeth, curentTime + "_Tour_Billing_Page");
+		genMeth.takeScreenShotPositive( genMeth, "/" + currentDate +  currentTime + "_Tour_Billing_Page");
 		
 		
 		
@@ -317,7 +313,7 @@ public class SanityAndroid {
 		
 		//Check Transfer phones simply
 		genMeth.isElementVisible( By.name(droidData.TransferPhonesSimply_name));
-		genMeth.takeScreenShotPositive( genMeth, curentTime + "_Tour_Finish");
+		genMeth.takeScreenShotPositive( genMeth, "/" + currentDate +  currentTime + "_Tour_Finish");
 		genMeth.clickId(  genMeth, "com.pogoplug.android:id/tour_indicator_placehoder");
 		
 		// Check Backup
@@ -344,6 +340,9 @@ public class SanityAndroid {
 			groups = { "Sanity Android" })
 	public void createNewUser() throws Exception, Throwable {
 		String userRand = genMeth.randomString();
+		String currentTime = genMeth.currentTime();
+		String currentDate = genMeth.currentDate();
+		
 		genMeth.signOutFromStartupAndroid(genMeth, droidData);
 		
 		//Attempt to Create a new user with bad format
@@ -362,31 +361,34 @@ public class SanityAndroid {
 		Thread.sleep(1000);
 		genMeth.clickName(genMeth, droidData.BTNcontinue_Name);
 		genMeth.isElementVisible(By.name( droidData.BTNupgrade_Name));
-		genMeth.takeScreenShotPositive(genMeth, "New Account");
+		genMeth.takeScreenShotPositive(genMeth, "/" + currentDate + currentTime + "New Account");
 
 		
 	}
 	
 	@Test (enabled = true, testName = "Terms of service & TrusTe", description = "Test the TOS & TrusTe Links" ,
-			groups = {"Sanity Android1"})
+			groups = {"Sanity Android"})
 	public void termsOfServiceAndTruste () throws InterruptedException, IOException, ParserConfigurationException, SAXException{
+		
+		String currentTime = genMeth.currentTime();
+		String currentDate = genMeth.currentDate();
 		
 		genMeth.signOutFromStartupAndroid(genMeth, droidData);
 		genMeth.clickName(genMeth, droidData.BTNcreateAccount_Name);
 		genMeth.clickName(genMeth, droidData.TermsofService_Name);
 		Thread.sleep(2000);
 		genMeth.isElementVisible(By.name(droidData.TermsofServiceLink_Name));
-		genMeth.takeScreenShotPositive(genMeth, "terms of service link");
+		genMeth.takeScreenShotPositive(genMeth, "/" + currentDate + currentTime + "terms of service link");
 		genMeth.pressBackButton();
 		
 		genMeth.clickId(genMeth, droidData.IconTrusT_Id);
 		genMeth.isElementVisible(By.name(droidData.TrustLink_Name));
-		genMeth.takeScreenShotPositive(genMeth, "TrusT link");
+		genMeth.takeScreenShotPositive(genMeth, "/" + currentDate + currentTime + "TrusT link");
 		genMeth.pressBackButton();
 
 		genMeth.clickName(genMeth, droidData.PrivacyPolicy_Name);
 		genMeth.isElementVisible(By.name( droidData.PrivacyPolicyLink_Name));
-		genMeth.takeScreenShotPositive(genMeth, "privacy policy link");
+		genMeth.takeScreenShotPositive(genMeth,"/" + currentDate + currentTime + "privacy policy link");
 		
 		
 	}
@@ -394,18 +396,21 @@ public class SanityAndroid {
 	@Test(enabled = true, testName = "Sanity Tests", description = "login with bad/missing credentials , forgot password (negative & positive)",
 			groups = { "Sanity Android" })
 	public void badCredentials() throws Exception, Throwable {
+		
 		String currentTime = genMeth.currentTime();
+//		String currentDate = genMeth.currentDate();
+		
 		genMeth.signOutFromStartupAndroid(genMeth, droidData);
 		genMeth.clickId( genMeth, droidData.BTNalreadyHaveAnAccount_id);
 		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, currentTime);
 		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
 		genMeth.clickId( genMeth, droidData.BTNlogin_id);
 		Thread.sleep(3000);
-		genMeth.takeScreenShotPositive( genMeth, currentTime + "_Bad_login");
+		genMeth.takeScreenShotPositive( genMeth,  currentTime + "_Bad_login");
 		genMeth.sendId( genMeth, droidData.TEXTFIELDemail_id, droidData.userUnlimited_name);
 		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
-		genMeth.clickId( genMeth, droidData.BTNlogin_id);		
-		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
+		genMeth.clickId( genMeth, droidData.BTNlogin_id);	
+		genMeth.isElementVisible(By.name(droidData.CATEGORIES));
 
 
 		// Login with bad credentials
@@ -421,6 +426,9 @@ public class SanityAndroid {
 	@Test(enabled = true, testName = "Sanity Tests", description = "Search functionality & filter",
 			groups = { "Sanity Android" })
 	public void search() throws Exception, Throwable {
+		
+		String currentTime = genMeth.currentTime();
+		String currentDate = genMeth.currentDate();
 		
 		//Search Folder in ROOT
 		String Random = genMeth.randomString();	
@@ -447,13 +455,13 @@ public class SanityAndroid {
 		genMeth.sendId(genMeth, "android:id/search_view", Random);
 		genMeth.clickId( genMeth, "android:id/search_close_btn");
 		genMeth.isElementVisible( By.id("android:id/search_src_text"));
-		genMeth.takeScreenShotPositive( genMeth, "Delete_TextBox_Via_X");
+		genMeth.takeScreenShotPositive( genMeth, "/" + currentDate +  "Delete_TextBox_Via_X");
 		Thread.sleep(2000);
 
 		genMeth.sendId(genMeth, "android:id/search_view", Random);
 		genMeth.pressEnter();
 		genMeth.isElementVisible( By.name(droidData.NoFilesFound_Name));
-		genMeth.takeScreenShotPositive( genMeth, droidData.NoFilesFound_Name);
+		genMeth.takeScreenShotPositive( genMeth, currentTime +   droidData.NoFilesFound_Name);
 		genMeth.clickId(genMeth, droidData.BTNlsm_ID);
 		Thread.sleep(1000);
 		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
@@ -476,7 +484,7 @@ public class SanityAndroid {
 		genMeth.isElementInvisible(By.name(droidData.Loading_Name));
 		genMeth.isElementInvisible( By.name(droidData.NoFilesFound_Name));
 		genMeth.isElementVisible( By.name(droidData.SearchImageFromFolder_Name));
-		genMeth.takeScreenShotPositive(genMeth, droidData.SearchImageFromFolder_Name);
+		genMeth.takeScreenShotPositive(genMeth, "/" + currentDate + currentTime + droidData.SearchImageFromFolder_Name);
 		genMeth.tapId(genMeth, droidData.BTNlsm_ID);
 
 		// Search Empty results in FOLDER
@@ -487,8 +495,12 @@ public class SanityAndroid {
 		
 		//Verify that the "x" deletes the text in the search
 		genMeth.clickName( genMeth, droidData.BTNsearch_name);
-		genMeth.sendId(genMeth, "android:id/search_src_text", Random);
-		genMeth.isElementVisible( By.name(Random));
+		genMeth.clickId( genMeth, "android:id/search_close_btn" );
+		genMeth.sendId(genMeth, "android:id/search_src_text", currentDate);
+		genMeth.isElementVisible(By.name(currentDate));
+		//genMeth.clickName(genMeth,"Clear query"); //   android:id/search_close_btn
+		genMeth.clickId( genMeth, "android:id/search_close_btn" );
+		genMeth.isElementInvisible( By.name(currentDate));
 		
 		//Search in Songs A song
 		genMeth.clickId(genMeth, "android:id/closeButton");
@@ -599,10 +611,11 @@ public class SanityAndroid {
 	}
 	
 	@Test(enabled = true, testName = "Sanity Tests", description = "Settings: create & restore a snapshot",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 	public void createRestoreSnapShot() throws Exception, Throwable {
 		
 		String currentTime = genMeth.currentTime();
+		String currentDate = genMeth.currentDate();
 		
 		genMeth.clickName( genMeth, droidData.Settings_Name);
 		driver.scrollToExact(droidData.BTNrestoreSnapshot_Name);
@@ -619,7 +632,8 @@ public class SanityAndroid {
 		//Create snapshot (precondition is to make sure that at least one image video & contact is available!!!)
 		genMeth.clickId(  genMeth, droidData.BTNhome_ID);
 		genMeth.clickName( genMeth, droidData.BTNcreateSnapshot_Name);
-		genMeth.takeScreenShotPositive( genMeth, currentTime + "_CreatingSnapshotScreen");
+		Thread.sleep(1000);
+		genMeth.takeScreenShotPositive( genMeth, currentTime +  "_CreatingSnapshotScreen");
 		genMeth.waitForElementToBeVisible(driver, By.name(droidData.SnapshotTakenSuccessfully_Name), 3);
 		genMeth.clickName( genMeth, droidData.BTNdismiss_Name);
 		
@@ -628,7 +642,7 @@ public class SanityAndroid {
 		genMeth.clickName( genMeth, droidData.GalleryApp_Name);
 		//genMeth.clickId(genMeth, "com.android.gallery3d:id/gl_root_view");
 
-//		Boolean isGalleryEmpty = genMeth.fastCheckIsElementVisible( By.name(droidData.NoFiles_Name));
+		//Boolean isGalleryEmpty = genMeth.fastCheckIsElementVisible( By.name(droidData.NoFiles_Name));
 		Boolean isGalleryEmpty = genMeth.fastCheckIsElementVisible( By.name("Camera"));
 		if (isGalleryEmpty != true){
 			//Samsung Nexus
@@ -657,12 +671,23 @@ public class SanityAndroid {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		genMeth.clickId(genMeth, droidData.IconLeftUpperBack_ID);
+		genMeth.clickName(genMeth, droidData.Settings_Name);
 		driver.scrollToExact(droidData.BTNrestoreSnapshot_Name);
 		genMeth.clickName( genMeth, droidData.BTNrestoreSnapshot_Name);
 		
 		// Make sure a new entry was made
 		genMeth.isElementInvisible(  By.name(droidData.NoFilesFound_Name));
+		Boolean isAutoExist = genMeth.checkIsElementVisible(By.id(droidData.IconNumbrOfSharedContacts_ID));
+		if (isAutoExist){
+			
+			genMeth.clickXpth(driver, genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[2]");
+			
+		}
+		else{
 		genMeth.clickId(genMeth, "com.pogoplug.android:id/list_item_image");
+		}
+		
 		genMeth.clickName( genMeth, droidData.BTNstart_Name);
 		/*
 		 * LG
@@ -682,7 +707,7 @@ public class SanityAndroid {
 		genMeth.clickName(genMeth, "0 selected");
 		genMeth.clickName(genMeth, droidData.BTNselectAll_Name);
 		genMeth.isElementVisible(By.name("2 selected"));
-		genMeth.takeScreenShotPositive(genMeth, "restored snapshot to gallery");
+		genMeth.takeScreenShotPositive(genMeth, "/" + currentDate + currentTime + "restored snapshot to gallery");
 		genMeth.pressBackButton();		
 		genMeth.pressBackButton();
 		genMeth.pressBackButton();
@@ -700,10 +725,11 @@ public class SanityAndroid {
 		genMeth.clickId(  genMeth, droidData.IconLeftUpperBack_ID);
 		*/
 		
-	}
+		}
 	
-	@Test(enabled = true, testName = "Sanity Tests", description = "Settings: Save Login",
-			groups = { "Sanity Android12" })
+	
+	@Test (enabled = false, testName = "Sanity Tests", description = "Settings: Save Login", groups = { "Sanity Android" })
+			
 	public void settingsKeepMeSignedIn() throws Exception, Throwable {
 
 		// Keep me signed in = true
@@ -739,10 +765,10 @@ public class SanityAndroid {
 	}
 
 	@Test(enabled = false, testName = "Sanity Tests", description = "Settings: Backup Enable/disable without upload in the background",
-			groups = { "Regression iOS" })
+			groups = { "Regression Droid" })
 	public void settingsBackupEnableDisable() throws Exception, Throwable {
 
-		// Disable the Backup
+		// Disable the Backup from tour
 		
 
 		// "Enable" the backup form LSM (Left Side Menu) & cancel it
@@ -933,6 +959,9 @@ public class SanityAndroid {
 			groups={ "Sanity Android"} )
 	public void connectionLost() throws InterruptedException, IOException, ParserConfigurationException, SAXException{
 		
+		String currentTime = genMeth.currentTime();
+		String currentDate = genMeth.currentDate();
+		
 		// check app while connection is lost & return during login
 		genMeth.signOutFromStartupAndroid(genMeth, droidData);
 		
@@ -942,7 +971,7 @@ public class SanityAndroid {
 		Thread.sleep(1000);
 		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
 		genMeth.clickId( genMeth, droidData.BTNlogin_id);
-		genMeth.takeScreenShotPositive(genMeth, "login_without_connection");
+		genMeth.takeScreenShotPositive(genMeth, "/" + currentDate + currentTime + "login_without_connection");
 		genMeth.isElementVisible(By.id(droidData.TEXTFIELDemail_id));
 		
 		
@@ -957,7 +986,7 @@ public class SanityAndroid {
 		genMeth.clickName(genMeth, droidData.FileExplorer_Name);
 		genMeth.clickName( genMeth, droidData.BTNrefresh_name);
 		genMeth.isElementVisible(By.name("No internet connection"));
-		genMeth.takeScreenShotPositive(genMeth, "No internet connection");
+		genMeth.takeScreenShotPositive(genMeth, "/" + currentDate + currentTime + "No internet connection");
 		
 		genMeth.setWifiOn();
 		genMeth.clickName(genMeth, droidData.BTNrefresh_name);
@@ -1005,7 +1034,7 @@ public class SanityAndroid {
 	// Make sure that the "Image not available" text doesn't displayed
 		Thread.sleep(3000);
 		genMeth.isElementInvisibleText( By.name(droidData.ImageNotAvailable_Name), droidData.ImageNotAvailable_Name);
-		genMeth.takeScreenShotPositive( genMeth, "testUploadImage");
+		genMeth.takeScreenShotPositive( genMeth, currentTime +  "testUploadImage");
 		Thread.sleep(1000);	
 		genMeth.clickId(  genMeth, droidData.FullScreen_ID);
 		genMeth.clickId(  genMeth, droidData.BTNhome_ID);

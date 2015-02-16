@@ -25,6 +25,8 @@ public class SendResults {
 		FileInputStream stream = null;
 		try { // testNG stores results in the ./test-output directory by default
 			stream = new FileInputStream(new File("test-output/emailable-report.html"));
+//			stream = new FileInputStream(new File("/Users/qa/Desktop/Appium/runnable_Jars/test-output/emailable-report.html"));											 
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} 

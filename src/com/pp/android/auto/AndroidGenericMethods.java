@@ -193,7 +193,7 @@ public class AndroidGenericMethods {
 		capabilities.setCapability("platformName", genMeth.getValueFromPropFile("platformName"));
 		capabilities.setCapability("platformVersion", genMeth.getValueFromPropFile("platformVersion"));
 		capabilities.setCapability("deviceName", genMeth.getValueFromPropFile("deviceName"));
-		capabilities.setCapability("app",genMeth.getValueFromPropFile("app"));
+		capabilities.setCapability("app",genMeth.getValueFromPropFile("pogoplugPath"));
 		capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
 		capabilities.setCapability("appWaitActivity", genMeth.getValueFromPropFile("appWaitActivity"));
 		capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appActivity"));
@@ -299,10 +299,10 @@ public class AndroidGenericMethods {
 	public void takeScreenShotPositive(AndroidGenericMethods genMeth, String imageName) throws IOException {
 
 		File scrFile = (driver.getScreenshotAs(OutputType.FILE));
-		String currentTime = genMeth.currentTime();
+		String currentDate = genMeth.currentDate();
 
 		// Now you can do whatever you need to do with it, for example copy somewhere
-		String imagePath = genMeth.getValueFromPropFile("screenshotPathPositive") + currentTime + "_" + imageName + ".JPG";
+		String imagePath = genMeth.getValueFromPropFile("screenshotPathPositive")  + currentDate + "/" + imageName + ".JPG";
 		FileUtils.copyFile(scrFile, new File(imagePath));
 
 	}
@@ -899,7 +899,7 @@ public class AndroidGenericMethods {
 
 			catch (Exception e) {
 				count++;
-				genMeth.takeScreenShotPositive(genMeth, "Elelement not visible");
+//				genMeth.takeScreenShot (driver, genMeth, "Elelement not visible");
 			}
 
 		}

@@ -10,9 +10,10 @@
     <classes>
       <class name="com.pp.android.auto.SanityAndroid">
         <methods>
+          <include name="tour"/>
           <include name="sendMail"/>
-          <include name="termsOfServiceAndTruste"/>
           <include name="setupBeforeSuite"/>
+          <include name="createRestoreSnapShot"/>
           <include name="checkHomeScreen"/>
         </methods>
       </class> <!-- com.pp.android.auto.SanityAndroid -->
