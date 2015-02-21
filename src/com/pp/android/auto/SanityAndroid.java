@@ -1,9 +1,12 @@
 package com.pp.android.auto;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import io.appium.java_client.NetworkConnectionSetting;
 import io.appium.java_client.android.AndroidDriver;
+
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -37,13 +40,14 @@ public class SanityAndroid {
 		
 		droidData= new AndroidWebElements(webElementXmlLang, webElementXmlPath);
 		driver = genMeth.setCapabilitiesAndroid(genMeth);
-
 		genMeth.cleanLoginAndroid(genMeth, droidData, droidData.userUnlimited_name); 
 
 	}
 
 	@BeforeMethod (alwaysRun = true)
 	public void checkHomeScreen() throws InterruptedException, IOException, ParserConfigurationException, SAXException{
+
+//		genMeth.setWifiOn();
 
 		// Check if the client still logged in & in StartUp screen before each test
 		if (driver == null) {
@@ -78,15 +82,55 @@ public class SanityAndroid {
 
 	}
 	
+	@AfterMethod(enabled = true, dependsOnMethods = { "connectionLost" })
+	public void enabledWifi() {
 
-	@Test (enabled = true , description = "Test the Create folder with Android" ,
+		genMeth.setWifiOn();
+	}
+
+	@Test (enabled = true , retryAnalyzer = Retry.class, description = "Test the Create folder with Android" ,
 			groups= {"Sanity Android"}  /*dependsOnMethods={"testLogin"}*/)	
 	public void createfolder() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
 		String currentDate = genMeth.currentTime();
 		genMeth.clickName( genMeth, droidData.FileExplorer_Name);	
+		
+		//check if "Create folder" exist & if not create it
+		
+		Boolean isCreateFolder = genMeth.checkIsElementVisible(By.name("Create folder"));
+		if (isCreateFolder != true){
+			genMeth.clickName( genMeth, droidData.BTNnewFolder_name);
+			genMeth.sendId(  genMeth, droidData.TEXTFIELDgeneral_ID, "Create folder");
+			genMeth.clickId(  genMeth, droidData.BTNcreateNewFolder_id);
+			
+//			Check if the folder was created successfully 
+			genMeth.isElementVisible( By.name("Create folder"));
+
+		}
+		
 //		Create a new folder 
-		genMeth.clickName( genMeth, droidData.BTNnewFolder_name);
+		genMeth.clickName(genMeth, "Create folder");
+		
+		//Check if empty & if not delete all folders
+		
+		
+		//check if No files found display
+		Boolean isEmpty = genMeth.checkIsElementVisible(By.name(droidData.NoFilesFound_Name));
+		while (isEmpty != true){
+			//delete first folder
+			genMeth.longPressElement(driver, genMeth, By.id("com.pogoplug.android:id/list_item"));
+			genMeth.clickName(genMeth, droidData.BTNdelete_name);
+			genMeth.clickId(  genMeth, droidData.BTNdeleteConfirm_id);
+			genMeth.clickName(genMeth, droidData.BTNmoreOptions_Name);
+			genMeth.clickName(genMeth, droidData.BTNrefresh_name);
+			isEmpty = genMeth.checkIsElementVisible(By.name(droidData.NoFilesFound_Name));
+
+		}
+		
+		
+//		genMeth.clickName( genMeth, droidData.BTNnewFolder_name);
+		genMeth.clickName(genMeth, droidData.BTNmoreOptions_Name);
+		genMeth.clickName(genMeth, "New Folder");
 		
 //	 	Dismiss the create folder window		
 		genMeth.sendId(  genMeth, droidData.TEXTFIELDgeneral_ID, currentDate);
@@ -96,7 +140,10 @@ public class SanityAndroid {
 		genMeth.isElementInvisible(  By.name(currentDate));
 		
 //		Now Press the create folder
-		genMeth.clickName( genMeth, droidData.BTNnewFolder_name);
+		genMeth.clickName(genMeth, droidData.BTNmoreOptions_Name);
+		genMeth.clickName(genMeth, "New Folder");
+
+//		genMeth.clickName( genMeth, droidData.BTNnewFolder_name);
 		genMeth.sendId(  genMeth, droidData.TEXTFIELDgeneral_ID, currentDate);
 		genMeth.clickId(  genMeth, droidData.BTNcreateNewFolder_id);
 		
@@ -104,10 +151,11 @@ public class SanityAndroid {
 		genMeth.isElementVisible( By.name(currentDate));
 		
 	// sort the list in order to place the image in the first position
+		genMeth.clickName(genMeth, droidData.BTNmoreOptions_Name);
 		genMeth.clickName( genMeth,droidData.BTNsort_name);
 		genMeth.clickName(genMeth, droidData.OPTIONsortOldestFirst_name);
 
-	// long press the folder (choosing the folder for deletion by swipe long duration- need to figure out how to do it by proper long press code)
+	// long press the folder for deletion
 		genMeth.longPressElement(driver, genMeth, By.name(currentDate));
 		genMeth.clickName( genMeth, droidData.BTNdelete_name);
 		
@@ -129,7 +177,7 @@ public class SanityAndroid {
 		  }
 
 	
-	@Test (enabled = true ,testName="Sanity Tests", description = "Test the Upload utility with Android" ,
+	@Test (enabled = true , retryAnalyzer = Retry.class, testName="Sanity Tests", description = "Test the Upload utility with Android" ,
 			groups= {"Sanity Android"})	
 	public void uploadImage() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
@@ -212,8 +260,8 @@ public class SanityAndroid {
 		}
 	
 	
-	@Test(enabled = true, testName = "Sanity Tests", description = "Test TOUR for New accounts and for upgrade accounts",
-			groups = { "Sanity Android1" })
+	@Test(enabled = true, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Test TOUR for New accounts and for upgrade accounts",
+			groups = { "Sanity Android" })
 	public void tour() throws Exception, Throwable {
 
 		
@@ -336,7 +384,7 @@ public class SanityAndroid {
 		
 	}
 	
-	@Test(enabled = true, testName = "Sanity Tests", description = "Sign up- Create new user (Negetive positive test), Privacy Policy, TRUSTe",
+	@Test(enabled = true, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Sign up- Create new user (Negetive positive test), Privacy Policy, TRUSTe",
 			groups = { "Sanity Android" })
 	public void createNewUser() throws Exception, Throwable {
 		String userRand = genMeth.randomString();
@@ -366,7 +414,7 @@ public class SanityAndroid {
 		
 	}
 	
-	@Test (enabled = true, testName = "Terms of service & TrusTe", description = "Test the TOS & TrusTe Links" ,
+	@Test (enabled = true, retryAnalyzer = Retry.class, testName = "Terms of service & TrusTe", description = "Test the TOS & TrusTe Links" ,
 			groups = {"Sanity Android"})
 	public void termsOfServiceAndTruste () throws InterruptedException, IOException, ParserConfigurationException, SAXException{
 		
@@ -393,7 +441,7 @@ public class SanityAndroid {
 		
 	}
 	
-	@Test(enabled = true, testName = "Sanity Tests", description = "login with bad/missing credentials , forgot password (negative & positive)",
+	@Test(enabled = true, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "login with bad/missing credentials , forgot password (negative & positive)",
 			groups = { "Sanity Android" })
 	public void badCredentials() throws Exception, Throwable {
 		
@@ -423,7 +471,7 @@ public class SanityAndroid {
 	
 	}
 	
-	@Test(enabled = true, testName = "Sanity Tests", description = "Search functionality & filter",
+	@Test(enabled = true, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Search functionality & filter",
 			groups = { "Sanity Android" })
 	public void search() throws Exception, Throwable {
 		
@@ -610,8 +658,8 @@ public class SanityAndroid {
 	
 	}
 	
-	@Test(enabled = true, testName = "Sanity Tests", description = "Settings: create & restore a snapshot",
-			groups = { "Sanity Android1" })
+	@Test(enabled = true, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Settings: create & restore a snapshot",
+			groups = { "Sanity Android2" })
 	public void createRestoreSnapShot() throws Exception, Throwable {
 		
 		String currentTime = genMeth.currentTime();
@@ -728,7 +776,8 @@ public class SanityAndroid {
 		}
 	
 	
-	@Test (enabled = false, testName = "Sanity Tests", description = "Settings: Save Login", groups = { "Sanity Android" })
+	@Test (enabled = false, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Settings: Save Login",
+			groups = { "Sanity Android" })
 			
 	public void settingsKeepMeSignedIn() throws Exception, Throwable {
 
@@ -764,7 +813,7 @@ public class SanityAndroid {
 
 	}
 
-	@Test(enabled = false, testName = "Sanity Tests", description = "Settings: Backup Enable/disable without upload in the background",
+	@Test(enabled = false, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Settings: Backup Enable/disable without upload in the background",
 			groups = { "Regression Droid" })
 	public void settingsBackupEnableDisable() throws Exception, Throwable {
 
@@ -782,7 +831,7 @@ public class SanityAndroid {
 
 	}
 	
-	@Test(enabled = false, testName = "Sanity Tests", description = "Settings: Backup Enable/disable *with upload in the background",
+	@Test(enabled = false, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Settings: Backup Enable/disable *with upload in the background",
 			groups = { "Regression iOS" })// , dependsOnMethods={"successTest"})
 	public void settingsBackupEnableDisableDuringUpload() throws Exception,Throwable {
 
@@ -843,7 +892,7 @@ public class SanityAndroid {
 		
 	}
 
-	@Test(enabled = false, testName = "Sanity Tests", description = " Backup running in background -> make sure process keeps alive and completes its queue even in background AND if taking new shots they are automatically backed up",
+	@Test(enabled = false, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = " Backup running in background -> make sure process keeps alive and completes its queue even in background AND if taking new shots they are automatically backed up",
 			groups = { "Sanity Android" })
 	public void backupInBackground() throws Exception, Throwable {
 
@@ -873,7 +922,7 @@ public class SanityAndroid {
 
 	}
 
-	@Test(enabled = false, testName = "Sanity Tests", description = "Switching from Foreground to Background and vice versa use cases",
+	@Test(enabled = false, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Switching from Foreground to Background and vice versa use cases",
 			groups = { "Sanity Android" })
 	public void foregroundBackgroundSwitch() throws Exception, Throwable {
 
@@ -885,7 +934,7 @@ public class SanityAndroid {
 
 	}
 	
-		@Test(enabled = false , testName = "Sanity Tests" , description = " Add remove files from favorites" ,
+		@Test(enabled = false , retryAnalyzer = Retry.class, testName = "Sanity Tests" , description = " Add remove files from favorites" ,
 				groups = { "Sanity Android"} )
 	public void Favorites() throws InterruptedException, IOException, ParserConfigurationException, SAXException{
 			// open favorites & make sure that it is empty
@@ -919,7 +968,7 @@ public class SanityAndroid {
 			
 		}
 		
-	@Test(enabled = false, testName = "Sanity Tests", description = "Adding & removing team folders",
+	@Test(enabled = false, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Adding & removing team folders",
 			groups = { "Sanity Android" })
 	public void addRemoveTeamFolders() throws Exception, Throwable {
 		
@@ -955,12 +1004,13 @@ public class SanityAndroid {
 	
 		
 	}
-	@Test(enabled = true, testName = "connection lost handling", description = "Checking how the app owrks while connection is lost & back again",
+	@Test(enabled = true, retryAnalyzer = Retry.class,  testName = "connection lost handling", description = "Checking how the app owrks while connection is lost & back again", //dependsOnGroups = {"Sanity*"},
 			groups={ "Sanity Android"} )
 	public void connectionLost() throws InterruptedException, IOException, ParserConfigurationException, SAXException{
 		
 		String currentTime = genMeth.currentTime();
 		String currentDate = genMeth.currentDate();
+		genMeth.setWifiOn();
 		
 		// check app while connection is lost & return during login
 		genMeth.signOutFromStartupAndroid(genMeth, droidData);
@@ -991,6 +1041,7 @@ public class SanityAndroid {
 		genMeth.setWifiOn();
 		genMeth.clickName(genMeth, droidData.BTNrefresh_name);
 		genMeth.isElementInvisible(By.name("No internet connection"));
+//		driver.scrollToExact("upload from existing test");
 		genMeth.clickName(genMeth, "upload from existing test");
 		
 		// check app while connection is lost & back during backup/upload
@@ -1058,19 +1109,31 @@ public class SanityAndroid {
 
 		
 		// check app while connection is lost & back post refresh
-
-		
-		
 		
 	} 
 	
 	
+	
+	@Test(enabled = false, retryAnalyzer = Retry.class,  testName = "connection lost handling",
+			description = "Checking how the app owrks while connection is lost & back again",
+			groups={ "Sanity Android1"} )
+	public void temp() throws IOException, ParserConfigurationException, SAXException, InterruptedException{
+		
+		
+		genMeth.isTextPresentAndroid(driver, By.name(droidData.CATEGORIES), droidData.CATEGORIES);
+
+		
+		
+		
+	}
+	
 	@AfterSuite (alwaysRun=true)
 
-		public void sendMail() throws Exception {
+		public void tearDown() throws Exception {
 //			driver.removeApp("com.pogoplug.android");
 		
 			try {
+				genMeth.setWifiOn();
 				driver.quit();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

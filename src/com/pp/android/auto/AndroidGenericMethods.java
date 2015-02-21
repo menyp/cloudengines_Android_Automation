@@ -289,20 +289,21 @@ public class AndroidGenericMethods {
 
 		File scrFile = (driver.getScreenshotAs(OutputType.FILE));
 		String currentTime = genMeth.currentTime();
+		String currentDate = genMeth.currentDate();
 
 		// Now you can do whatever you need to do with it, for example copy somewhere
-		String imagePath = genMeth.getValueFromPropFile("screenshotPath") + currentTime + "_" + imageName + ".JPG";
+		String imagePath = genMeth.getValueFromPropFile("screenshotPath")  + currentDate + "/" + currentTime + "_" + imageName + ".JPG";
 		FileUtils.copyFile(scrFile, new File(imagePath));
 
 	}
 	
 	public void takeScreenShotPositive(AndroidGenericMethods genMeth, String imageName) throws IOException {
-
+		String currentTime = genMeth.currentTime();
 		File scrFile = (driver.getScreenshotAs(OutputType.FILE));
 		String currentDate = genMeth.currentDate();
 
 		// Now you can do whatever you need to do with it, for example copy somewhere
-		String imagePath = genMeth.getValueFromPropFile("screenshotPathPositive")  + currentDate + "/" + imageName + ".JPG";
+		String imagePath = genMeth.getValueFromPropFile("screenshotPathPositive")  + currentDate +  "/" + currentTime + "_" + imageName + ".JPG";
 		FileUtils.copyFile(scrFile, new File(imagePath));
 
 	}
@@ -914,7 +915,7 @@ public class AndroidGenericMethods {
 
 	public WebElement fluentwait(AndroidDriver driver, final By byType) {
 		Wait<AndroidDriver> wait = new FluentWait<AndroidDriver>(driver)
-				.withTimeout(30, TimeUnit.SECONDS)
+				.withTimeout(45, TimeUnit.SECONDS)
 				.pollingEvery(5, TimeUnit.SECONDS)
 				.ignoring(NoSuchElementException.class);
 
@@ -937,7 +938,7 @@ public class AndroidGenericMethods {
 
 		try {
 			new FluentWait<AndroidDriver>(driver)
-					.withTimeout(20, TimeUnit.SECONDS)
+					.withTimeout(45, TimeUnit.SECONDS)
 					.pollingEvery(5, TimeUnit.SECONDS)
 					.ignoring(NoSuchElementException.class)
 					.until(ExpectedConditions.textToBePresentInElementLocated(
@@ -1232,7 +1233,7 @@ public class AndroidGenericMethods {
 	}
 	
 public void setWifiOn(){
-		
+	
 		driver.setNetworkConnection(new NetworkConnectionSetting(false,true,false));
 
 	}
