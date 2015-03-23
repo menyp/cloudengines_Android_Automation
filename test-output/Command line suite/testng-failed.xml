@@ -10,11 +10,10 @@
     <classes>
       <class name="com.pp.android.auto.SanityAndroid">
         <methods>
-          <include name="tour"/>
           <include name="tearDown"/>
-          <include name="uploadImage"/>
-          <include name="createfolder"/>
+          <include name="settingsKeepMeSignedIn"/>
           <include name="setupBeforeSuite"/>
+          <include name="createRestoreSnapShot"/>
           <include name="search"/>
           <include name="checkHomeScreen"/>
         </methods>

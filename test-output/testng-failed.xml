@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Command line suite]">
-  <test name="Command line test(failed)">
+<suite name="Failed suite [Suite]" parallel="none">
+  <test name="Sanity Tests(failed)" parallel="none">
     <groups>
       <run>
-        <include name="Sanity Android"/>
+        <include name="Sanity Android1"/>
       </run>
     </groups>
     <classes>
       <class name="com.pp.android.auto.SanityAndroid">
         <methods>
-          <include name="tour"/>
           <include name="tearDown"/>
-          <include name="uploadImage"/>
-          <include name="createfolder"/>
+          <include name="settingsKeepMeSignedIn"/>
           <include name="setupBeforeSuite"/>
-          <include name="search"/>
           <include name="checkHomeScreen"/>
         </methods>
       </class> <!-- com.pp.android.auto.SanityAndroid -->
     </classes>
-  </test> <!-- Command line test(failed) -->
-</suite> <!-- Failed suite [Command line suite] -->
+  </test> <!-- Sanity Tests(failed) -->
+</suite> <!-- Failed suite [Suite] -->

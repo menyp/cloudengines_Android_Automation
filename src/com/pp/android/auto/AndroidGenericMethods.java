@@ -25,7 +25,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.mobile.NetworkConnection;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -46,10 +45,12 @@ public class AndroidGenericMethods {
 
 	AndroidDriver driver;
 	AndroidWebElements droidData;
+	
+	AndroidGenericMethods genMeth;
 
-	public AndroidGenericMethods (){}
+//	public AndroidGenericMethods (){}
 
-	public void cleanLoginAndroid(AndroidGenericMethods genMeth, AndroidWebElements androidData , String user) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
+	public void cleanLoginAndroid(AndroidGenericMethods genMeth,  AndroidWebElements androidData , String user) throws ParserConfigurationException, SAXException, IOException,InterruptedException {
 			
 
 		genMeth.clickId(  genMeth, androidData.BTNalreadyHaveAnAccount_id);
@@ -187,13 +188,17 @@ public class AndroidGenericMethods {
 			throws IOException {
 		
 		// Login with an existing account
-		
+//		final String valueAppName = System.getenv("PE_CONF_PWD");
+//		String AppPath = genMeth.getValueFromPropFile("pogoplugPath") + valueAppName;
+ 
 		DesiredCapabilities capabilities =  DesiredCapabilities.android();
 		capabilities.setCapability("appium-version", genMeth.getValueFromPropFile("appiumVersion"));
 		capabilities.setCapability("platformName", genMeth.getValueFromPropFile("platformName"));
 		capabilities.setCapability("platformVersion", genMeth.getValueFromPropFile("platformVersion"));
 		capabilities.setCapability("deviceName", genMeth.getValueFromPropFile("deviceName"));
 		capabilities.setCapability("app",genMeth.getValueFromPropFile("pogoplugPath"));
+//		capabilities.setCapability("app",AppPath);
+
 		capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
 		capabilities.setCapability("appWaitActivity", genMeth.getValueFromPropFile("appWaitActivity"));
 		capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appActivity"));
@@ -1254,7 +1259,6 @@ public void setWifiOn(){
 	public void pressEnter(){
 		int Enter = AndroidKeyCode.ENTER;
 		driver.sendKeyEvent(Enter);
-		
 	}
 /*
 	public void deletList(AndroidGenericMethods genMeth, AndroidWebElements iosData) 
