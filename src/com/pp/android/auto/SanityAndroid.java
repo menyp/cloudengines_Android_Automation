@@ -442,7 +442,7 @@ import org.xml.sax.SAXException;
 	}
 	
 	@Test(enabled = true, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "login with bad/missing credentials , forgot password (negative & positive)",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 	public void badCredentials() throws Exception, Throwable {
 		
 		String currentTime = genMeth.currentTime();
