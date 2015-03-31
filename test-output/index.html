@@ -23,7 +23,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,7 +37,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-Suite">
-              <span class="suite-name border-passed">Suite</span>
+              <span class="suite-name border-failed">Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -90,21 +90,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
                   </li>
                   <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-Suite" class="hide-methods passed suite-Suite"> (hide)</a> <!-- hide-methods passed suite-Suite -->
-                      <a href="#" panel-name="suite-Suite" class="show-methods passed suite-Suite"> (show)</a> <!-- show-methods passed suite-Suite -->
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Suite" class="hide-methods failed suite-Suite"> (hide)</a> <!-- hide-methods failed suite-Suite -->
+                      <a href="#" panel-name="suite-Suite" class="show-methods failed suite-Suite"> (show)</a> <!-- show-methods failed suite-Suite -->
                     </span>
-                    <div class="method-list-content passed suite-Suite">
+                    <div class="method-list-content failed suite-Suite">
                       <span>
-                        <img width="3%" src="passed.png"/>
+                        <img width="3%" src="failed.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.pp.android.auto.SanityAndroid" hash-for-method="badCredentials">badCredentials</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-Suite -->
+                    </div> <!-- method-list-content failed suite-Suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -116,9 +116,9 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Suite" class="panel Suite">
-          <div class="suite-Suite-class-passed">
+          <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
+              <img src="failed.png"/>
               <span class="class-name">com.pp.android.auto.SanityAndroid</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -127,12 +127,175 @@
                   <a name="badCredentials">
                   </a> <!-- badCredentials -->
                   <span class="method-name">badCredentials</span>
+                  <div class="stack-trace">org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. (Original error: Command failed: /bin/sh -c /Users/sgmacbookpro/Appium/sdk/platform-tools/adb -s 0149A91D0F01C00D &quot;shell \&quot;/system/bin/rm /data/local/tmp/screenshot.png; /system/bin/screencap -p /data/local/tmp/screenshot.png \&quot;&quot;
+Android Debug Bridge version 1.0.32
+
+ -a                            - directs adb to listen on all interfaces for a connection
+ -d                            - directs command to the only connected USB device
+                                 returns an error if more than one USB device is present.
+ -e                            - directs command to the only running emulator.
+                                 returns an error if more than one emulator is running.
+ -s &lt;specific device&gt;          - directs command to the device or emulator with the given
+                                 serial number or qualifier. Overrides ANDROID_SERIAL
+                                 environment variable.
+ -p &lt;product name or path&gt;     - simple product name like &apos;sooner&apos;, or
+                                 a relative/absolute path to a product
+                                 out directory like &apos;out/target/product/sooner&apos;.
+                                 If -p is not specified, the ANDROID_PRODUCT_OUT
+                                 environment variable is used, which must
+                                 be an absolute path.
+ -H                            - Name of adb server host (default: localhost)
+ -P                            - Port of adb server (default: 5037)
+ devices [-l]                  - list all connected devices
+                                 (&apos;-l&apos; will also list device qualifiers)
+ connect &lt;host&gt;[:&lt;port&gt;]       - connect to a device via TCP/IP
+                                 Port 5555 is used by default if no port number is specified.
+ disconnect [&lt;host&gt;[:&lt;port&gt;]]  - disconnect from a TCP/IP device.
+                                 Port 5555 is used by default if no port number is specified.
+                                 Using this command with no additional arguments
+                                 will disconnect from all connected TCP/IP devices.
+
+device commands:
+  adb push [-p] &lt;local&gt; &lt;remote&gt;
+                               - copy file/dir to device
+                                 (&apos;-p&apos; to display the transfer progress)
+  adb pull [-p] [-a] &lt;remote&gt; [&lt;local&gt;]
+                               - copy file/dir from device
+                                 (&apos;-p&apos; to display the transfer progress)
+                                 (&apos;-a&apos; means copy timestamp and mode)
+  adb sync [ &lt;directory&gt; ]     - copy host-&gt;device only if changed
+                                 (-l means list but don&apos;t copy)
+                                 (see &apos;adb help all&apos;)
+  adb shell                    - run remote shell interactively
+  adb shell &lt;command&gt;          - run remote shell command
+  adb emu &lt;command&gt;            - run emulator console command
+  adb logcat [ &lt;filter-spec&gt; ] - View device log
+  adb forward --list           - list all forward socket connections.
+                                 the format is a list of lines with the following format:
+                                    &lt;serial&gt; &quot; &quot; &lt;local&gt; &quot; &quot; &lt;remote&gt; &quot;\n&quot;
+  adb forward &lt;local&gt; &lt;remote&gt; - forward socket connections
+                                 forward specs are one of: 
+                                   tcp:&lt;port&gt;
+                                   localabstract:&lt;unix domain socket name&gt;
+                                   localreserved:&lt;unix domain socket name&gt;
+                                   localfilesystem:&lt;unix domain socket name&gt;
+                                   dev:&lt;character device name&gt;
+                                   jdwp:&lt;process pid&gt; (remote only)
+  adb forward --no-rebind &lt;local&gt; &lt;remote&gt;
+                               - same as &apos;adb forward &lt;local&gt; &lt;remote&gt;&apos; but fails
+                                 if &lt;local&gt; is already forwarded
+  adb forward --remove &lt;local&gt; - remove a specific forward socket connection
+  adb forward --remove-all     - remove all forward socket connections
+  adb reverse --list           - list all reverse socket connections from device
+  adb reverse &lt;remote&gt; &lt;local&gt; - reverse socket connections
+                                 reverse specs are one of:
+                                   tcp:&lt;port&gt;
+                                   localabstract:&lt;unix domain socket name&gt;
+                                   localreserved:&lt;unix domain socket name&gt;
+                                   localfilesystem:&lt;unix domain socket name&gt;
+  adb reverse --norebind &lt;remote&gt; &lt;local&gt;
+                               - same as &apos;adb reverse &lt;remote&gt; &lt;local&gt;&apos; but fails
+                                 if &lt;remote&gt; is already reversed.
+  adb reverse --remove &lt;remote&gt;
+                               - remove a specific reversed socket connection
+  adb reverse --remove-all     - remove all reversed socket connections from device
+  adb jdwp                     - list PIDs of processes hosting a JDWP transport
+  adb install [-lrtsd] &lt;file&gt;
+  adb install-multiple [-lrtsdp] &lt;file...&gt;
+                               - push this package file to the device and install it
+                                 (-l: forward lock application)
+                                 (-r: replace existing application)
+                                 (-t: allow test packages)
+                                 (-s: install application on sdcard)
+                                 (-d: allow version code downgrade)
+                                 (-p: partial application install)
+  adb uninstall [-k] &lt;package&gt; - remove this app package from the device
+                                 (&apos;-k&apos; means keep the data and cache directories)
+  adb bugreport                - return all information from the device
+                                 that should be included in a bug report.
+
+  adb backup [-f &lt;file&gt;] [-apk|-noapk] [-obb|-noobb] [-shared|-noshared] [-all] [-system|-nosystem] [&lt;packages...&gt;]
+                               - write an archive of the device&apos;s data to &lt;file&gt;.
+                                 If no -f option is supplied then the data is written
+                                 to &quot;backup.ab&quot; in the current directory.
+                                 (-apk|-noapk enable/disable backup of the .apks themselves
+                                    in the archive; the default is noapk.)
+                                 (-obb|-noobb enable/disable backup of any installed apk expansion
+                                    (aka .obb) files associated with each application; the default
+                                    is noobb.)
+                                 (-shared|-noshared enable/disable backup of the device&apos;s
+                                    shared storage / SD card contents; the default is noshared.)
+                                 (-all means to back up all installed applications)
+                                 (-system|-nosystem toggles whether -all automatically includes
+                                    system applications; the default is to include system apps)
+                                 (&lt;packages...&gt; is the list of applications to be backed up.  If
+                                    the -all or -shared flags are passed, then the package
+                                    list is optional.  Applications explicitly given on the
+                                    command line will be included even if -nosystem would
+                                    ordinarily cause them to be omitted.)
+
+  adb restore &lt;file&gt;           - restore device contents from the &lt;file&gt; backup archive
+
+  adb help                     - show this help message
+  adb version                  - show version num
+
+scripting:
+  adb wait-for-device          - block until device is online
+  adb start-server             - ensure that there is a server running
+  adb kill-server              - kill the server if it is running
+  adb get-state                - prints: offline | bootloader | device
+  adb get-serialno             - prints: &lt;serial-number&gt;
+  adb get-devpath              - prints: &lt;device-path&gt;
+  adb status-window            - continuously print device status for a specified device
+  adb remount                  - remounts the /system and /vendor (if present) partitions on the device read-write
+  adb reboot [bootloader|recovery] - reboots the device, optionally into the bootloader or recovery program
+  adb reboot-bootloader        - reboots the device into the bootloader
+  adb root                     - restarts the adbd daemon with root permissions
+  adb usb                      - restarts the adbd daemon listening on USB
+  adb tcpip &lt;port&gt;             - restarts the adbd daemon listening on TCP on the specified port
+networking:
+  adb ppp &lt;tty&gt; [parameters]   - Run PPP over USB.
+ Note: you should not automatically start a PPP connection.
+ &lt;tty&gt; refers to the tty for PPP stream. Eg. dev:/dev/omap_csmi_tty1
+ [parameters] - Eg. defaultroute debug dump local notty usepeerdns
+
+adb sync notes: adb sync [ &lt;directory&gt; ]
+  &lt;localdir&gt; can be interpreted in several ways:
+
+  - If &lt;directory&gt; is not specified, /system, /vendor (if present), and /data partitions will be updated.
+
+  - If it is &quot;system&quot;, &quot;vendor&quot; or &quot;data&quot;, only the corresponding partition
+    is updated.
+
+environmental variables:
+  ADB_TRACE                    - Print debug information. A comma separated list of the following values
+                                 1 or all, adb, sockets, packets, rwx, usb, sync, sysdeps, transport, jdwp
+  ANDROID_SERIAL               - The serial number to connect to. -s takes priority over this if given.
+  ANDROID_LOG_TAGS             - When used with the logcat option, only these debug tags are printed.
+) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4206.74 seconds
+Build info: version: &apos;2.44.0&apos;, revision: &apos;76d78cf323ce037c5f92db6c1bba601c2ac43ad8&apos;, time: &apos;2014-10-23 13:11:40&apos;
+System info: host: &apos;SGMacBookPROs-MacBook-Pro.local&apos;, ip: &apos;127.0.0.1&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.9.5&apos;, java.version: &apos;1.8.0_40&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities [{app=/Users/sgmacbookpro/Appium/Android/pogoplug.apk, appPackage=com.pogoplug.android, networkConnectionEnabled=true, warnings={}, appWaitActivity=com.pogoplug.android.login.ui.IntroPage, databaseEnabled=false, version=, deviceName=Galaxy Nexus1, platform=ANDROID, appActivity=com.pogoplug.android.login.Splash, desired={app=/Users/sgmacbookpro/Appium/Android/pogoplug.apk, appPackage=com.pogoplug.android, appActivity=com.pogoplug.android.login.Splash, appium-version=1.3.4, platformVersion=4.2.2, appWaitActivity=com.pogoplug.android.login.ui.IntroPage, browserName=android, platformName=Android, version=, deviceName=Galaxy Nexus1, platform=ANDROID}, appium-version=1.3.4, platformVersion=4.2.2, webStorageEnabled=false, locationContextEnabled=false, browserName=android, takesScreenshot=true, javascriptEnabled=true, platformName=Android}]
+Session ID: 7e5a2d60-f994-4c04-b1e4-0dfe807e5d11
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:180)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:185)
+	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:324)
+	at com.pp.android.auto.AndroidGenericMethods.takeScreenShot(AndroidGenericMethods.java:296)
+	at com.pp.android.auto.AndroidGenericMethods.isElementVisible(AndroidGenericMethods.java:1030)
+	at com.pp.android.auto.SanityAndroid.badCredentials(SanityAndroid.java:481)
+... Removed 28 stack frames
+</div> <!-- stack-trace -->
                   <em>
 (login with bad/missing credentials , forgot password (negative & positive))                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-passed -->
+          </div> <!-- suite-Suite-class-failed -->
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -202,12 +365,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'badCredentials')
 data.setCell(0, 2, 'com.pp.android.auto.SanityAndroid')
-data.setCell(0, 3, 64266);
+data.setCell(0, 3, 4273969);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 1 hours</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -272,13 +435,23 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">com.pp.android.auto.SanityAndroid</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
-                <span class="method-name">setupBeforeSuite(org.testng.TestRunner@6b5966e1)</span>
+                <span class="method-name">setupBeforeSuite(org.testng.TestRunner@1756f7cc)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
+              <div class="configuration-method before">
+                <span class="method-name">checkHomeScreen</span>
+                <span class="method-start">47704 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">badCredentials</span>
-                <span class="method-start">57268 ms</span>
+                <span class="method-start">48223 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-suite after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">4322263 ms</span>
+              </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

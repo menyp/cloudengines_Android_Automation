@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import io.appium.java_client.android.AndroidDriver;
 
 import java.io.IOException;
+
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.openqa.selenium.By;
@@ -14,6 +15,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeSuite;
 import org.xml.sax.SAXException;
+
+import com.applitools.eyes.Eyes;
 
   public class SanityAndroid {
 	
@@ -32,6 +35,8 @@ import org.xml.sax.SAXException;
 
 	@BeforeSuite(alwaysRun = true)
 	public void setupBeforeSuite(ITestContext context) throws ParserConfigurationException, SAXException, IOException, InterruptedException {
+		
+        // This is your api key, make sure you use it in all your tests.
 		
 		//Set the tests configuration
 		StartServerPath = genMeth.getValueFromPropFile("StartServerPath");
@@ -183,7 +188,6 @@ import org.xml.sax.SAXException;
 			groups= {"Sanity Android"})	
 	public void uploadImage() throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
-		String currentTime = genMeth.currentTime();
 	// open pogoplug cloud & press
 		genMeth.clickId(  genMeth, droidData.BTNlsm_ID);
 		genMeth.clickName( genMeth, "upload from existing test");
@@ -388,8 +392,6 @@ import org.xml.sax.SAXException;
 			groups = { "Sanity Android" })
 	public void createNewUser() throws Exception, Throwable {
 		String userRand = genMeth.randomString();
-		String currentTime = genMeth.currentTime();
-		String currentDate = genMeth.currentDate();
 		
 		genMeth.signOutFromStartupAndroid(genMeth, droidData);
 		
@@ -441,12 +443,19 @@ import org.xml.sax.SAXException;
 		
 	}
 	
-	@Test(enabled = true, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "login with bad/missing credentials , forgot password (negative & positive)",
+	@SuppressWarnings("static-access")
+	@Test(enabled = true,  testName = "Sanity Tests", description = "login with bad/missing credentials , forgot password (negative & positive)",
 			groups = { "Sanity Android1" })
 	public void badCredentials() throws Exception, Throwable {
 		
 		String currentTime = genMeth.currentTime();
-//		String currentDate = genMeth.currentDate();
+
+		Eyes eyes = new Eyes();
+		eyes.setApiKey("Hbh6716cKDCgn8a9bMAREPM105nbW109PQe0993So5GwFpNM110");
+		eyes.open(driver, "pp", "test1");
+		eyes.checkWindow("Initial screen");
+		eyes.close();
+					
 		
 		genMeth.signOutFromStartupAndroid(genMeth, droidData);
 		genMeth.clickId( genMeth, droidData.BTNalreadyHaveAnAccount_id);
@@ -459,6 +468,7 @@ import org.xml.sax.SAXException;
 		genMeth.sendId( genMeth, droidData.TEXTFIELDpassword_id, droidData.password);
 		genMeth.clickId( genMeth, droidData.BTNlogin_id);	
 		genMeth.isElementVisible(By.name(droidData.CATEGORIES));
+		
 
 
 		// Login with bad credentials
@@ -475,7 +485,6 @@ import org.xml.sax.SAXException;
 			groups = { "Sanity Android" })
 	public void search() throws Exception, Throwable {
 		
-		String currentTime = genMeth.currentTime();
 		String currentDate = genMeth.currentDate();
 		
 		//Search Folder in ROOT
@@ -662,8 +671,6 @@ import org.xml.sax.SAXException;
 			groups = { "Sanity Android" })
 	public void createRestoreSnapShot() throws Exception, Throwable {
 		
-		String currentTime = genMeth.currentTime();
-		String currentDate = genMeth.currentDate();
 		
 		genMeth.clickName( genMeth, droidData.Settings_Name);
 		driver.scrollToExact(droidData.BTNrestoreSnapshot_Name);
@@ -1009,8 +1016,6 @@ import org.xml.sax.SAXException;
 			
 	public void connectionLost() throws InterruptedException, IOException, ParserConfigurationException, SAXException{
 		
-		String currentTime = genMeth.currentTime();
-		String currentDate = genMeth.currentDate();
 		genMeth.setWifiOn();
 		
 		// check app while connection is lost & return during login
@@ -1140,8 +1145,8 @@ import org.xml.sax.SAXException;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
-			//SendResults sr = new SendResults("elicherni444@gmail.com", "meny@cloudengines.com", "TestNG results", "Test Results");
-			//sr.sendTestNGResult();
+			SendResults sr = new SendResults("elicherni444@gmail.com", "meny@cloudengines.com", "TestNG results", "Test Results");
+			sr.sendTestNGResult();
 		
 		}
 

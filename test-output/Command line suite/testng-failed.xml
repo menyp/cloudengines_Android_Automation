@@ -12,9 +12,9 @@
         <methods>
           <include name="createNewUser"/>
           <include name="tour"/>
+          <include name="tearDown"/>
           <include name="uploadImage"/>
           <include name="createfolder"/>
-          <include name="badCredentials"/>
           <include name="termsOfServiceAndTruste"/>
           <include name="setupBeforeSuite"/>
           <include name="createRestoreSnapShot"/>
